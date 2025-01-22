@@ -1,0 +1,40 @@
+@using Microsoft.Extensions.Options
+@using Umbraco.Forms.Core.Configuration
+@using Umbraco.Forms.Web.Extensions
+@using Umbraco.Forms.Web
+
+@inject IOptions<PackageOptionSettings> PackageOptionSettings;
+
+@inherits Umbraco.Cms.Web.Common.Macros.PartialViewMacroPage
+
+@{
+    var formsToRender = new List<Guid>();
+
+    switch (PackageOptionSettings.Value.TrackRenderedFormsStorageMethod)
+    {
+        case TrackRenderedFormsStorageMethodOption.TempData:
+            formsToRender = TempData[WebConstants.TempDataKeys.RenderedFormIds] != null
+                ? TempData.Get<List<Guid>>(WebConstants.TempDataKeys.RenderedFormIds) ?? new List<Guid>()
+                : new List<Guid>();
+
+            // Reading TempData["UmbracoForms"] should have set it to null but this doesn't
+            // happen if this request didn't return a 200 OK status. https://stackoverflow.com/a/7630709/5018
+            // Explicitly clear it so that on the next request the scripts don't get rendered.
+            TempData.Remove(WebConstants.TempDataKeys.RenderedFormIds);
+
+            break;
+        case TrackRenderedFormsStorageMethodOption.HttpContextItems:
+            if (Context.Items.TryGetValue(WebConstants.TempDataKeys.RenderedFormIds, out object? formIdsObject) &&
+                formIdsObject is IEnumerable<Guid> formIds)
+            {
+                formsToRender = formIds.ToList();
+            }
+
+            break;
+    }
+}
+
+@foreach (Guid form in formsToRender)
+{
+    @(await Component.InvokeAsync("RenderFormScripts", new { formId = form }))
+}

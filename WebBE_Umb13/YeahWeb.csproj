@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="App_Plugins\Login\custom_login_screen.js" />
+    <Content Include="App_Plugins\Login\custom_login_screen.css" />
+    <Content Include="App_Plugins\Login\umbraco-package.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HarmonyX" Version="2.13.0" />
+    <PackageReference Include="HotChilli.Umbraco.PageNotFound" Version="2.2.1" />
+    <!-- Opt-in to app-local ICU to ensure consistent globalization APIs across different platforms -->
+    <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
+    <PackageReference Include="Our.Umbraco.UmbNav.Web" Version="3.0.2" />
+    <PackageReference Include="Umbraco.Cms" Version="13.5.2" />
+    <PackageReference Include="Umbraco.Commerce" Version="13.1.13" />
+    <PackageReference Include="Umbraco.Commerce.Checkout" Version="13.1.2" />
+    <PackageReference Include="Umbraco.Commerce.PaymentProviders.PayPal" Version="13.1.1" />
+    <PackageReference Include="Umbraco.Community.BlockPreview" Version="1.10.5" />
+    <PackageReference Include="Umbraco.Forms" Version="13.3.1" />
+    <PackageReference Include="uSync" Version="13.2.6" />
+    <PackageReference Include="uSync.Expansions.Core" Version="13.1.8" />
+    <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="72.1.0.3" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Infra\" />
+    <Folder Include="Views\Partials\blocklist\Components\" />
+    <Folder Include="Views\Partials\Forms\Themes\" />
+    <Folder Include="Views\Shared\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\_Layout_Main.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <!-- Razor files are needed for the backoffice to work correctly -->
+    <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
+
+    <!-- Remove RazorCompileOnBuild and RazorCompileOnPublish when not using ModelsMode InMemoryAuto -->
+    <RazorCompileOnBuild>false</RazorCompileOnBuild>
+    <RazorCompileOnPublish>false</RazorCompileOnPublish>
+
+    <GenerateRuntimeConfigDevFile>true</GenerateRuntimeConfigDevFile>
+  </PropertyGroup>
+
+</Project>

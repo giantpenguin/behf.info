@@ -1,0 +1,38 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var heroBanners = Model.Content.Value<IEnumerable<IPublishedContent>>("heroBanners");    
+    var carouselId = "carousel" + Model.Content.Value("UrlSegment");
+}
+
+<div id="@carouselId" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        @for (int i = 0; i < heroBanners.Count(); i++)
+        {
+            var banner = heroBanners.ElementAt(i);
+            var heading = banner.Value("heading");
+            var imgBannerUrl = banner.Value<IPublishedContent>("bannerImage").GetCropUrl(width: 1920, height: 850);
+            var ctaLink = banner.Value<Link>("actionUrl");
+            var active = i == 0 ? "active" : "";
+
+          <div class="carousel-item @active">
+                <img src="@imgBannerUrl" class="d-block w-100" alt="@(heading??banner.Name)">
+              <div class="carousel-caption d-none d-md-block bg-dark p-3 rounded-3">
+                    <h5>@heading</h5>
+                    @banner.Value("paragraph")
+                    <a class="nav-link stretched-link" href="@ctaLink.Url">@ctaLink.Name</a>
+              </div>
+          </div>
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#@carouselId" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bg-secondary rounded-1" aria-hidden="true"></span>
+        <span class="visually-hidden">Go Left</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#@carouselId" data-bs-slide="next">
+        <span class="carousel-control-next-icon bg-secondary rounded-1" aria-hidden="true"></span>
+        <span class="visually-hidden">Go Right</span>
+    </button>
+</div>

@@ -1,0 +1,14 @@
+{
+  "alias": "login.extensions",
+  "name": "Login extensions",
+  "version": "1.0.0",
+  "allowPublicAccess": true,
+  "extensions": [
+    {
+      "type": "appEntryPoint",
+      "alias": "MyCustomLoginScreen",
+      "name": "My Custom Login Screen",
+      "js": "/App_Plugins/Login/custom_login_screen.js"
+    }
+  ]
+}

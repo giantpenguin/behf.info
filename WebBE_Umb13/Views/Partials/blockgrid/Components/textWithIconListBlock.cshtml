@@ -1,0 +1,62 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var heading = Model.Content.Value<string>("heading");
+    var subheading = Model.Content.Value<string>("subHeading");
+    var paragraph = Model.Content.Value("paragraph");
+    var items = Model.Content.Value<IEnumerable<BlockListItem>>("items") ?? Enumerable.Empty<BlockListItem>();
+    var iconBoxStyle = "";
+    switch (Model.Content.Value<string>("iconBoxStyle"))
+    {
+        case "IconBox_Left":
+            iconBoxStyle = "icon_box_style2";
+            break;
+        case "IconBox_Center_Round":
+            iconBoxStyle = "icon_box_style3";
+            break;
+        default:  //IconBox_Center
+            iconBoxStyle = "icon_box_style1";
+            break;
+    }
+}
+
+<section class="pb_50">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8 col-md-10 text-center animation" data-animation="fadeInUp" data-animation-delay="0.2s">
+                <div class="heading_s2 text-center">
+                    @if (!string.IsNullOrWhiteSpace(subheading))
+                    {
+                        <span class="sub_heading">@subheading</span>
+                    }
+                    <h3>@heading</h3>
+                    <div class="title_icon"><i class="flaticon-lotus"></i></div>
+                </div>
+                @paragraph
+                <div class="small_divider clearfix"></div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach(var item in items){
+                var itemHeading = item.Content.Value<string>("heading");
+                var itemParag = item.Content.Value<string>("paragraph");
+                var iconImage = item.Content.Value<string>("iconImage");
+                var boxShadow4 = item.Content.Value<bool>("boxShadow") ? "box_shadow4" : "";
+                <div class="col-lg-4 col-sm-6">
+                    <div class="icon_box @iconBoxStyle @boxShadow4 text-center animation" data-animation="fadeInUp" data-animation-delay="0.2s">
+                        <div class="box_icon">
+                            <img src="/assets/images/icons/@(string.IsNullOrEmpty(iconImage) ? "lotus-woman.svg" : iconImage)" />
+                        </div>
+                        <div class="intro_desc">
+                          <h5>@itemHeading</h5>
+                          <p>@itemParag</p>
+                        </div>
+                    </div>
+                </div>
+            }
+      </div>
+    </div>
+</section>

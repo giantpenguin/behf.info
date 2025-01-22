@@ -1,0 +1,33 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var homePage = UmbracoContext.Content.GetSingleByXPath("//homePage") as HomePage;
+    var heading = Model.Content.Value<string>("heading");
+    var subheading = Model.Content.Value<string>("subHeading");
+}
+
+<div class="heading_s2">
+    @if (!string.IsNullOrWhiteSpace(subheading))
+    {
+        <span class="sub_heading">@subheading</span>
+    }
+    <h3>@heading</h3>
+</div>
+@Model.Content.Value("paragraph")
+<ul class="contact_info contact_info_style2 list_none">
+    <li>
+        <span class="ti-mobile"></span>
+        <a href="tel:@homePage.ContactPhone">@homePage.ContactPhone</a>
+    </li>
+    <li>
+        <span class="ti-email"></span>
+        <a href="mailto:@homePage.ContactEmail">@homePage.ContactEmail</a>
+    </li>
+    <li>
+        <span class="ti-location-pin"></span>
+        <address>@homePage.ContactAddress</address>
+    </li>
+</ul>

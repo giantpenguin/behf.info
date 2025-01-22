@@ -1,0 +1,8 @@
+﻿@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var pickedForm = Model.Content.Value("formPicker");
+}
+
+@(await Component.InvokeAsync("RenderForm", new { formId = pickedForm, theme = "default", includeScripts = false }))

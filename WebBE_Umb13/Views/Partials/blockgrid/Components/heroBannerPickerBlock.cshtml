@@ -1,0 +1,59 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var heroBanners = Model.Content.Value<IEnumerable<IPublishedContent>>("heroBanners") ?? Enumerable.Empty<IPublishedContent>();
+    var carouselId = "carousel" + Model.Content.Value("UrlSegment");
+}
+
+<section class="banner_slider banner_slide_half p-0">
+    <div id="@carouselId" class="carousel slidecarousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            @for (int i = 0; i < heroBanners.Count(); i++)
+            {
+                var banner = heroBanners.ElementAt(i);
+                var subHeading = banner.Value<string>("subHeading");
+                var hozAlign = banner.Value<string>("contentAlign", fallback: Fallback.ToDefaultValue, defaultValue: "Center");
+                var imgBannerUrl = banner.Value<IPublishedContent>("bannerImage")?.GetCropUrl(width: 1920, height: 650);
+                var ctaLink = banner.Value<Link>("actionUrl");
+                var active = i == 0 ? "active" : "";
+
+                var rowCss = hozAlign == "Center" ? "row justify-content-center" : hozAlign == "Right" ? "row justify-content-end" : "row";
+                var colCss = hozAlign == "Center" ? "col-md-7" : "col-lg-6";
+                var textAlign = hozAlign == "Center" ? "text-center" : "";
+
+                var bgrCss = !string.IsNullOrEmpty(imgBannerUrl) ? "background_bg" : banner.Value<ColorPickerValueConverter.PickedColor>("bannerColor")?.Label;
+
+                <div class="carousel-item @bgrCss @active" data-img-src="@imgBannerUrl">
+                    <div class="banner_slide_content">
+                        <div class="container">
+                            <div class="@rowCss">
+                                <div class="@colCss">
+                                    <div class="banner_content2 animation text_white @textAlign" data-animation="fadeIn" data-animation-delay="0.3s" data-parallax='{"y": 30, "smoothness": 10}'>
+                                        @if (!string.IsNullOrWhiteSpace(subHeading))
+                                        {
+                                            <h3 class="font_style1 text_default animation" data-animation="fadeInUp" data-animation-delay="0.5s">
+                                                @subHeading
+                                            </h3>
+                                        }
+                                        <h2 class="heading_s1 animation" data-animation="fadeInDown" data-animation-delay="0.5s">@banner.Value("heading")</h2>
+                                        @banner.Value("paragraph")
+                                        @if (!string.IsNullOrEmpty(ctaLink?.Url)) {
+                                           <a class="btn btn-default btn-radius animation" href="@ctaLink.Url" data-animation="fadeInUp" data-animation-delay="0.7s">@ctaLink.Name</a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="carousel_nav carousel_style1">
+            <a class="carousel-control-prev" href="#@carouselId" role="button" data-slide="prev"><i class="ion-chevron-left"></i></a>
+            <a class="carousel-control-next" href="#@carouselId" role="button" data-slide="next"><i class="ion-chevron-right"></i></a>
+        </div>
+    </div>
+</section>
