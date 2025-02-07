@@ -16,7 +16,7 @@
                 var banner = heroBanners.ElementAt(i);
                 var subHeading = banner.Value<string>("subHeading");
                 var hozAlign = banner.Value<string>("contentAlign", fallback: Fallback.ToDefaultValue, defaultValue: "Center");
-                var imgBannerUrl = banner.Value<IPublishedContent>("bannerImage")?.GetCropUrl(width: 1920, height: 650);
+                var imgBannerUrl = banner.Value<IPublishedContent>("bannerImage")?.GetCropUrl(width: 1920, height: 850);
                 var ctaLink = banner.Value<Link>("actionUrl");
                 var active = i == 0 ? "active" : "";
 
