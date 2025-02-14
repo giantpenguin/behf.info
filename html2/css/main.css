@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap");
+.bdrd-tl-br {
+  border-radius: 6rem 0;
+}
+
+.bdrd-tr-bl {
+  border-radius: 0 6rem;
+}
+
+.bdrd-50 {
+  border-radius: 50%;
+}
+
+.btn {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  z-index: 1;
+}
+.btn-icon {
+  padding-left: 0;
+  padding-right: 0;
+  width: 45px;
+}
+.btn-icon i {
+  display: block;
+  line-height: 1;
+  font-size: 1.5rem;
+}
+.btn-icon.btn-lg {
+  width: 56px;
+}
+.btn-icon.btn-lg i {
+  font-size: 1.75rem;
+}
+.btn-icon.btn-sm {
+  width: 34px;
+}
+.btn-icon.btn-sm i {
+  font-size: 1.25rem;
+}
+.btn.btn-bdrd-mirror {
+  border-radius: 0 1.5rem;
+}
+.btn.btn-bdrd-mirror.btn-lg {
+  border-radius: 0 1.75rem;
+}
+.btn.btn-bdrd-mirror.btn-sm {
+  border-radius: 0 1.25rem;
+}
+.btn.btn-primary {
+  border-color: transparent;
+}
+.btn.btn-primary:hover {
+  color: #fff;
+  background-color: #764979;
+  border-color: transparent;
+}
+.btn.btn-primary:active {
+  color: #fff;
+  background-color: #663f69;
+  border-color: transparent;
+}
+.btn.btn-primary.btn-hover-slide-in:before {
+  background-color: #764979;
+}
+.btn.btn-primary.btn-hover-slide-in:hover {
+  color: #fff;
+  background-color: #e1ccad;
+}
+.btn.btn-primary.btn-hover-slide-in:hover:before {
+  background-color: #764979;
+}
+.btn.btn-primary.btn-hover-slide-in:focus:before {
+  background-color: #663f69;
+}
+.btn.btn-secondary.btn-hover-slide-in {
+  border-color: transparent;
+}
+.btn.btn-secondary.btn-hover-slide-in:before {
+  background-color: #764979;
+}
+.btn.btn-secondary.btn-hover-slide-in:hover {
+  color: #764979;
+  background-color: transparent;
+  border-color: transparent;
+}
+.btn.btn-secondary.btn-hover-slide-in:hover:before {
+  background-color: #fff;
+}
+.btn.btn-secondary.btn-hover-slide-in:focus:before {
+  color: #663f69;
+}
+.btn.btn-hover-slide-in:before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  inset: 0 100% 0 0;
+  background-color: #fff;
+  transition: all 0.4s cubic-bezier(0.12, 0, 0.38, 1) 0s;
+}
+.btn.btn-hover-slide-in:hover:before {
+  right: 0;
+}
+.btn.btn-hover-jump-up {
+  transition: all 0.4s cubic-bezier(0.12, 0, 0.38, 1) 0s;
+}
+.btn.btn-hover-jump-up:hover {
+  transform: translateY(-0.5rem);
+}
+
+.form-group {
+  margin: 0 0 1rem;
+}
+.form-group-submit {
+  margin: 2rem 0 0;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: #764979;
+}
+
+/*# sourceMappingURL=main.css.map */
