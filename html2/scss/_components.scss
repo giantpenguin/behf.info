@@ -127,3 +127,91 @@ img{
 a{
     color: $secondary;
 }
+@keyframes mover-y {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-30px); }
+}
+.mover-y{
+    animation: mover-y 1s infinite alternate;
+}
+.mover-y-x15{
+    animation: mover-y .75s infinite alternate;
+}
+.mover-y-x20{
+    animation: mover-y .5s infinite alternate;
+}
+.mover-y-x30{
+    animation: mover-y .33s infinite alternate;
+}
+
+.c-carousel{
+    // margin: 0 -1rem;
+    // &__item{
+    //     padding: 0 1rem;
+    // }
+    margin: 0 0 4rem;
+    &__item{
+        & > div{
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+    .owl-nav{
+        button{
+            position: absolute;
+            top: 50%;
+            margin-top: -1rem;
+            line-height: 1;
+            font-size: 1.5rem !important;
+            width: 2rem;
+            height: 2rem;
+            padding: 0;
+            z-index: 20;
+            color: $gray-900 !important;
+            background-color: $primary !important;
+            box-shadow: 0 2px 12px rgba(#000,.12);
+            &:active{
+                background-color: darken($primary, 5%) !important;
+            }
+            span{
+                display: block;
+                text-align: center;
+                line-height: 1;
+                width: 2rem;
+            }
+            &.disabled{
+                background-color: $primary !important;
+                opacity: 0;
+                &:active{
+                    background-color: $primary !important;
+                }
+            }
+        }
+        .owl-prev{
+            left: -1rem;
+        }
+        .owl-next{
+            right: -1rem;
+        }
+    }
+    .owl-dots{
+        position: absolute;
+        bottom: -1.5rem;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .owl-dot{
+            margin: .125rem;
+            width: .5rem;
+            height: .5rem;
+            background-color: $gray-300;
+            border-radius: 50%;
+            &.active{
+                background-color: $primary;
+            }
+        }
+    }
+}
+

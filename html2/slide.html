@@ -10,36 +10,20 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 
-    <!-- <link rel="icon" href="img/icon.png">
+    <link rel="icon" href="img/icon.png">
     
     <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
-    <link rel="manifest" href="./img/site.webmanifest"> -->
+    <link rel="manifest" href="./img/site.webmanifest">
 
     <!-- css -->
-    <link rel="stylesheet" href="./css/libs.css">
+    <link rel="stylesheet" href="./css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="./css/fontawesome/fontawesome.css">
     <link rel="stylesheet" href="./css/main.css">
 
     <style>
-        .card-demo{
-            padding: 1rem;
-            margin: 0 0 2rem;
-            background-color: #ddd;
-            text-align: center;
-        }
-        .card-demo::before{
-            content: "Sample card"
-        }
-        .item-demo{
-            padding: 2rem 1rem;
-            margin: 0 0 2rem;
-            background-color: #ddd;
-            text-align: center;
-        }
-        .item-demo::before{
-            content: "Slider item"
-        }
+
     </style>
 
 </head>
@@ -239,133 +223,11 @@
             </div>
         </div>
         <div class="py-3 my-3">
-            <div class="fs-3 fw-bold font-monospace opacity-50 text-uppercase">Grids & Alignments</div>
-            <hr class="mb-4">
-            <div class="mb-3">
-                <code>Default / Left-to-right</code>
-                <div class="row my-3">
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                </div>
-                <code>Right-to-left</code>
-                <div class="row justify-content-end my-3">
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                </div>
-                <code>Center</code>
-                <div class="row justify-content-center my-3">
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                    <div class="col-12 col-md-6 col-lg-4"><div class="card-demo"></div></div>
-                </div>
-            </div>
-        </div>
-        <div class="py-3 my-3">
             <div class="fs-3 fw-bold font-monospace opacity-50 text-uppercase">Animates</div>
             <hr class="mb-4">
-            <div class="mb-5">
+            <div class="mb-3">
                 <div class="row">
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="mb-5"><code>mover-y</code></div>
-                        <div class="card-demo mover-y"></div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="mb-5"><code>mover-y 1.5x</code></div>
-                        <div class="card-demo mover-y-x15"></div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="mb-5"><code>mover-y 2x</code></div>
-                        <div class="card-demo mover-y-x20"></div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="mb-5"><code>mover-y 3x</code></div>
-                        <div class="card-demo mover-y-x30"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="py-3 my-3">
-            <div class="fs-3 fw-bold font-monospace opacity-50 text-uppercase">Carousel / <small class="text-lowercase">Owl Carousel</small></div>
-            <hr class="mb-4">
-            <div class="mb-5">
-                <div style="line-height: 1;" class="mb-5">
-                    <code>Number of items: xs (mobile) / md (tablet) / lg (desktop)</code>
-                    <br><code>Loop: boolean</code>
-                    <br><code>Center: boolean</code>
-                    <br><code>Mouse/touch drag: boolean</code>
-                    <br><code>Nav: boolean</code>
-                    <br><code>Dots: boolean</code>
-                </div>
-                <div class="c-carousel owl-carousel" 
-                    data-items-xs="1" 
-                    data-items-md="1" 
-                    data-items-md="1" 
-                    data-items-lg="1" 
-                    data-loop="true"
-                    data-center="false"
-                    data-drag="false"
-                    data-nav="true"
-                    data-dots="true"
-                    data-margin="32"
-                >
-                    <div class="c-carousel__item"><div class="item-demo">-1</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-2</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-3</div></div>
-                </div>
-                <div class="c-carousel owl-carousel" 
-                    data-items-xs="1" 
-                    data-items-md="2" 
-                    data-items-md="3" 
-                    data-items-lg="4" 
-                    data-loop="false"
-                    data-center="false"
-                    data-drag="false"
-                    data-nav="true"
-                    data-dots="true"
-                    data-margin="32"
-                >
-                    <div class="c-carousel__item"><div class="item-demo">-1</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-2</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-3</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-4</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-5</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-6</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-7</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-8</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-9</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-10</div></div>
-                </div>
-                <div class="c-carousel owl-carousel" 
-                    data-items-xs="1" 
-                    data-items-md="2" 
-                    data-items-md="3" 
-                    data-items-lg="4" 
-                    data-loop="true"
-                    data-center="true"
-                    data-drag="true"
-                    data-nav="true"
-                    data-dots="false"
-                    data-margin="32"
-                >
-                    <div class="c-carousel__item"><div class="item-demo">-1</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-2</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-3</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-4</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-5</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-6</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-7</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-8</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-9</div></div>
-                    <div class="c-carousel__item"><div class="item-demo">-10</div></div>
+
                 </div>
             </div>
         </div>
@@ -1161,48 +1023,10 @@
 
 
     <!-- JS Libs-->
-    <script src="./js/jquery-3.6.0.min.js"></script>
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="./js/owl.carousel.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
 
     <!-- JS Main -->
     <script src="js/main.js"></script>
-
-    <script>
-        
-        $(document).ready(function(){
-            $('.c-carousel').each(function(){
-                const itemsXS = this.getAttribute('data-items-xs'),
-                    itemsMD = this.getAttribute('data-items-md'),
-                    itemsLG = this.getAttribute('data-items-lg'),
-                    itemLoop = this.getAttribute('data-loop'),
-                    itemCenter = this.getAttribute('data-center'),
-                    itemDrag = this.getAttribute('data-drag'),
-                    itemNav = this.getAttribute('data-nav'),
-                    itemDots = this.getAttribute('data-dots'),
-                    itemMargin = this.getAttribute('data-margin');
-                $(this).owlCarousel({
-                    responsive:{
-                        0:{
-                            items: itemsXS !== null ? Number(itemsXS) : 1
-                        },
-                        720:{
-                            items: itemsMD !== null ? Number(itemsMD) : 1
-                        },
-                        1280:{
-                            items: itemsLG !== null ? Number(itemsLG) : 1
-                        }
-                    },
-                    loop: (itemLoop == 'true'),
-                    center: (itemCenter == 'true'),
-                    mouseDrag: (itemDrag == 'true'),
-                    touchDrag: (itemDrag == 'true'),
-                    nav: (itemNav == 'true'),
-                    dots: (itemDots == 'true'),
-                    margin: itemMargin !== null ? Number(itemMargin) : 32,
-                });
-            });
-        });
     </script>
     
 </body>
