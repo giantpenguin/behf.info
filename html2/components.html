@@ -706,7 +706,7 @@
                 <div class="col-12">
                     <div class="list-specs type--1 display--circle count--2">
                         <div class="list-specs__img">
-                            <img src="" alt="">
+                            <img src="./stock/specialties_image.png" alt="">
                         </div>
                         <div class="list-specs__row">
                             <div class="card-spec">
@@ -735,7 +735,7 @@
                     </div>
                     <div class="list-specs type--1 display--circle count--4">
                         <div class="list-specs__img">
-                            <img src="" alt="">
+                            <img src="./stock/specialties_image.png" alt="">
                         </div>
                         <div class="list-specs__row">
                             <div class="card-spec">
@@ -786,7 +786,7 @@
                     </div>
                     <div class="list-specs type--1 display--circle count--6">
                         <div class="list-specs__img">
-                            <img src="" alt="">
+                            <img src="./stock/specialties_image.png" alt="">
                         </div>
                         <div class="list-specs__row">
                             <div class="card-spec">
@@ -859,7 +859,7 @@
                     </div>
                     <div class="list-specs type--1 display--circle count--8">
                         <div class="list-specs__img">
-                            <img src="" alt="">
+                            <img src="./stock/specialties_image.png" alt="">
                         </div>
                         <div class="list-specs__row">
                             <div class="card-spec">
@@ -954,7 +954,7 @@
                     </div>
                     <div class="list-specs type--1 display--circle count--10">
                         <div class="list-specs__img">
-                            <img src="" alt="">
+                            <img src="./stock/specialties_image.png" alt="">
                         </div>
                         <div class="list-specs__row">
                             <div class="card-spec">
@@ -1184,13 +1184,16 @@
                 $(this).owlCarousel({
                     responsive:{
                         0:{
-                            items: itemsXS !== null ? Number(itemsXS) : 1
+                            items: itemsXS !== null ? Number(itemsXS) : 1,
+                            slideBy: itemsXS !== null && itemCenter == 'false' ? Number(itemsXS) : 1,
                         },
                         720:{
-                            items: itemsMD !== null ? Number(itemsMD) : 1
+                            items: itemsMD !== null ? Number(itemsMD) : 1,
+                            slideBy: itemsMD !== null && itemCenter == 'false' ? Number(itemsMD) : 1,
                         },
                         1280:{
-                            items: itemsLG !== null ? Number(itemsLG) : 1
+                            items: itemsLG !== null ? Number(itemsLG) : 1,
+                            slideBy: itemsLG !== null && itemCenter == 'false' ? Number(itemsLG) : 1,
                         }
                     },
                     loop: (itemLoop == 'true'),

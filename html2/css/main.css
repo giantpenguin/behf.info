@@ -371,6 +371,9 @@ a {
   .card-teaser.type--2 .card-teaser__wrp:hover .card-teaser__mda:before {
     background-color: rgba(0, 0, 0, 0.15);
   }
+  .card-teaser.type--2 .card-teaser__wrp:hover .card-teaser__cta .btn {
+    color: #e1ccad;
+  }
 }
 .card-teaser.type--2 .card-teaser__mda {
   position: relative;
@@ -780,7 +783,7 @@ a {
   display: block;
   width: 3rem;
   height: 3rem;
-  margin: 0 auto 1rem;
+  margin: 0.25rem auto 1rem;
   overflow: hidden;
 }
 .type--2 .card-spec__icn img {
@@ -822,7 +825,7 @@ a {
 }
 .list-specs.display--circle::after, .list-specs.display--circle::before {
   content: "";
-  display: block;
+  display: none;
   position: absolute;
   top: 7rem;
   bottom: 7rem;
@@ -830,6 +833,11 @@ a {
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 10;
+}
+@media (min-width: 768px) {
+  .list-specs.display--circle::after, .list-specs.display--circle::before {
+    display: block;
+  }
 }
 .list-specs.display--circle:before {
   left: 0;
@@ -842,32 +850,38 @@ a {
   background-image: url("./../img/specs_right_line.png");
 }
 .list-specs.display--circle .list-specs__img {
-  display: block;
+  display: none;
   position: absolute;
   z-index: 15;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .list-specs.display--circle .list-specs__img {
-    width: 30%;
+    display: block;
+    width: 40%;
     top: 0;
     bottom: 0;
-    left: 35%;
-    right: 35%;
+    left: 30%;
+    right: 30%;
     padding: 0 2rem;
-    background-color: #ced4da;
   }
+}
+.list-specs.display--circle .list-specs__img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .list-specs.display--circle .list-specs__row {
   position: relative;
   z-index: 20;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .list-specs.display--circle .list-specs__row {
     display: flex;
     flex-wrap: wrap;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .list-specs.display--circle .card-spec {
     width: 50%;
     flex: 0 0 auto;
@@ -904,41 +918,63 @@ a {
     max-height: 3rem;
     height: 3rem;
   }
+  .list-specs.display--circle.count--1 .card-spec:nth-child(1), .list-specs.display--circle.count--2 .card-spec:nth-child(1) {
+    padding: 0 10% 0 0;
+  }
+  .list-specs.display--circle.count--1 .card-spec:nth-child(2), .list-specs.display--circle.count--2 .card-spec:nth-child(2) {
+    padding: 0 0 0 10%;
+  }
+  .list-specs.display--circle.count--3 .card-spec:nth-child(1), .list-specs.display--circle.count--3 .card-spec:nth-child(3), .list-specs.display--circle.count--4 .card-spec:nth-child(1), .list-specs.display--circle.count--4 .card-spec:nth-child(3) {
+    padding: 0 calc(15% - 24px) 0 0;
+  }
+  .list-specs.display--circle.count--3 .card-spec:nth-child(2), .list-specs.display--circle.count--3 .card-spec:nth-child(4), .list-specs.display--circle.count--4 .card-spec:nth-child(2), .list-specs.display--circle.count--4 .card-spec:nth-child(4) {
+    padding: 0 0 0 calc(15% - 24px);
+  }
+  .list-specs.display--circle.count--3:before, .list-specs.display--circle.count--4:before {
+    left: 0;
+    background-position: center right 0;
+    background-image: url("./../img/specs_left_line--sm.png");
+  }
+  .list-specs.display--circle.count--3:after, .list-specs.display--circle.count--4:after {
+    right: 0;
+    background-position: center left 0;
+    background-image: url("./../img/specs_right_line--sm.png");
+  }
   .list-specs.display--circle.count--5 .card-spec:nth-child(3), .list-specs.display--circle.count--6 .card-spec:nth-child(3) {
-    padding: 0 17% 0 0;
+    padding: 0 calc(15% + 24px) 0 0;
   }
   .list-specs.display--circle.count--5 .card-spec:nth-child(4), .list-specs.display--circle.count--6 .card-spec:nth-child(4) {
-    padding: 0 0 0 17%;
+    padding: 0 0 0 calc(15% + 24px);
   }
   .list-specs.display--circle.count--7 .card-spec:nth-child(3), .list-specs.display--circle.count--7 .card-spec:nth-child(5), .list-specs.display--circle.count--8 .card-spec:nth-child(3), .list-specs.display--circle.count--8 .card-spec:nth-child(5) {
-    padding: 0 17.5% 0 0;
+    padding: 0 calc(15% + 32px) 0 0;
   }
   .list-specs.display--circle.count--7 .card-spec:nth-child(4), .list-specs.display--circle.count--7 .card-spec:nth-child(6), .list-specs.display--circle.count--8 .card-spec:nth-child(4), .list-specs.display--circle.count--8 .card-spec:nth-child(6) {
-    padding: 0 0 0 17.5%;
+    padding: 0 0 0 calc(15% + 32px);
   }
   .list-specs.display--circle.count--9 .card-spec:nth-child(3), .list-specs.display--circle.count--9 .card-spec:nth-child(7), .list-specs.display--circle.count--10 .card-spec:nth-child(3), .list-specs.display--circle.count--10 .card-spec:nth-child(7) {
-    padding: 0 18% 0 0;
+    padding: 0 calc(15% + 40px) 0 0;
   }
   .list-specs.display--circle.count--9 .card-spec:nth-child(5), .list-specs.display--circle.count--10 .card-spec:nth-child(5) {
-    padding: 0 19% 0 0;
+    padding: 0 calc(15% + 52px) 0 0;
   }
   .list-specs.display--circle.count--9 .card-spec:nth-child(4), .list-specs.display--circle.count--9 .card-spec:nth-child(8), .list-specs.display--circle.count--10 .card-spec:nth-child(4), .list-specs.display--circle.count--10 .card-spec:nth-child(8) {
-    padding: 0 0 0 18%;
+    padding: 0 0 0 calc(15% + 40px);
   }
   .list-specs.display--circle.count--9 .card-spec:nth-child(6), .list-specs.display--circle.count--10 .card-spec:nth-child(6) {
-    padding: 0 0 0 19%;
+    padding: 0 0 0 calc(15% + 52px);
   }
   .list-specs.display--circle.count--11 .card-spec:nth-child(3), .list-specs.display--circle.count--11 .card-spec:nth-child(9), .list-specs.display--circle.count--12 .card-spec:nth-child(3), .list-specs.display--circle.count--12 .card-spec:nth-child(9) {
-    padding: 0 18.5% 0 0;
+    padding: 0 calc(15% + 40px) 0 0;
   }
   .list-specs.display--circle.count--11 .card-spec:nth-child(5), .list-specs.display--circle.count--11 .card-spec:nth-child(7), .list-specs.display--circle.count--12 .card-spec:nth-child(5), .list-specs.display--circle.count--12 .card-spec:nth-child(7) {
-    padding: 0 20% 0 0;
+    padding: 0 calc(15% + 52px) 0 0;
   }
   .list-specs.display--circle.count--11 .card-spec:nth-child(4), .list-specs.display--circle.count--11 .card-spec:nth-child(10), .list-specs.display--circle.count--12 .card-spec:nth-child(4), .list-specs.display--circle.count--12 .card-spec:nth-child(10) {
-    padding: 0 0 0 18.5%;
+    padding: 0 0 0 calc(15% + 40px);
   }
   .list-specs.display--circle.count--11 .card-spec:nth-child(6), .list-specs.display--circle.count--11 .card-spec:nth-child(8), .list-specs.display--circle.count--12 .card-spec:nth-child(6), .list-specs.display--circle.count--12 .card-spec:nth-child(8) {
-    padding: 0 0 0 20%;
+    padding: 0 0 0 calc(15% + 52px);
   }
 }
 .list-specs.display--row {

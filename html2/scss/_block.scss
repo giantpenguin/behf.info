@@ -123,6 +123,11 @@
                                     background-color: rgba(#000,.15);
                                 }
                             }
+                            &__cta{
+                                .btn{
+                                    color: $primary;
+                                }
+                            }
                         }
                     }
                 }
@@ -537,7 +542,7 @@
             display: block;
             width: 3rem;
             height: 3rem;
-            margin: 0 auto 1rem;
+            margin: .25rem auto 1rem;
             overflow: hidden;
             img{
                 @include image-in-wrapper();
@@ -581,7 +586,7 @@
         &::after,
         &::before{
             content: "";
-            display: block;
+            display: none;
             position: absolute;
             top: 7rem;
             bottom: 7rem;
@@ -589,6 +594,9 @@
             background-size: contain;
             background-repeat: no-repeat;
             z-index: 10;
+            @include media-breakpoint-up(md){
+                display: block;
+            }
         }
         &:before{
             left: 0;
@@ -603,29 +611,36 @@
         .list-specs{
             //xx
             &__img{
-                display: block;
+                display: none;
                 position: absolute;
                 z-index: 15;
-                @include media-breakpoint-up(lg){
-                    width: 30%;
+                @include media-breakpoint-up(md){
+                    display: block;
+                    width: 40%;
                     top: 0;
                     bottom: 0;
-                    left: 35%;
-                    right: 35%;
+                    left: 30%;
+                    right: 30%;
                     padding: 0 2rem;
-                    background-color: $gray-400;
+                    // background-color: $gray-400;
+                }
+                img{
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
                 }
             }
             &__row{
                 position: relative;
                 z-index: 20;
-                @include media-breakpoint-up(lg){
+                @include media-breakpoint-up(md){
                     display: flex;
                     flex-wrap: wrap;
                 }
             }
         }
-        @include media-breakpoint-up(lg){
+        @include media-breakpoint-up(md){
             &:after{
 
             }
@@ -657,13 +672,45 @@
                     @include multi-line-ellipsis(1.5rem, 2, true);
                 }
             }
+            &.count--1, &.count--2{
+                .card-spec{
+                    &:nth-child(1){
+                        padding: 0 calc(10%) 0 0;
+                    }
+                    &:nth-child(2){
+                        padding: 0 0 0 calc(10%);
+                    }
+                }
+            }
+            &.count--3, &.count--4{
+                .card-spec{
+                    &:nth-child(1),
+                    &:nth-child(3){
+                        padding: 0 calc(15% - 24px) 0 0;
+                    }
+                    &:nth-child(2),
+                    &:nth-child(4){
+                        padding: 0 0 0 calc(15% - 24px);
+                    }
+                }
+                &:before{
+                    left: 0;
+                    background-position: center right 0;
+                    background-image: url('./../img/specs_left_line--sm.png');
+                }
+                &:after{
+                    right: 0;
+                    background-position: center left 0;
+                    background-image: url('./../img/specs_right_line--sm.png');
+                }
+            }
             &.count--5, &.count--6{
                 .card-spec{
                     &:nth-child(3){
-                        padding: 0 17% 0 0;
+                        padding: 0 calc(15% + 24px) 0 0;
                     }
                     &:nth-child(4){
-                        padding: 0 0 0 17%;
+                        padding: 0 0 0 calc(15% + 24px);
                     }
                 }
             }
@@ -671,11 +718,11 @@
                 .card-spec{
                     &:nth-child(3),
                     &:nth-child(5){
-                        padding: 0 17.5% 0 0;
+                        padding: 0 calc(15% + 32px) 0 0;
                     }
                     &:nth-child(4),
                     &:nth-child(6){
-                        padding: 0 0 0 17.5%;
+                        padding: 0 0 0 calc(15% + 32px);
                     }
                 }
             }
@@ -683,17 +730,17 @@
                 .card-spec{
                     &:nth-child(3),
                     &:nth-child(7){
-                        padding: 0 18% 0 0;
+                        padding: 0 calc(15% + 40px) 0 0;
                     }
                     &:nth-child(5){
-                        padding: 0 19% 0 0;
+                        padding: 0 calc(15% + 52px) 0 0;
                     }
                     &:nth-child(4),
                     &:nth-child(8){
-                        padding: 0 0 0 18%;
+                        padding: 0 0 0 calc(15% + 40px);
                     }
                     &:nth-child(6){
-                        padding: 0 0 0 19%;
+                        padding: 0 0 0 calc(15% + 52px); 
                     }
                 }
             }
@@ -701,19 +748,19 @@
                 .card-spec{
                     &:nth-child(3),
                     &:nth-child(9){
-                        padding: 0 18.5% 0 0;
+                        padding: 0 calc(15% + 40px) 0 0;
                     }
                     &:nth-child(5),
                     &:nth-child(7){
-                        padding: 0 20% 0 0;
+                        padding: 0 calc(15% + 52px) 0 0;
                     }
                     &:nth-child(4),
                     &:nth-child(10){
-                        padding: 0 0 0 18.5%;
+                        padding: 0 0 0 calc(15% + 40px);
                     }
                     &:nth-child(6),
                     &:nth-child(8){
-                        padding: 0 0 0 20%;
+                        padding: 0 0 0 calc(15% + 52px); 
                     }
                 }
             }
