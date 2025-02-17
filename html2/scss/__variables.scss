@@ -58,6 +58,7 @@ $form-select-focus-box-shadow:    0 0 0 0 transparent;
 $form-check-input-checked-bg-color: $secondary;
 $form-check-input-indeterminate-bg-color: $secondary;
 
+
 $container-max-widths: (
   sm: 540px,
   md: 720px,
@@ -65,9 +66,21 @@ $container-max-widths: (
   xl: 1140px,
   xxl: 1280px
 );
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
 
 
 $grid-gutter-width: 2rem;
+
+$dropdown-border-color: transparent;
+$dropdown-border-radius: 0;
+$dropdown-border-width:  0;
 
 
 

@@ -37,3 +37,8 @@
         height: $lines-to-show * $line-height;
     }
 }
+
+@mixin font-awesome-display($content: ""){
+    font-family: "Font Awesome 6 Free";
+    content: $content;
+}
