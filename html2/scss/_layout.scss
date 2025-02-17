@@ -1,8 +1,6 @@
-// Breakpoints
-// Containers
-// Grid
-// Columns
-// Gutters
-// Utilities
-// Z-index
-// CSS Grid
+.b-hero{
+    &__wrp{
+        height: 100vh;
+        background-color: #333;
+    }
+}

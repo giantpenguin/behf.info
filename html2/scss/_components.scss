@@ -221,8 +221,11 @@ a{
 .dropdown-toggle{
     display: inline-flex;
     align-items: center;
+    &::after{
+        display: none;
+    }
     .fa-angle-down{
-        margin: 0 0 .125rem .375rem;
+        margin: 0 0 0 .5rem;
         transition: transform .3s ease;
     }
     &.show{
