@@ -1,0 +1,73 @@
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$font-family-sans-serif: "Karla", serif;
+$font-family-serif: "Playfair Display", serif;
+
+$headings-font-family: $font-family-serif;
+
+$primary: #e1ccad;
+$secondary: #764979;
+
+$border-color: $gray-400;
+
+$input-btn-padding-y-sm: .25rem;
+$input-btn-padding-x-sm: 1rem;
+$input-btn-font-size-sm: 1rem;
+
+$input-btn-padding-y: .5rem;
+$input-btn-padding-x: 1.25rem;
+$input-btn-font-size: 1.125rem;
+
+$input-btn-padding-y-lg: .75rem;
+$input-btn-padding-x-lg: 1.5rem;
+$input-btn-font-size-lg: 1.25rem;
+
+$btn-font-weight: 500;
+$btn-border-radius-sm: .75rem 0;
+$btn-border-radius: 1.25rem 0;
+$btn-border-radius-lg: 1.75rem 0;
+
+$btn-border-radius-mirror-sm: 0 1.25rem;
+$btn-border-radius-mirror: 0 1.5rem;
+$btn-border-radius-mirror-lg: 0 1.75rem;
+
+
+$input-border-radius: 0;
+$input-border-radius-sm: 0;
+$input-border-radius-lg: 0;
+
+$form-check-input-border-radius: 0;
+$form-check-input-focus-border: $secondary;
+$form-check-input-focus-box-shadow:  0 0 0;
+
+$input-focus-border-color: $border-color;
+
+$form-select-focus-border-color: $border-color;
+$form-select-focus-box-shadow:    0 0 0 0 transparent;
+
+$form-check-input-checked-bg-color: $secondary;
+$form-check-input-indeterminate-bg-color: $secondary;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1280px
+);
+
+
+$grid-gutter-width: 2rem;
+
+
+
