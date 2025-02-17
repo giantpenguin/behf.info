@@ -4661,10 +4661,10 @@ newsletter_form3 {
 	transition: all .2s linear;
 }
 .page-title h1 {
-	font-size: 50px;
+	/*font-size: 50px;
+		margin-bottom: 20px;*/
 	font-weight: bold;
 	text-transform: capitalize;
-	margin-bottom: 20px;
 }
 .breadcrumb {
 	background-color: transparent;
