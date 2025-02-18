@@ -140,16 +140,16 @@ a{
     100% { transform: translateY(-30px); }
 }
 .mover-y{
-    animation: mover-y 1s infinite alternate;
+    animation: mover-y 1.2s infinite alternate;
 }
 .mover-y-x15{
-    animation: mover-y .75s infinite alternate;
+    animation: mover-y .9s infinite alternate;
 }
 .mover-y-x20{
-    animation: mover-y .5s infinite alternate;
+    animation: mover-y .6s infinite alternate;
 }
-.mover-y-x30{
-    animation: mover-y .33s infinite alternate;
+.mover-y-x20{
+    animation: mover-y .4s infinite alternate;
 }
 .mover-x{
     animation: mover-x 1.2s infinite alternate;
