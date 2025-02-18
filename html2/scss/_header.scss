@@ -1,12 +1,13 @@
 .site-header{
-
+    & + .site-content{
+        margin-top: 96px;
+    }
 }
-
 
 .site-navbar{
     --navbar-height: 96px;
     --navbar-bg-color: #fff;
-    --navbar-color: $gray-900;
+    --navbar-color: $secondary;
     --navbar-box-shadow: 0 .25rem .5rem 0 rgba(0,0,0,.1);
     padding: 0;
     background-color: var(--navbar-bg-color);
@@ -83,6 +84,9 @@
     .site-navbar-cta{
         flex: 0 0 auto;
         margin: 0 0 0 1rem;
+        .btn{
+            margin: 0 .25rem;
+        }
     }
     .site-navbar-srch{
         .dropdown-toggle{
@@ -304,6 +308,9 @@
             .nav-item{
                 .nav-link{
                     line-height: var(--navbar-height);
+                    &:hover{
+
+                    }
                 }
             }
         }

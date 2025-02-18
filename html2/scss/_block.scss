@@ -234,9 +234,11 @@
         }
         .plan-cover-wrap{
             position: relative;
-            height: 156px;
             background-color: $gray-200;
             z-index: 10;
+            &:after{
+                padding-bottom: 56.25%;
+            }
         }
         .plan-icon-wrap{
             position: relative;
