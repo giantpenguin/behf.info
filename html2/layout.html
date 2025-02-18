@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
-    <title>Components</title>
+    <title>Layout</title>
 
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -20,6 +20,27 @@
     <!-- css -->
     <link rel="stylesheet" href="./css/libs.css">
     <link rel="stylesheet" href="./css/main.css">
+
+    <style>
+        .card-demo{
+            padding: 5rem 0;
+            margin: 0 0 2rem;
+            background-color: #ddd;
+            text-align: center;
+        }
+        .card-demo::before{
+            content: "Sample card"
+        }
+        .item-demo{
+            padding: 8rem 1rem;
+            margin: 0 0 2rem;
+            background-color: #ddd;
+            text-align: center;
+        }
+        .item-demo::before{
+            content: "Slider item"
+        }
+    </style>
 
 </head>
 
@@ -36,203 +57,204 @@
                     <i class="fa-solid fa-bars"></i>
                     <i class="fa-solid fa-xmark"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="Navbar">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">About BEHF</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Programs</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSample1" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                <span>Dropdown Full</span>
-                                <i class="fa-solid fa-angle-down"></i>
-                            </a>
-                            <div class="navbar-dropdown-menu dropdown-menu" aria-labelledby="navbarDropdownSample1">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12 col-md-6 col-lg-3">
-                                            <ul>
-                                                <li>
-                                                    <a href="">Level 2 item</a>
-                                                    <ul>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <a href="">Level 2 item</a>
-                                                    <ul>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <a href="">Level 2 item</a>
-                                                    <ul>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
+                <div class="collapse navbar-collapse show" id="Navbar">
+                    <div class="navbar-collapse-wrap">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">About BEHF</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Programs</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSample1" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <span>Dropdown Full</span>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </a>
+                                <div class="navbar-dropdown-menu dropdown-menu size--full" aria-labelledby="navbarDropdownSample1">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                        <div class="col-12 col-md-6 col-lg-3">
-                                            <ul>
-                                                <li>
-                                                    <a href="">Level 2 item</a>
-                                                    <ul>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <a href="">Level 2 item</a>
-                                                    <ul>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        
                                     </div>
-                                    
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSample2" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <span>Dropdown Auto</span>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </a>
+                                <div class="navbar-dropdown-menu size--auto dropdown-menu" aria-labelledby="navbarDropdownSample2">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="site-navbar-group">
+                            <div class="site-navbar-srch dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbarSearch" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarSearch">
+                                    <form class="form-wrap">
+                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                        <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    </form>
                                 </div>
                             </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSample2" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                <span>Dropdown Small</span>
-                                <i class="fa-solid fa-angle-down"></i>
-                            </a>
-                            <div class="navbar-dropdown-menu size--sm dropdown-menu" aria-labelledby="navbarDropdownSample2">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12 col-md-6 col-lg-3">
-                                            <ul>
-                                                <li>
-                                                    <a href="">Level 2 item</a>
-                                                    <ul>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <a href="">Level 2 item</a>
-                                                    <ul>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <a href="">Level 2 item</a>
-                                                    <ul>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-3">
-                                            <ul>
-                                                <li>
-                                                    <a href="">Level 2 item</a>
-                                                    <ul>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <a href="">Level 2 item</a>
-                                                    <ul>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                        <li><a href="">Level 3 item</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
+                            <div class="site-navbar-cta">
+                                <a href="#" class="btn btn-sm btn-primary">Contact Us</a>
+                                <a href="#" class="btn btn-sm btn-primary btn-bdrd-mirror">Donate</a>
                             </div>
-                        </li>
-                        
-                    </ul>
-                    <div class="site-navbar-group">
-                        <div class="site-navbar-cta">
-                            <a href="#" class="btn btn-sm btn-primary">Contact Us</a>
-                            <a href="#" class="btn btn-sm btn-primary btn-bdrd-mirror">Donate</a>
-                        </div>
-                        <div class="site-navbar-srch dropdown">
-                            <a class="dropdown-toggle" href="#" id="navbarSearch" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarSearch">
-                                <form class="form-wrap">
-                                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                </form>
+                            <div class="site-navbar-lang dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbarLanguage" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <span class="lang-flag"><img src="./img/flag/united-kingdom.png" alt=""></span>
+                                    <span class="lang-title">English</span>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarLanguage">
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="lang-flag"><img src="./img/flag/spain.png" alt=""></span>
+                                            <span class="lang-title">Español</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="lang-flag"><img src="./img/flag/portugal.png" alt=""></span>
+                                            <span class="lang-title">Português</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="lang-flag"><img src="./img/flag/japan.png" alt=""></span>
+                                            <span class="lang-title">日本語</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="lang-flag"><img src="./img/flag/china.png" alt=""></span>
+                                            <span class="lang-title">中国人</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="lang-flag"><img src="./img/flag/germany.png" alt=""></span>
+                                            <span class="lang-title">Deutsch</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="lang-flag"><img src="./img/flag/france.png" alt=""></span>
+                                            <span class="lang-title">Français</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="lang-flag"><img src="./img/flag/italy.png" alt=""></span>
+                                            <span class="lang-title">Italiano</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                        </div>
-                        <div class="site-navbar-lang dropdown">
-                            <a class="dropdown-toggle" href="#" id="navbarLanguage" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                <span class="lang-flag"><img src="./img/flag/united-kingdom.png" alt=""></span>
-                                <span class="lang-title">English</span>
-                                <i class="fa-solid fa-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarLanguage">
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="lang-flag"><img src="./img/flag/spain.png" alt=""></span>
-                                        <span class="lang-title">Español</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="lang-flag"><img src="./img/flag/portugal.png" alt=""></span>
-                                        <span class="lang-title">Português</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="lang-flag"><img src="./img/flag/japan.png" alt=""></span>
-                                        <span class="lang-title">日本語</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="lang-flag"><img src="./img/flag/china.png" alt=""></span>
-                                        <span class="lang-title">中国人</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="lang-flag"><img src="./img/flag/germany.png" alt=""></span>
-                                        <span class="lang-title">Deutsch</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="lang-flag"><img src="./img/flag/france.png" alt=""></span>
-                                        <span class="lang-title">Français</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="lang-flag"><img src="./img/flag/italy.png" alt=""></span>
-                                        <span class="lang-title">Italiano</span>
-                                    </a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -241,21 +263,140 @@
     </header>
 
     <div class="site-content">
-        <div class="b-hero">
-            <div class="b-hero__wrp">
+        <section class="section-hero">
+            <div class="section-hero__wrp">
                 <div class="container">
-                    hero <br>
-                    hero <br>
-                    hero <br>
-                    hero <br>
-                    hero <br>
-                    hero <br>
-                    hero <br>
-                    hero <br>
-                    hero <br>
-                    hero <br>
-                    hero <br>
-                    hero <br>
+                    <div class="row align-items-center">
+                        <div class="col-12 col-lg-6">
+                            <div class="section-hero__cnt">
+                                <h5>Start a Happy Life</h5>
+                                <h1>Start Healing Your Mind, Body & Soul</h1>
+                                <p class="text-lg">
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.
+                                </p>
+                            </div>
+                            <div class="section-hero__atn">
+                                <a href="#" class="btn btn-primary btn-lg">Button 1</a>
+                                <a href="#" class="btn btn-primary btn-lg btn-bdrd-mirror">Button 2</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="section-hero__mda">
+                                <img class="mover-x" src="stock/BEHF1.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-hero__gd">
+                        <button class="btn btn-icon btn-lg mover-y" title="Scroll down">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-block">
+            <div class="container">
+                <div class="section-block__cnt">
+                    <div class="row justify-content-center text-center">
+                        <div class="col-12 col-md-10 col-lg-8">
+                            <h5 class="section-block__top">Section name</h5>
+                            <h2 class="section-block__tle">Section title</h2>
+                            <p class="text-lg">Morbi in sem quis dui placerat ornare. Pellentesque odio nisi euismod in pharetra a ultricies in diam. Sed arcu. Cras consequat.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-block__cpn">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-3">
+                            <div class="card-demo"></div>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <div class="card-demo"></div>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <div class="card-demo"></div>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <div class="card-demo"></div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="card-demo"></div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="card-demo"></div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="card-demo"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-block" style="background-color: #f0f0f0;">
+            <div class="container">
+                <div class="section-block__cpn">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-lg-6">
+                            <div class="card-jbt-mda">
+                                <div class="card-jbt-mda__img h-rect">
+                                    <div class="h-rect__inner">
+                                        <img src="https://placehold.co/1000x1000/" alt="">
+                                    </div>
+                                </div>
+                                <div class="card-jbt-mda__sdw"></div>
+                                <figure class="card-jbt-mda__shp top-right mover-x"><img src="https://placehold.co/200x200/80DEEA/ffffff" alt=""></figure>
+                                <figure class="card-jbt-mda__shp top-left mover-y-x15"><img src="https://placehold.co/200x200/E6EE9C/ffffff" alt=""></figure>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 offset-lg-1">
+                            <div class="section-block__cnt">
+                                <h5>Section name</h5>
+                                <h2>Section title</h2>
+                                <p class="text-lg">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Morbi in sem quis dui placerat ornare. Pellentesque odio nisi euismod in pharetra a ultricies in diam. Sed arcu. Cras consequat.</p>
+                                <div class="content-btns">
+                                    <a href="#" class="btn btn-primary btn-lg btn-hover-slide-in btn-hover-jump-up">Button</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-block">
+            <div class="container">
+                <div class="section-block__cnt">
+                    <div class="row justify-content-center text-center">
+                        <div class="col-12 col-md-10 col-lg-8">
+                            <h5 class="section-block__top">Section name</h5>
+                            <h2 class="section-block__tle">Section title</h2>
+                            <p class="text-lg">Morbi in sem quis dui placerat ornare. Pellentesque odio nisi euismod in pharetra a ultricies in diam. Sed arcu. Cras consequat.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-block__cpn">
+                    <div class="c-carousel owl-carousel" 
+                        data-items-xs="1" 
+                        data-items-md="2" 
+                        data-items-md="3" 
+                        data-items-lg="4" 
+                        data-loop="true"
+                        data-center="false"
+                        data-drag="true"
+                        data-nav="true"
+                        data-dots="true"
+                        data-margin="32"
+                    >
+                        <div class="c-carousel__item"><div class="item-demo">-1</div></div>
+                        <div class="c-carousel__item"><div class="item-demo">-2</div></div>
+                        <div class="c-carousel__item"><div class="item-demo">-3</div></div>
+                        <div class="c-carousel__item"><div class="item-demo">-4</div></div>
+                        <div class="c-carousel__item"><div class="item-demo">-5</div></div>
+                        <div class="c-carousel__item"><div class="item-demo">-6</div></div>
+                        <div class="c-carousel__item"><div class="item-demo">-7</div></div>
+                        <div class="c-carousel__item"><div class="item-demo">-8</div></div>
+                        <div class="c-carousel__item"><div class="item-demo">-9</div></div>
+                        <div class="c-carousel__item"><div class="item-demo">-10</div></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -298,6 +439,43 @@
                 }
             }
         }
+
+        $(document).ready(function(){
+            $('.c-carousel').each(function(){
+                const itemsXS = this.getAttribute('data-items-xs'),
+                    itemsMD = this.getAttribute('data-items-md'),
+                    itemsLG = this.getAttribute('data-items-lg'),
+                    itemLoop = this.getAttribute('data-loop'),
+                    itemCenter = this.getAttribute('data-center'),
+                    itemDrag = this.getAttribute('data-drag'),
+                    itemNav = this.getAttribute('data-nav'),
+                    itemDots = this.getAttribute('data-dots'),
+                    itemMargin = this.getAttribute('data-margin');
+                $(this).owlCarousel({
+                    responsive:{
+                        0:{
+                            items: itemsXS !== null ? Number(itemsXS) : 1,
+                            slideBy: itemsXS !== null && itemCenter == 'false' ? Number(itemsXS) : 1,
+                        },
+                        720:{
+                            items: itemsMD !== null ? Number(itemsMD) : 1,
+                            slideBy: itemsMD !== null && itemCenter == 'false' ? Number(itemsMD) : 1,
+                        },
+                        1280:{
+                            items: itemsLG !== null ? Number(itemsLG) : 1,
+                            slideBy: itemsLG !== null && itemCenter == 'false' ? Number(itemsLG) : 1,
+                        }
+                    },
+                    loop: (itemLoop == 'true'),
+                    center: (itemCenter == 'true'),
+                    mouseDrag: (itemDrag == 'true'),
+                    touchDrag: (itemDrag == 'true'),
+                    nav: (itemNav == 'true'),
+                    dots: (itemDots == 'true'),
+                    margin: itemMargin !== null ? Number(itemMargin) : 32,
+                });
+            });
+        });
     </script>
     
 </body>

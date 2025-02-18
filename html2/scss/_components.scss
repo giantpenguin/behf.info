@@ -1,3 +1,7 @@
+figure{
+    margin: 0;
+}
+
 .btn{
     position: relative;
     text-align: center;
@@ -127,6 +131,10 @@ img{
 a{
     color: $secondary;
 }
+@keyframes mover-x {
+    0% { transform: translateX(-15px); }
+    100% { transform: translateX(15px); }
+}
 @keyframes mover-y {
     0% { transform: translateY(0); }
     100% { transform: translateY(-30px); }
@@ -142,6 +150,18 @@ a{
 }
 .mover-y-x30{
     animation: mover-y .33s infinite alternate;
+}
+.mover-x{
+    animation: mover-x 1.2s infinite alternate;
+}
+.mover-x-x15{
+    animation: mover-x .9s infinite alternate;
+}
+.mover-x-x20{
+    animation: mover-x .6s infinite alternate;
+}
+.mover-x-x30{
+    animation: mover-x .4s infinite alternate;
 }
 
 .c-carousel{
@@ -235,6 +255,40 @@ a{
     }
     &:after{
         border: 0;
+    }
+}
+
+.card-jbt-mda{
+    position: relative;
+    padding: 0 2rem 2rem 0;
+    &__img{
+        border-radius: 12rem 0;
+        overflow: hidden;
+        z-index: 15;
+        img{
+            @include image-in-wrapper();
+        }
+    }
+
+    &__sdw{
+        position: absolute;
+        z-index: 10;
+        position: absolute;
+        inset: 2rem 0 0 2rem;
+        background-color: $secondary;
+        border-radius: 12rem 0;
+    }
+    &__shp{
+        position: absolute;
+        z-index: 0;
+        &.top-left{
+            top: -3rem;
+            left: -3rem;
+        }
+        &.top-right{
+            top: -3rem;
+            right: -3rem;
+        }
     }
 }
 

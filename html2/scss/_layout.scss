@@ -1,6 +1,82 @@
-.b-hero{
+.section-hero{
+    position: relative;
+    overflow: hidden;
     &__wrp{
-        height: 100vh;
+        min-height: 100vh;
+        padding: 4rem 0;
+        color: #fff;
         background-color: #333;
+        @include media-breakpoint-up(lg){
+            display: flex;
+            align-items: center;
+        }
+    }
+    &__cnt{
+
+    }
+    &__top{
+        margin: 0 0 1rem;
+        font-family: $font-family-sans-serif;
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+    &__tle{
+        margin: 0 0 2rem;
+        font-size: 2.5rem;
+        @include media-breakpoint-up(lg){
+            font-size: 4rem;
+        }
+    }
+    &__stl{
+        margin: 0;
+        font-size: 1.25rem;
+    }
+    &__atn{
+        margin: 3rem 0 0;
+        .btn{
+            margin: 0 .5rem .5rem 0;
+        }
+    }
+    &__gd{
+        position: absolute;
+        inset: auto 0 .5rem;
+        text-align: center;
+        z-index: 10;
+        .btn{
+            color: #fff;
+            font-size: 2rem;
+            background-color: rgba(#000,.2);
+            border-radius: 50%;
+            border-color: transparent;
+            &:hover{
+                color: $gray-900;
+                background-color: $primary;
+                border-color: transparent;
+            }
+            &:active{
+                opacity: .8;
+                color: $gray-900;
+                background-color: $primary;
+                border-color: transparent;
+            }
+        }
+    }
+}
+
+.section-block{
+    margin: 4rem 0;
+    padding: 6rem 0;
+    overflow: hidden;
+    &__cnt{
+        margin: 0 0 4rem;
+        h5{
+            color: $secondary;
+        }
+        .content-btns{
+            margin: 2rem 0 0;
+            .btn{
+                margin: 0 .5rem .5rem 0;
+            }
+        }
     }
 }
