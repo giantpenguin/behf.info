@@ -1,0 +1,51 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var selItems = Model.Content.Value<IEnumerable<IPublishedContent>>("itemsPicker");
+    var sliderId = $"slider{Guid.NewGuid()}";
+}
+
+<div id="@sliderId" class="c-carousel owl-carousel"
+     data-items-xs="1"
+     data-items-md="1"
+     data-items-lg="1"
+     data-loop="true"
+     data-center="false"
+     data-drag="false"
+     data-nav="true"
+     data-dots="true"
+     data-margin="32">
+
+    @for (int i = 0; i < selItems.Count(); i++)
+        {
+        var item = selItems.ElementAt(i);
+        var itemPatlView = $"{item.ContentType.Alias}ItemSlide";
+
+        var pname = item.Value<string>("personName");
+        var porg = item.Value<string>("organization");
+        var feedback = item.Value<string>("feedback");
+        var imgUrl = item.Value<IPublishedContent>("image").GetCropUrl(width: 150, height: 150);
+
+        <div class="carousel__item">
+            <div class="card-quote">
+                <div class="card-quote__wrp">
+                    <div class="card-quote__icn">
+                        <i class="fa-solid fa-quote-left"></i>
+                    </div>
+                    <div class="card-quote__cnt">
+                        @feedback
+                    </div>
+                    <div class="card-quote__aut">
+                        <div class="quote-aut-avt">
+                            <img src="@imgUrl" alt="avatar @pname">
+                        </div>
+                        <div class="quote-aut-tle">@pname</div>
+                        <div class="quote-aut-stl">@porg</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }    
+</div>
