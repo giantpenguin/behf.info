@@ -3,23 +3,15 @@
 
 */
 
-.home_banner {
-  background-image: url('../images/home_herobanner_default_background.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 890px !important;
+.section-hero__cnt .ityped-cursor {
+  font-size: 1em;
+  opacity: 1;
+  -webkit-animation: blink 0.3s infinite;
+  -moz-animation: blink 0.3s infinite;
+  animation: blink 0.3s infinite;
+  animation-direction: alternate;
 }
-
-  .home_banner .ityped-cursor {
-    font-size: 1em;
-    opacity: 1;
-    -webkit-animation: blink 0.3s infinite;
-    -moz-animation: blink 0.3s infinite;
-    animation: blink 0.3s infinite;
-    animation-direction: alternate;
-  }
-  .home_banner .section-hero__cnt h1 span {
+  .section-hero__cnt h1 span {
     color: #e1ccad;
     border-right: #e1ccad;
   }
