@@ -147,28 +147,28 @@ a{
     100% { transform: translateY(-30px); }
 }
 .mover-y{
-    animation: mover-y 1.2s infinite alternate;
+    *{ animation: mover-y 1.2s infinite alternate; }
 }
 .mover-y-x15{
-    animation: mover-y .9s infinite alternate;
+    *{ animation: mover-y .9s infinite alternate; }
 }
 .mover-y-x20{
-    animation: mover-y .6s infinite alternate;
+    *{ animation: mover-y .6s infinite alternate; }
 }
 .mover-y-x20{
-    animation: mover-y .4s infinite alternate;
+    *{ animation: mover-y .4s infinite alternate; }
 }
 .mover-x{
-    animation: mover-x 1.2s infinite alternate;
+    *{ animation: mover-x 1.2s infinite alternate; }
 }
 .mover-x-x15{
-    animation: mover-x .9s infinite alternate;
+    *{ animation: mover-x .9s infinite alternate; }
 }
 .mover-x-x20{
-    animation: mover-x .6s infinite alternate;
+    *{ animation: mover-x .6s infinite alternate; }
 }
 .mover-x-x30{
-    animation: mover-x .4s infinite alternate;
+    *{ animation: mover-x .4s infinite alternate; }
 }
 
 .c-carousel{
@@ -229,6 +229,7 @@ a{
         display: flex;
         align-items: center;
         justify-content: center;
+        text-align: center;
         .owl-dot{
             margin: .125rem;
             width: .5rem;
@@ -239,6 +240,51 @@ a{
                 background-color: $primary;
             }
         }
+    }
+    &--hero{
+        
+    .owl-nav{
+        button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -1.5rem;
+            font-size: 2.5rem !important;
+            width: 3rem;
+            height: 3rem;
+            color: rgba(#fff,.8) !important;
+            background-color: rgba(#000,.25) !important;
+            box-shadow: 0 0 0 0 transparent;
+            border-radius: 50%;
+            &:active{
+                color: rgba(#fff,1) !important;
+                background-color: rgba(#000,.4) !important;
+            }
+            span{
+                display: block;
+                vertical-align: top;
+                text-align: center;
+                line-height: 1;
+                position: relative;
+                top: -2px;
+            }
+            &.disabled{
+                display: none;
+            }
+        }
+        .owl-prev{
+            left: 1rem;
+            span{
+                left: -1px;
+            }
+        }
+        .owl-next{
+            right: 1rem;
+            span{
+                right: -1px;
+            }
+        }
+    }
     }
 }
 
