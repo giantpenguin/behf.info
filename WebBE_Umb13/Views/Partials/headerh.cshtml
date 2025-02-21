@@ -11,7 +11,7 @@
     var currentUrl = HttpContextAccessor.HttpContext!.Request.Path.ToString();
     var currentPage = umbracoContext.UmbracoContext.Content!.GetByRoute(currentUrl);
 }
-
+<header class="site-header">
 <nav class="site-navbar on-hero theme-hero navbar fixed-top navbar-expand-xl">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -94,3 +94,4 @@
         </div>
     </div>
 </nav>
+</header>

@@ -51,16 +51,14 @@
         <div class="loading_wrap">
             <img src="/assets/images/loading_logo.png" alt="loading logo" />
         </div>
-    </div> *@
-    <header class="site-header">
-        <partial name="headerh" model="homePage" />
-    </header>
+    </div> *@    
+    <partial name="headerh" model="homePage" />
     <div class="site-content">
         <main role="main" class="flex-grow-1">
             @RenderBody()
         </main>
-    </div>
-    <partial name="footer" model="homePage" />
+    </div>    
+    <partial name="footerh" model="homePage" />    
     <a href="#" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
 
     <script src="/assets/js/jquery-3.6.0.min.js"></script>
