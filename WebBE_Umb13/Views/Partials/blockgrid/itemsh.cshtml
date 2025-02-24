@@ -8,20 +8,20 @@
     bool layout = blockGroups?.Any(kv => contentTypes.Contains(kv.Key) && kv.Value == "Layout Blocks") ?? false;
 }
 
-<div class="section-block @(layout ? "layout-" : "feature-")items d-flex flex-column @(layout ? "gap-0" : "gap-3")">
+<div class="@(layout ? "layout-" : "feature-")items d-flex flex-column @(layout ? "gap-0" : "gap-3")">
 @foreach (var item in Model)
 {
-    var partialViewName = "blockgrid/Components/" + item.Content.ContentType.Alias;
+    var partialView = layout ? $"blockgrid/Components/{item.Content.ContentType.Alias}h" : $"Components/{item.Content.ContentType.Alias}";
     try
     {
-        @await Html.PartialAsync(partialViewName, item)
+        @await Html.PartialAsync(partialView, item)
     }
     catch (InvalidOperationException)
     {
         <p>
             <strong>Could not render component of type: @(item.Content.ContentType.Alias)</strong>
             <br />
-            This likely happened because the partial view <em>@partialViewName</em> could not be found.
+                This likely happened because the partial view <em>@partialView</em> could not be found.
         </p>
     }
 }

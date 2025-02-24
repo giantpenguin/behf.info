@@ -1,0 +1,73 @@
+/*
+  NOTE: use _ in name of classes
+  current purple: #764979;
+  Dark purple: #612d91 rgb(97,45,145)
+  Light purple: #8968ad rgb(137,104,173)
+*/
+
+/*can use "mt" instead???*/
+.site-footer {
+  margin: 0 0;
+}
+
+.section-block {
+  margin: 0 0;
+}
+
+.section-hero__cnt .ityped-cursor {
+  font-size: 1em;
+  opacity: 1;
+  -webkit-animation: blink 0.3s infinite;
+  -moz-animation: blink 0.3s infinite;
+  animation: blink 0.3s infinite;
+  animation-direction: alternate;
+}
+  .section-hero__cnt h1 span {
+    color: #e1ccad;
+    border-right: #e1ccad;
+  }
+
+ /*hero banner on top GeneralPage*/
+.top-hero-banner {
+  min-height: 450px;
+}
+
+.breadcrumb li a, .breadcrumb li {
+  font-weight: 600;
+}
+.breadcrumb-item *, .breadcrumb-item + .breadcrumb-item::before {
+  color: #fff;
+  text-decoration: none;
+}
+
+.site-navbar .navbar-nav .nav-item .nav-link {
+  font-weight: 800;
+  /*color: #612d91; dark purple*/
+}
+.site-navbar .navbar-nav .dropdown-menu ul.menu-level-2 > li > a {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.contact-info {
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+  .contact-info li i {
+    min-width: 1.25rem;
+    display: inline-block;
+    margin: 0 .75rem 0 0;
+    text-align: center;
+    color: #764979;
+  }
+  .contact-info address {
+    display: inline;
+  }
+
+  @media (min-width: 1200px) {
+    h1, .h1 {
+    font-size: 3rem;
+  }
+}

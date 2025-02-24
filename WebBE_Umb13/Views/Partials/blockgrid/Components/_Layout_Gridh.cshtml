@@ -52,9 +52,10 @@
 
     //NOTE: IMPORTANT has issue when layoutBackgroundCss contains "parallax_bg" => layoutBackgroundCss must not have "parallax_bg"
     var cssCustom = hasSettings ? Model.Settings.Value<string>("layoutBackgroundCss") : null;
+    var blockTypeAlias = Model.Content.ContentType.Alias;
 }
 
-<div class="layout-item @cssCustom" data-bgimage="@bgrImageUrl" style="@styleAttribute" data-block-alias="@Model.Content.ContentType.Alias">
+<div class="section-block layout-item @cssCustom" data-bgimage="@bgrImageUrl" style="@styleAttribute" data-block-alias="@blockTypeAlias">
     @RenderBody()
     @* <h2>@myColor</h2> *@
 </div>

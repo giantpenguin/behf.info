@@ -69,9 +69,9 @@
                     }
                 </div>
                 <div class="form-group col-12">
-                    <legend class="umbraco-forms-legend">
+                    <label class="umbraco-forms-legend">
                           <text>@consentField.Caption</text>
-                    </legend>
+                    </label>
                     @{
                         await RenderField(consentField, "");
                     }
@@ -83,7 +83,7 @@
 
     <input class="umbraco-forms-hidden" type="hidden" aria-hidden="true" name="@Model.FormId.ToString().Replace("-", "")" />
     <div class="umbraco-forms-navigation row-fluid">
-        <input type="submit" class="btn btn-default" value="@Model.SubmitCaption"
+        <input type="submit" class="btn btn-default btn-secondary" value="@Model.SubmitCaption"
                name="__next"  data-form-navigate="next" data-umb="submit-forms-form" />
     </div>
 </div>
