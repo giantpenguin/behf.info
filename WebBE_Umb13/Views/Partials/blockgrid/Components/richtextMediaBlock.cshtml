@@ -1,0 +1,54 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    Layout = null/* "_Layout_Block.cshtml" */;
+
+    string heading = Model.Content.Value<string>("heading");
+    string subHeading = Model.Content.Value<string>("subHeading");
+    var imgUrl = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image")?.GetCropUrl(width: 605);
+    var youtubeId = Model.Content.Value<string>("youtubeVideo")?.Trim();
+    var paragraph = Model.Content.Value("paragraph");
+    var ctaLink = Model.Content.Value<Link>("actionUrl");
+    var showIcon = Model.Content.Value<bool>("showIcon");
+    var mediaOnRight = Model.Content.Value<bool>("mediaOnRight") ? " order-1" : "";
+    var boxShadow = Model.Content.Value<bool>("shadowRichtext") ? "bg-white box_shadow4" : "" ;
+    var vdoClass = string.IsNullOrWhiteSpace(youtubeId) ? "" : "overlay_bg_30 video_box";
+}
+
+@* <section></section> *@
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 @mediaOnRight animation" data-animation="fadeInUp" data-animation-delay="0.2s">
+                <div class="mb-3 mb-sm-4 mb-md-0 @vdoClass">
+                    <img src="@imgUrl" alt="@heading" title="@heading">
+                    @if (!string.IsNullOrWhiteSpace(youtubeId))
+                    {
+                        <a href="https://www.youtube.com/watch?v=@youtubeId" class="video_popup video_play">
+                            <span class="ripple"><i class="ion-play"></i></span>
+                        </a>
+                    }
+                </div>
+            </div>
+            <div class="col-md-6 animation" data-animation="fadeInUp" data-animation-delay="0.3s">
+                <div class="small_padding @boxShadow">
+                  <div class="heading_s2">
+                      @if (!string.IsNullOrWhiteSpace(subHeading))
+                      {
+                          <span class="sub_heading">@subHeading</span>
+                      }
+                      <h3>@heading</h3>
+                      @if (showIcon) {
+                          <div class="title_icon"><i class="flaticon-lotus"></i></div>
+                      }
+                  </div>
+                  @paragraph
+                  @if (ctaLink != null)
+                  {
+                      <a href="@ctaLink.Url" class="btn btn-default btn-radius">@ctaLink.Name</a>
+                  }
+                </div>
+            </div>
+        </div>
+    </div>

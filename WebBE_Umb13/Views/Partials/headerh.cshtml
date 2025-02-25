@@ -1,0 +1,97 @@
+@using Microsoft.AspNetCore.Http
+@using UmbNav.Core.Extensions
+@inject IHttpContextAccessor HttpContextAccessor
+@inject Umbraco.Cms.Core.Web.IUmbracoContextFactory UmbracoContextFactory
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<HomePage>
+
+@{
+    Layout = null;
+    // all this just to get the current page :(
+    var umbracoContext = UmbracoContextFactory.EnsureUmbracoContext();
+    var currentUrl = HttpContextAccessor.HttpContext!.Request.Path.ToString();
+    var currentPage = umbracoContext.UmbracoContext.Content!.GetByRoute(currentUrl);
+}
+<header class="site-header">
+<nav class="site-navbar on-hero theme-hero navbar fixed-top navbar-expand-xl">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="@Model.Logo?.GetCropUrl())" alt="BEHF logo" />
+        </a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#Navbar" aria-controls="Navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-lbl">Menu</span>
+            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="Navbar">
+            <div class="navbar-collapse-wrap">
+                <ul class="navbar-nav">
+                    @{
+                        foreach (var menuItem in Model.MainMenu!)
+                        {
+                            var custCss = menuItem.CustomClasses ?? "";
+                            var childClass = menuItem.Children.Any() ? "dropdown" : "";
+
+                            <li class="nav-item text-center @childClass @custCss">
+                                @if (string.IsNullOrEmpty(childClass))
+                                {
+                                    var navLinkCss = custCss.Contains("nav-button_reverse") ? "btn btn-primary btn-bdrd-mirror" : custCss.Contains("nav-button") ? "btn btn-primary" : "nav - link";
+                                    <a class="@navLinkCss @Html.If(menuItem.IsActive(currentPage, false), "active")" href="@menuItem.Url()" target="@menuItem.Target">@menuItem.Title</a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link dropdown-toggle" href="@menuItem.Url()" target="@menuItem.Target" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                        <span>@menuItem.Title</span>
+                                        <i class="fa-solid fa-angle-down"></i>
+                                    </a>
+                                    <div class="navbar-dropdown-menu size--auto dropdown-menu" aria-labelledby="navbarDropdownSample2">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6 col-lg-3">
+                                                    <ul class="menu-level-2">
+                                                    @foreach (var subItem in menuItem.Children)
+                                                    {
+                                                        <li><a class="dropdown-item @Html.If(subItem.IsActive(currentPage, false), "active")" href="@subItem.Url()">@subItem.Title</a></li>
+                                                    }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </li>
+                        }
+                    }
+                </ul>
+                <div class="site-navbar-group">
+                    <div class="site-navbar-srch dropdown">
+                        <a class="dropdown-toggle" href="javascript:void(0);" id="navbarSearch" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarSearch">
+                            <form class="form-wrap">
+                                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="site-navbar-lang dropdown">
+                        <a class="dropdown-toggle" href="#" id="navbarLanguage" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                            <span class="lang-flag"><img src="/assets/images/flag/united-states.png" alt=""></span>
+                            <span class="lang-title">English</span>
+                            <i class="fa-solid fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarLanguage">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <span class="lang-flag"><img src="/assets/images/flag/vietnam.png" alt=""></span>
+                                    <span class="lang-title">Vietnamese</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+</header>

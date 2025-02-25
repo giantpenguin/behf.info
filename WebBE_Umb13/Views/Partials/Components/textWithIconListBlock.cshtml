@@ -1,0 +1,68 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var heading = Model.Content.Value<string>("heading");
+    var subheading = Model.Content.Value<string>("subHeading");
+    var imgUrl = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image")?.GetCropUrl(width: 330, height: 380);
+    var paragraph = Model.Content.Value("paragraph");
+    var items = Model.Content.Value<IEnumerable<BlockListItem>>("items") ?? Enumerable.Empty<BlockListItem>();
+    var iconBoxStyle = "";
+    switch (Model.Content.Value<string>("iconBoxStyle"))
+    {
+        case "IconBox_Left":
+            iconBoxStyle = "icon_box_style2";
+            break;
+        case "IconBox_Center_Round":
+            iconBoxStyle = "icon_box_style3";
+            break;
+        default:  //IconBox_Center
+            iconBoxStyle = "icon_box_style1";
+            break;
+    }
+}
+<container>
+<div class="section-block__cnt">
+    <div class="row justify-content-center text-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <h5 class="section-block__top a-fadein a-fadein--right">@subheading</h5>
+            <h2 class="section-block__tle a-fadein a-fadein--right">@heading</h2>
+            @paragraph
+        </div>
+    </div>
+    <div class="list-specs type--1 display--circle count--@items.Count()">
+        @if (!string.IsNullOrEmpty(imgUrl))
+        {
+            <div class="list-specs__img">
+                <img src="@imgUrl" alt="@heading">
+            </div>
+        }
+        <div class="list-specs__row">
+            @foreach (var item in items)
+            {
+                var itemHeading = item.Content.Value<string>("heading");
+                var itemParag = item.Content.Value<string>("paragraph");
+                var iconImage = item.Content.Value<string>("iconImage") ?? "lotus-woman.svg";
+                var boxShadow4 = item.Content.Value<bool>("boxShadow") ? "box_shadow4" : "";
+
+                <div class="card-spec">
+                    <div class="card-spec__wrp">
+                        <div class="card-spec__icn">
+                            <img src="/assets/images/icons/@iconImage" alt="@itemHeading">
+                        </div>
+                        <div class="card-spec__cnt">
+                            <h4 class="card-spec__tle">@itemHeading</h4>
+                            @if (!string.IsNullOrEmpty(itemParag))
+                            {
+                                <div class="card-spec__des">@itemParag</div>
+                            }
+                        </div>
+                </div>
+            </div>
+            }
+          </div>
+    </div>
+</div>
+</container>

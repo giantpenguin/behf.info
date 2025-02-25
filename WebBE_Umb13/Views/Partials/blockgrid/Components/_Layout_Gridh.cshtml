@@ -1,0 +1,93 @@
+﻿@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+@using Umbraco.Cms.Core.PropertyEditors;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    Layout = null;
+
+    // Check if the layout has any areas
+    if (Model?.Areas.Any() != true) { return; }
+
+    // Get the layout settings
+    var hasSettings = Model.Settings != null;
+
+    var bgrColor = hasSettings ? Model.Settings.Value<ColorPickerValueConverter.PickedColor>("layoutBackgroundColor") : null;
+    var colorLabel = bgrColor?.Label;
+
+    var colorShade = hasSettings ? Model.Settings.Value<decimal>("layoutBackgroundColorShade") : (decimal?)null;
+    var colorOpacity = hasSettings ? Model.Settings.Value<decimal>("layoutBackgroundColorOpacity") : (decimal?)null;
+
+    var bgrImage = hasSettings ? Model.Settings.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("layoutBackgroundImage") : null;
+    var bgrImageUrl = bgrImage?.MediaUrl();
+
+    /*
+     * I could not get ViewData to pass the value to area.cshtml
+     * So I moved this code to each layout
+     * It works, but it is not DRY
+     * I think it is to do with the order of execution
+     */
+    // // 1. Check if this block grid item has settings
+    // var hasSettings = Model.Settings != null;
+    // // 2. If this block grid item has settings, get the Areas background color
+    // var areasBackgroundColor = hasSettings ? Model.Settings.Value<ColorPickerValueConverter.PickedColor>("layoutAreasColorPicker") : null;
+    // // 3. Get the label from the color
+    // var areasColorLabelValue = areasBackgroundColor?.Label;
+    // // 4. If the area has a color, use it, otherwise use bg-light
+    // var areasColorLabel = areasColorLabelValue != null ? areasColorLabelValue : "bg-light";
+    // // 5. Set the TempData to use in the area
+    // ViewData["MyColor"] = areasColorLabel;
+
+    //NOTE: PickedColor when uncheck the selected color, the value changes to "transparent", issue???
+
+    var styleAttribute = "";
+    if (!string.IsNullOrEmpty(bgrImageUrl))
+    {
+        styleAttribute = $"background-image: url({bgrImageUrl});";
+    }
+    else if (hasSettings && bgrColor != null)
+    {
+        // Set style attribute to background color to use rgba
+        styleAttribute = $"background-color: rgba(var({colorLabel}-{colorShade}), {colorOpacity});";
+    }
+
+    //NOTE: IMPORTANT has issue when layoutBackgroundCss contains "parallax_bg" => layoutBackgroundCss must not have "parallax_bg"
+    var cssCustom = hasSettings ? Model.Settings.Value<string>("layoutBackgroundCss") : null;
+    var blockTypeAlias = Model.Content.ContentType.Alias;
+}
+
+<div class="section-block layout-item @cssCustom" data-bgimage="@bgrImageUrl" style="@styleAttribute" data-block-alias="@blockTypeAlias">
+    @RenderBody()
+    @* <h2>@myColor</h2> *@
+</div>
+
+@* @{
+    // Uncomment this block to Debug Colors
+    var hexColor = backgroundColor;
+    var hexColorHash = "#" + @hexColor;
+
+    // Convert the hex color to RGB
+    System.Drawing.Color color = System.Drawing.ColorTranslator.FromHtml(hexColorHash);
+
+    // Get the RGB components
+    int red = color.R;
+    int green = color.G;
+    int blue = color.B;
+
+    if (hexColor != null)
+    {
+        <div class="btn btn-primary">
+            <dl>
+                <dt>HEX</dt>
+                <dd>@hexColor</dd>
+                <dt>RGB</dt>
+                <dd>@red, @green, @blue</dd>
+                <dt>Hash</dt>
+                <dd>@hexColorHash</dd>
+                <dt>Label</dt>
+                <dd>@colorLabel</dd>
+                <dt>Opacity</dt>
+                <dd>@colorOpacity</dd>
+            </dl>
+        </div>
+    }
+} *@

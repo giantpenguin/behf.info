@@ -1,0 +1,100 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var heading = Model.Content.Value<string>("heading");
+    var subheading = Model.Content.Value<string>("subHeading");
+    var paragraph = Model.Content.Value("paragraph");
+    var items = Model.Content.Value<IEnumerable<IPublishedContent>>("items") ?? Enumerable.Empty<IPublishedContent>();
+}
+
+<div class="pb_50">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8 col-md-10 text-center animation text_white" data-animation="fadeInUp" data-animation-delay="0.2s">
+                <div class="heading_s2 heading_light">
+                    @if (!string.IsNullOrWhiteSpace(subheading))
+                    {
+                        <span class="sub_heading">@subheading</span>
+                    }
+                    <h3>@heading</h3>
+                    @* <div class="title_icon"><i class="flaticon-lotus"></i></div> *@
+                </div>
+                @paragraph
+                <div class="small_divider clearfix"></div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in items)
+            {
+                var title = item.Value<string>("title");
+                var description = item.Value("description");
+                var firstImg = item.Value<IEnumerable<IPublishedContent>>("images")?.FirstOrDefault();
+                var targetObj = string.Join(", ", item.Value<IEnumerable<string>>("targetObjects"));
+                var instorName = item.Value<IPublishedContent>("instructor")?.Value<string>("normalName");
+                var date1 = item.Value<DateTime>("startDate").ToString("ddd, dd/MM/yyyy");
+                var time1 = item.Value<DateTime>("startTime").ToString("HH:mm");
+                var location = item.Value<string>("location");
+                <div class="col-lg-4 col-sm-6">
+                <div class="classes_box classes_box_style1 box_shadow1 animation">
+                    <div class="classes_img">
+                        @if (firstImg != null)
+                        {
+                            <img src="@firstImg.GetCropUrl(width:350))" class="card-img-top" alt="@title" />
+                        }
+                        @* <div class="link_container">
+                            <a href="#"><i class="ion-plus"></i></a>
+                        </div> *@
+                    </div>
+                    <div class="classes_info">
+                        <div class="classes_teacher">
+                            @* <img src="assets/images/cl_teacher_img1.jpg" alt="image" /> *@
+                            <span>@instorName</span>
+                        </div>
+                        <div class="classes_title">
+                            <span class="badge badge-pill badge-info">@targetObj</span>
+                            <h4><a href="#">@title</a></h4>
+                        </div>
+                        <div class="classes_desc">
+                            @description
+                        </div>
+                        <ul class="classes_schedule">
+                            <li><i class="ion-calendar"></i>@date1&nbsp;-&nbsp;@time1</li>
+                            @* <li><i class="ion-android-alarm-clock"></i>9:00 - 11:00</li> *@
+                            <li><i class="ti-location-pin"></i>@location</li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@* 
+ 
+
+
+                    <div class="event_box event_box_style1 box_shadow4 animation" data-animation="fadeInUp" data-animation-delay="0.2s">
+                        <div class="event_img">
+                            @if (firstImg != null)
+                            {
+                                <a href="#"><img src="@firstImg.GetCropUrl(width:350, height:370))" class="card-img-top" alt="@title" /></a>                                
+                            }
+                            <div class="event_date">
+                                <h5>24 Apr</h5>
+                            </div>
+                        </div>
+                        <div class="event_info">
+                            <h5 class="event_title"><a href="#">@title</a></h5>
+                            <ul class="list_none event_meta">
+                                <li><i class="ti-time"></i>9:00 - 4:00</li>
+                                <li><i class="ti-location-pin"></i>New York City</li>
+                            </ul>
+                        </div>
+                    </div>
+                
+*@

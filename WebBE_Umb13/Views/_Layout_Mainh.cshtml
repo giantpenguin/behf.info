@@ -1,0 +1,145 @@
+﻿@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Forms.Web;
+@using UmbNav.Core.Extensions
+@using UmbNav.Core.Models
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    Layout = null;
+    var homePage = UmbracoContext.Content.GetSingleByXPath("//homePage");
+    var bgrImage = Model.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("pageBackgroundImage");
+    var styleAttribute = bgrImage != null ? $"background-image: url({bgrImage.MediaUrl()});" : "";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <partial name="_meta" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <link rel="stylesheet" href="/assets/css/libs.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/aos.css">
+    <link rel="stylesheet" href="/assets/css/custom-style.css">
+
+    <style>
+        .card-demo {
+            padding: 5rem 0;
+            margin: 0 0 2rem;
+            background-color: #ddd;
+            text-align: center;
+        }
+
+            .card-demo::before {
+                content: "Sample card"
+            }
+
+        .item-demo {
+            padding: 8rem 1rem;
+            margin: 0 0 2rem;
+            background-color: #ddd;
+            text-align: center;
+        }
+
+            .item-demo::before {
+                content: "Slider item"
+            }
+    </style>
+</head>
+<body data-bgimage="@bgrImage.MediaUrl()" style="@styleAttribute">
+    @* <div id="preloader">
+        <div class="loading_wrap">
+            <img src="/assets/images/loading_logo.png" alt="loading logo" />
+        </div>
+    </div> *@    
+    <partial name="headerh" model="homePage" />
+    <div class="site-content">
+        <main role="main" class="flex-grow-1">
+            @RenderBody()
+        </main>
+    </div>    
+    <partial name="footerh" model="homePage" />    
+    <a href="#" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
+
+    <script src="/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/owl.carousel.min.js"></script>
+    <script src="/assets/js/aos.js"></script>
+    <script src="/assets/js/animation.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/ityped-0.0.10.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            fixedHeaderOnScroll();
+            $(window).scroll(function(){
+                fixedHeaderOnScroll();
+            });
+        });
+
+        function fixedHeaderOnScroll(){
+            var st = $('html').scrollTop()
+                header = $('.site-navbar');
+            if(st > 128){
+                header.addClass('size-minimal');
+                if(header.hasClass('on-hero')){
+                    header.removeClass('theme-hero');
+                }
+            }
+            else{
+                header.removeClass('size-minimal');
+                if(header.hasClass('on-hero')){
+                    header.addClass('theme-hero');
+                }
+            }
+        }
+
+        $(document).ready(function(){
+            $('.c-carousel').each(function(){
+                const itemsXS = this.getAttribute('data-items-xs'),
+                    itemsMD = this.getAttribute('data-items-md'),
+                    itemsLG = this.getAttribute('data-items-lg'),
+                    itemLoop = this.getAttribute('data-loop'),
+                    itemCenter = this.getAttribute('data-center'),
+                    itemDrag = this.getAttribute('data-drag'),
+                    itemNav = this.getAttribute('data-nav'),
+                    itemDots = this.getAttribute('data-dots'),
+                    itemMargin = this.getAttribute('data-margin');
+                $(this).owlCarousel({
+                    responsive:{
+                        0:{
+                            items: itemsXS !== null ? Number(itemsXS) : 1,
+                            slideBy: itemsXS !== null && itemCenter == 'false' ? Number(itemsXS) : 1,
+                        },
+                        720:{
+                            items: itemsMD !== null ? Number(itemsMD) : 1,
+                            slideBy: itemsMD !== null && itemCenter == 'false' ? Number(itemsMD) : 1,
+                        },
+                        1280:{
+                            items: itemsLG !== null ? Number(itemsLG) : 1,
+                            slideBy: itemsLG !== null && itemCenter == 'false' ? Number(itemsLG) : 1,
+                        }
+                    },
+                    loop: (itemLoop == 'true'),
+                    center: (itemCenter == 'true'),
+                    mouseDrag: (itemDrag == 'true'),
+                    touchDrag: (itemDrag == 'true'),
+                    nav: (itemNav == 'true'),
+                    dots: (itemDots == 'true'),
+                    margin: itemMargin !== null ? Number(itemMargin) : 32,
+                });
+            });
+        });
+    </script>
+    @* @Html.RenderUmbracoFormDependencies(Url); *@
+    @if (Context.Items.TryGetValue("UmbracoForms", out object? formIdsObject) && formIdsObject is IEnumerable<Guid> formIds)
+    {
+        foreach (var formId in formIds)
+        {
+            @await Component.InvokeAsync("RenderFormScripts", new { formId, theme = "default" })
+        }
+    }
+</body>
+</html>

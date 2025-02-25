@@ -1,0 +1,110 @@
+@using System.Text
+@using Umbraco.Forms.Core.Enums
+@using Umbraco.Forms.Web
+@using Umbraco.Forms.Web.Models
+@using Umbraco.Forms.Web.Services
+@model Umbraco.Forms.Web.Models.FormViewModel
+@inject IFormThemeResolver FormThemeResolver
+
+@{
+    // here we load in the needed default assets for the form
+    // this means that 3rd party themes can override these by implementing their own form.cshtml file
+    //it will simply hook into standard way forms load assets
+    if (Model.DisableDefaultStylesheet == false)
+    {
+        Html.SetFormThemeCssFile("~/App_Plugins/UmbracoForms/Assets/themes/default/style.min.css");
+    }
+}
+
+<div class="umbraco-forms-page" id="@(Model.CurrentPage != null ? Model.CurrentPage.Id : "umbraco-forms-summary-page")">
+
+    @if (Model.ShowSummaryPage)
+    {
+        var multiPageFormSummaryThemedView = FormThemeResolver.GetMultiPageFormSummaryView(Model);
+        await Html.RenderPartialAsync(multiPageFormSummaryThemedView);
+    }
+    else
+    {
+        if (string.IsNullOrEmpty(Model.CurrentPage.Caption) == false)
+        {
+            <h4 class="umbraco-forms-caption">@Model.CurrentPage.Caption</h4>
+        }
+        if (Model.ShowValidationSummary)
+        {
+            <div id="alert-msg" class="alert-msg alert-msg-failure">
+                @Html.ValidationSummary(false)
+            </div>         
+        }
+
+        FieldsetViewModel fs = Model.CurrentPage.Fieldsets.First();
+        bool hideFieldSetWhenRendering = true;
+        var firstCont = fs.Containers.First();
+        var nameField = firstCont.Fields.FirstOrDefault(f => f.Alias == "nameField");
+        var emailField = firstCont.Fields.FirstOrDefault(f => f.Alias == "emailField");
+        var subjField = firstCont.Fields.FirstOrDefault(f => f.Alias == "subjectField");
+        var msgField = firstCont.Fields.FirstOrDefault(f => f.Alias == "messageField");
+        var consentField = firstCont.Fields.FirstOrDefault(f => f.Alias == "dataConsent");
+
+        <div class="umbraco-forms-fieldset umbraco-forms-hidden" id="@fs.Id">            
+            <div class="umbraco-forms-container field_form icon_form">
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                    @{
+                        await RenderField(nameField, "ti-user");
+                    }
+                </div>
+                <div class="form-group col-lg-6">
+                    @{
+                        await RenderField(emailField, "ti-email");
+                    }
+                </div>
+                <div class="form-group col-12">
+                    @{
+                        await RenderField(subjField, "ti-folder");
+                    }
+                </div>
+                <div class="form-group col-lg-12">
+                    @{
+                        await RenderField(msgField, "ti-comments");
+                    }
+                </div>
+                <div class="form-group col-12">
+                    <label class="umbraco-forms-legend">
+                          <text>@consentField.Caption</text>
+                    </label>
+                    @{
+                        await RenderField(consentField, "");
+                    }
+                </div>
+                </div>
+            </div>            
+        </div>
+    }
+
+    <input class="umbraco-forms-hidden" type="hidden" aria-hidden="true" name="@Model.FormId.ToString().Replace("-", "")" />
+    <div class="umbraco-forms-navigation row-fluid">
+        <input type="submit" class="btn btn-default btn-secondary" value="@Model.SubmitCaption"
+               name="__next"  data-form-navigate="next" data-umb="submit-forms-form" />
+    </div>
+</div>
+
+@await Html.PartialAsync("Forms/Themes/default/ScrollToFormScript")
+
+@functions
+{
+    async Task RenderField(FieldViewModel field, string tiIcon)
+    {        
+        <div class="umbraco-forms-field-wrapper form-input">
+            @if (!string.IsNullOrEmpty(tiIcon))
+            {
+            <span><i class="@tiIcon"></i></span>
+            }
+            @await Html.PartialAsync(FormThemeResolver.GetFieldView(Model, field), field)
+
+            @if (Model.ShowFieldValidaton)
+            {
+                @Html.ValidationMessage(field.Name, new { role = "alert" })
+            }
+        </div>        
+    }
+}

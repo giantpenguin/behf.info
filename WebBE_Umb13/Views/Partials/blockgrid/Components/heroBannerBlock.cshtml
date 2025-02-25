@@ -1,0 +1,18 @@
+﻿@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    // Layout = "_Layout_Features.cshtml";
+    var imgBannerUrl = Model.Content.Value<IPublishedContent>("image").GetCropUrl(width: 1920, height: 650);
+    var ctaLink = Model.Content.Value<IPublishedContent>("actionUrl");
+}
+
+<div class="carousel-item">
+    <img src="@imgBannerUrl" class="d-block w-100" alt="...">
+    <div class="carousel-caption d-none d-md-block bg-dark p-3 rounded-3">
+        <h5><a class="nav-link stretched-link" href="@ctaLink.Url">@ctaLink.Name</a></h5>
+        <p>@ctaLink.Name</p>
+        <p>
+        </p>
+    </div>
+</div>

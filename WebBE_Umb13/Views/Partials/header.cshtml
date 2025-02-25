@@ -1,0 +1,77 @@
+@using Microsoft.AspNetCore.Http
+@using UmbNav.Core.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<HomePage>
+@inject IHttpContextAccessor HttpContextAccessor
+@inject Umbraco.Cms.Core.Web.IUmbracoContextFactory UmbracoContextFactory
+
+@{
+    Layout = null;
+    // all this just to get the current page :(
+    var umbracoContext = UmbracoContextFactory.EnsureUmbracoContext();
+    var currentUrl = HttpContextAccessor.HttpContext!.Request.Path.ToString();
+    var currentPage = umbracoContext.UmbracoContext.Content!.GetByRoute(currentUrl);
+}
+<header class="header_wrap fixed-top light_skin main_menu_uppercase main_menu_weight_800 transparent_header">
+    <div class="container">
+        <nav class="navbar navbar-nav navbar-expand-lg">
+            <a class="navbar-brand" href="/">
+                <img src="@Model.Logo?.GetCropUrl())" alt="logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="ion-android-menu"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-pills flex-grow-1 flex-lg-grow-0 gap-3">
+                        @{
+                            foreach (var menuItem in Model.MainMenu!)
+                            {
+                                // check for children
+                                var childClass = "";
+                                if (menuItem.Children.Any())
+                                {
+                                    childClass = "dropdown";
+                                }
+
+                                <li class="nav-item text-center @childClass">
+                                    @if (string.IsNullOrEmpty(childClass))
+                                    {
+                                        <a class="nav-link @Html.If(menuItem.IsActive(currentPage, false), "active")" href="@menuItem.Url()" target="@menuItem.Target">@menuItem.Title</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="nav-link dropdown-toggle" href="@menuItem.Url()" target="@menuItem.Target" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            @menuItem.Title
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            @foreach (var subItem in menuItem.Children)
+                                            {
+                                                <li><a class="dropdown-item @Html.If(subItem.IsActive(currentPage, false), "active")" href="@subItem.Url()">@subItem.Title</a></li>
+                                            }
+                                        </ul>
+                                    }
+                                    
+                                </li>
+                            }
+                        }
+                    </ul>
+            </div>
+            
+            <ul class="navbar-nav attr-nav align-items-center">
+                <li>
+                    <a href="javascript:void(0);" class="nav-link search_trigger"><i class="ion-ios-search-strong"></i></a>
+                    <div class="search-overlay">
+                        <div class="search_wrap">
+                            <form>
+                                <div class="rounded_input">
+                                    <input type="text" placeholder="Search" class="form-control" id="search_input">
+                                </div>
+                                <button type="submit" class="search_icon"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+    </nav>
+    </div>
+</header>

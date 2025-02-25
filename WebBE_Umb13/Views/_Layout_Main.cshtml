@@ -1,0 +1,95 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Forms.Web;
+@using UmbNav.Core.Extensions
+@using UmbNav.Core.Models
+
+@{
+    Layout = null;
+    var homePage = UmbracoContext.Content.GetSingleByXPath("//homePage");
+    var bgrImage = Model.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("pageBackgroundImage");
+    var styleAttribute = bgrImage != null ? $"background-image: url({bgrImage.MediaUrl()});" : "";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <partial name="_meta" />
+    <!-- SITE TITLE -->
+    <title>BEHF :: Home</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    @* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> *@
+    <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="/assets/css/ionicons.min.css">
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="/assets/css/all.min.css">
+    <!-- Flaticon Font CSS -->
+    <link rel="stylesheet" href="/assets/css/flaticon.css">
+    <!-- Themify Font CSS -->
+    <link rel="stylesheet" href="/assets/css/themify-icons.css">
+    <!--- owl carousel CSS-->
+    <link rel="stylesheet" href="/assets/owlcarousel/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/owlcarousel/css/owl.theme.css">
+    <link rel="stylesheet" href="/assets/owlcarousel/css/owl.theme.default.min.css">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+    <!-- jquery-ui CSS -->
+    <link rel="stylesheet" href="/assets/css/jquery-ui.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" id="layoutstyle" href="/assets/themes/theme-purple.css">
+</head>
+<body data-bgimage="@bgrImage.MediaUrl()" style="@styleAttribute">
+    <div id="preloader">
+        <div class="loading_wrap">
+            <img src="/assets/images/loading_logo.png" alt="logo" />
+        </div>
+    </div>
+    <div class="document d-flex flex-column justify-content-between">
+        @* <partial name="utility-bar" /> *@
+        <partial name="header" model="homePage" />
+        <main role="main" class="flex-grow-1">
+            @RenderBody()
+        </main>
+        <partial name="footer" model="homePage" />
+        <a href="#" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
+    </div>
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
+    <script src="/assets/js/jquery-ui.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    @* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> *@
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/assets/js/magnific-popup.min.js"></script>
+    <script src="/assets/js/waypoints.min.js"></script>
+    <script src="/assets/js/parallax.js"></script>
+    <script src="/assets/js/jquery.dd.min.js"></script>
+    <script src="/assets/js/jquery.countdown.min.js"></script>
+    <script src="/assets/js/jquery.counterup.min.js"></script>
+    <script src="/assets/js/jquery.parallax-scroll.js"></script>
+    <!-- fit video  -->
+    <script src="/assets/js/jquery.fitvids.js"></script>
+    <script src="/assets/owlcarousel/js/owl.carousel.min.js"></script>
+    <!-- imagesloaded js -->
+    <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/js/isotope.min.js"></script>
+    <script src="/assets/js/js.cookie.js"></script>
+    <script src="/assets/js/scripts.js"></script>
+    @* @Html.RenderUmbracoFormDependencies(Url); *@
+    @if (Context.Items.TryGetValue("UmbracoForms", out object? formIdsObject) && formIdsObject is IEnumerable<Guid> formIds)
+    {
+        foreach (var formId in formIds)
+        {
+            @await Component.InvokeAsync("RenderFormScripts", new { formId, theme = "default" })
+        }
+    }
+</body>
+</html>

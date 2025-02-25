@@ -1,0 +1,43 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using YeahWeb.Extensions;
+
+@{
+    Layout = "_Layout_Mainh.cshtml";
+    TempData["blocksWithGroupNames"] = Model.GetBlocksWithGroupNames("contentLayout");
+}
+
+<div class="section-hero">
+    <div class="hero-item content--left" style="background-image: url('/assets/images/home_herobanner_background_default.jpg');">
+        @* <div class="hero-item__bkd" style="background-color: rgba(0,0,0,.6);"></div> *@
+        <div class="hero-item__wrp"> @* hero-item__wrp home_banner *@
+          <div class="container">
+              <div class="row justify-content-center align-items-center">
+                      <div class="col-11 col-md-9 col-lg-6 col--hero-cnt a-fadein a-fadein--right">
+                      <div class="section-hero__cnt">
+                          <h5>Start a Happy Life</h5>
+                          <h1 data-aos="fade-up" class="aos-init aos-animate">Start Healing Your Mind, <span class="ityped">Body &amp; Soul</span><span class="ityped-cursor">|</span></h1>
+                          <p class="text-lg"></p>
+                      </div>
+                      <div class="section-hero__atn">
+                          <a href="#" class="btn btn-primary btn-lg btn-hover-jump-up">Let Start</a>
+                      </div>
+                  </div>
+                      <div class="col-10 col-md-8 col-lg-6 col--hero-mda a-fadein a-fadein--left">
+                      <div class="section-hero__mda">
+                          <img class="mover-x" src="/assets/images/BEHF_inside_trans.png" alt="BEHF inside">
+                      </div>
+                  </div>
+              </div>
+              @* <div class="section-hero__gd">
+                  <button class="btn btn-icon btn-lg mover-y" title="Scroll down">
+                      <i class="fa-solid fa-arrow-down"></i>
+                  </button>
+              </div> *@
+          </div>
+        </div>
+    </div>
+</div>
+@* <!-- BLOCK GRID --> *@
+@await Html.GetBlockGridHtmlAsync(Model, "contentLayout", "defaulth")
+@* <!-- END BLOCK GRID --> *@

@@ -1,0 +1,62 @@
+@using Microsoft.Extensions.Options
+@using Umbraco.Cms.Core;
+@using Umbraco.Forms.Core.Configuration
+
+@inherits Umbraco.Cms.Web.Common.Macros.PartialViewMacroPage
+
+@inject IOptions<PackageOptionSettings> PackageOptionSettings
+
+@if (Guid.TryParse(Model.MacroParameters["FormGuid"]?.ToString(), out Guid form))
+{
+    var theme = string.Empty;
+    var includeScripts = true;
+    Guid? redirectToPageId = null;
+
+    @*
+        If a theme is provided as a macro parameter, forms will attempt to use custom theme files
+        ex: given the value "test", forms will look up views for the form and fields in a custom directory:
+
+        Form will be rendered with
+            /Views/Partials/Forms/Themes/test/form.cshml
+
+        Fields will be rendered with
+            /Views/Partials/Forms/Themes/test/FieldType/[fieldtypename].cshtml
+
+        If a file is not available in the custom directory, forms will fallback to the default files in
+            /Views/Partials/Forms/Themes/default/
+    *@
+
+    if (Model.MacroParameters.ContainsKey("FormTheme"))
+    {
+        theme = Model.MacroParameters["FormTheme"]?.ToString();
+    }
+
+    if (Model.MacroParameters.ContainsKey("ExcludeScripts"))
+    {
+
+        @*
+            Inverse the boolean - RenderAction Parameter expects it to be false for exclusion
+            But with default value for Macro Parameter boolean/checkbox being false
+            We want to ensure by default we include the scripts next to the form
+        *@
+        if (Model.MacroParameters["ExcludeScripts"]?.ToString() == "1")
+        {
+            includeScripts = false;
+        }
+    }
+
+    if (Model.MacroParameters.ContainsKey("RedirectToPageId") &&
+        UdiParser.TryParse(Model.MacroParameters["RedirectToPageId"]?.ToString(), out GuidUdi? redirectToPageIdAsUdi) &&
+        redirectToPageIdAsUdi is not null)
+    {
+        redirectToPageId = redirectToPageIdAsUdi.Guid;
+    }
+
+    Guid? recordGuid = null;
+    if (PackageOptionSettings.Value.AllowEditableFormSubmissions && Guid.TryParse(Context.Request.Query["recordId"], out Guid recordIdAsGuid))
+    {
+        recordGuid = recordIdAsGuid;
+    }
+
+    @(await Component.InvokeAsync("RenderForm", new { formId = form, recordId = recordGuid, theme = theme, includeScripts = includeScripts, redirectToPageId = redirectToPageId }))
+}

@@ -1,0 +1,96 @@
+﻿@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@{
+    Layout = null;
+    var socialItems = Model.Value<IEnumerable<BlockListItem>>("socialLinks") ?? Enumerable.Empty<BlockListItem>();
+}
+
+<footer class="site-footer" style="--background-color: #764979; --color: #fff">
+    <div class="site-footer__mid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="footer-logo">
+                        <a href="" class="text-decoration-none">
+                            <figure class="mb-0">
+                                <img src="/assets/images/BEHF_inside_trans.png" alt="BEHF" class="img-fluid"> @* @Model.Logo?.GetCropUrl() *@
+                            </figure>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="footer-group">
+                        <h4>BEHF</h4>
+                        <p>Benevolence, Evolution, Humbleness, Friendship.</p>
+                        @if (socialItems.Count() > 0)
+                        {
+                            <ul class="list-social">
+                                @foreach (var item in socialItems)
+                                {
+                                    var socialClass = "";
+                                    var cta = item.Content.Value<Link>("actionUrl");
+                                    switch (cta.Name.ToLowerInvariant())
+                                    {
+                                        case "facebook":
+                                            socialClass = "fa-brands fa-facebook-f";
+                                            break;
+                                        case "youtube":
+                                            socialClass = "fa-brands fa-youtube";
+                                            break;
+                                        case "instagram":
+                                            socialClass = "fa-brands fa-instagram";
+                                            break;
+                                        case "twitter":
+                                            socialClass = "fa-brands fa-twitter";
+                                            break;
+                                    }
+                                    <li><a href="@cta.Url" target="@cta.Target" title="@cta.Name"><i class="@socialClass" aria-hidden="true"></i></a></li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="footer-group">
+                        <h4>Quick Links</h4>
+                        <ul class="list-links">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/about-behf">About BEHF</a></li>
+                            <li><a href="/contact-us">Contact Us</a></li>
+                            <li><a href="#">Privacy Policy</a></li>                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="footer-group">
+                        <h4>Contact Info</h4>
+                        <ul class="list-contact">
+                            <li>
+                                <i class="fa-solid fa-phone"></i>
+                                <a href="tel:@Model.ContactPhone" class="text-decoration-none">@Model.ContactPhone</a>
+                            </li>
+                            <li>
+                                <i class="fa-sharp fa-solid fa-envelope"></i>
+                                <a href="mailto:@Model.ContactEmail" class="text-decoration-none">@Model.ContactEmail</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-location-dot location"></i>
+                                <span>@Model.ContactAddress</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="site-footer__btm">
+        <div class="container">
+            <div class="footer-copyright col-xl-12">
+                <p>@Model.CopyrightText &copy; @DateTime.Now.Year, <a href="https://www.behf.info/" class="text_default">@Model.SiteName</a></p>
+            </div>
+        </div>
+    </div>
+    @* <figure class="animate-shape bottom-right a-fadein a-fadein--right"><img src="/assets/images/patterns/mandala_pattern6.png" alt="mandala"></figure> *@ 
+</footer>

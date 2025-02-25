@@ -1,0 +1,36 @@
+﻿@model IPublishedContent // Model will be the content node
+
+@{
+    string baseUrl = Model.Value<string>("siteUrl");
+    string pageTitle = Model.Value<string>("title");
+    string pageDescription = Model.Value<string>("pageDescription");
+    var pageThumbnail = Model.Value<IPublishedContent>("pageThumbnail");
+    string pageThumbnailUrl = pageThumbnail is not null ? $"{baseUrl}{pageThumbnail.GetCropUrl(width: 1200)}" : null;
+    // string pageThumbnailUrl = Model.HasValue("pageThumbnail") ? baseUrl + Model.Value<IPublishedContent>("pageThumbnail").GetCropUrl(width: 1200) : null;
+    bool hasThumbnail = !string.IsNullOrEmpty(pageThumbnailUrl);
+}
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta name="author" content="Yeah">
+
+<title>BEHF::@pageTitle</title>
+<meta name="description" content="@pageDescription" />
+@if (hasThumbnail)
+{
+    <meta name="thumbnail" content="@pageThumbnailUrl" />
+}
+<meta property="og:title" content="@pageTitle" />
+<meta property="og:description" content="@pageDescription" />
+@if (hasThumbnail)
+{
+    <meta property="og:image" content="@pageThumbnailUrl" />
+}
+<meta name="twitter:title" content="@pageTitle" />
+<meta name="twitter:description" content="@pageDescription" />
+@if (hasThumbnail)
+{
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:src" content="@pageThumbnailUrl" />
+}
