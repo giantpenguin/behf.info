@@ -17,20 +17,20 @@ figure{
     &-icon{
         padding-left: 0;
         padding-right: 0;
-        width: 45px;
+        width: 42px;
         i{
             display: block;
             line-height: 1;
             font-size: 1.5rem;
         }
         &.btn-lg{
-            width: 56px;
+            width: 54px;
             i{
                 font-size: 1.75rem;
             }
         }
         &.btn-sm{
-            width: 34px;
+            width: 30px;
             i{
                 font-size: 1.25rem;
             }
@@ -147,28 +147,28 @@ a{
     100% { transform: translateY(-30px); }
 }
 .mover-y{
-    *{ animation: mover-y 1.2s infinite alternate; }
+    & > *{ animation: mover-y 1.2s infinite alternate; }
 }
 .mover-y-x15{
-    *{ animation: mover-y .9s infinite alternate; }
+    & > *{ animation: mover-y .9s infinite alternate; }
 }
 .mover-y-x20{
-    *{ animation: mover-y .6s infinite alternate; }
+    & > *{ animation: mover-y .6s infinite alternate; }
 }
 .mover-y-x20{
-    *{ animation: mover-y .4s infinite alternate; }
+    & > *{ animation: mover-y .4s infinite alternate; }
 }
 .mover-x{
-    *{ animation: mover-x 1.2s infinite alternate; }
+    & > *{ animation: mover-x 1.2s infinite alternate; }
 }
 .mover-x-x15{
     *{ animation: mover-x .9s infinite alternate; }
 }
 .mover-x-x20{
-    *{ animation: mover-x .6s infinite alternate; }
+    & > *{ animation: mover-x .6s infinite alternate; }
 }
 .mover-x-x30{
-    *{ animation: mover-x .4s infinite alternate; }
+    & > *{ animation: mover-x .4s infinite alternate; }
 }
 
 .c-carousel{

@@ -1,28 +1,7 @@
 .section-hero{
-    --bs-breadcrumb-color: #fff;
-    --bs-breadcrumb-divider-color: #fff;
-    --bs-breadcrumb-item-active-color: #fff;
     position: relative;
     margin-top: calc(var(--navbar-height) * -1);
     min-height: 20rem;
-    .breadcrumb{
-        &-item{
-            &, & a{
-                text-decoration: none;
-                &,&:after,&:before{
-                    color: var(--bs-breadcrumb-color);
-                }
-            }
-            cursor: default;
-            a{
-                &:hover{
-                    text-decoration: underline;
-                    text-underline-offset: .25rem;
-                    text-decoration-thickness: 2px;
-                }
-            }
-        }
-    }
     &__scd{
         position: absolute;
         inset: auto 0 .5rem;
@@ -33,6 +12,8 @@
             font-size: 1.5rem;
             background-color: rgba(#000,.2);
             border-radius: 50%;
+            height: 56px;
+            width: 56px;
             border-color: transparent;
             i{
                 font-size: 1.5rem;
@@ -87,12 +68,16 @@
     }
 }
 .hero-item{
+    --color:#fff; 
+    --bg-image: url(''); 
+    --bg-backdrop: rgba(0,0,0,.6);
     position: relative;
     overflow: hidden;
-    color: #fff;
+    color: var(--color);
     background-color: #333;
     background-size: cover;
     background-position: center;
+    background-image: var(--bg-image);
     text-align: center;
     @include media-breakpoint-up(xl){
         padding: 0;
@@ -150,6 +135,24 @@
         }
     }
 
+    .breadcrumb{
+        &-item{
+            &, & a{
+                text-decoration: none;
+                &,&:after,&:before{
+                    color: var(--color);
+                }
+            }
+            cursor: default;
+            a{
+                &:hover{
+                    text-decoration: underline;
+                    text-underline-offset: .25rem;
+                    text-decoration-thickness: 2px;
+                }
+            }
+        }
+    }
     &__wrp{
         z-index: 10;
         position: relative;
@@ -186,7 +189,7 @@
         position: absolute;
         inset: 0;
         z-index: 5;
-        background-color: $gray-800;
+        background-color: var(--bg-backdrop);
     }
     &__cnt{
 
