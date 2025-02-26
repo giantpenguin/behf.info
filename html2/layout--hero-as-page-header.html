@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
-    <title>Layout</title>
+    <title>Layout | Page header</title>
 
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -46,8 +46,8 @@
 
 <body>
 
-    <header class="site-header">
-        <nav class="site-navbar on-hero theme-hero navbar fixed-top navbar-expand-xl">
+    <header class="site-header" style="--color:rgba(118,73,121,1); --active-color:rgba(97,45,145,1)">
+        <nav class="site-navbar navbar fixed-top navbar-expand-xl theme-hero">
             <div class="container">
                 <a class="navbar-brand" href="#">
                     <img src="./stock/behf.png" alt="">
@@ -270,104 +270,25 @@
 
     <div class="site-content">
         <section class="section-hero">
-            <div class="section-hero__load"></div>
-            <div class="c-carousel c-carousel--hero owl-carousel"
-                data-items-xs="1" 
-                data-items-md="1" 
-                data-items-md="1" 
-                data-items-lg="1" 
-                data-loop="true"
-                data-center="false"
-                data-drag="true"
-                data-nav="true"
-                data-dots="true"
-                data-margin="0"
-                data-auto-height="true"
-            >
-                <div class="hero-item content--left" style="--color:#fff; --bg-image: url('https://cdn.stocksnap.io/img-thumbs/960w/woman-yoga_ZM6UUXW2SB.jpg'); --bg-backdrop: rgba(49, 29, 51, .8);">
-                    <div class="hero-item__bkd"></div>
-                    <div class="hero-item__wrp">
-                        <div class="container ">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-11 col-md-9 col-lg-6 col--hero-cnt">
-                                    <div class="hero-item__cnt">
-                                        <h5>Start a Happy Life</h5>
-                                        <h1>Start Healing Your Mind, Body & Soul</h1>
-                                        <p class="text-lg">
-                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.
-                                        </p>
-                                    </div>
-                                    <div class="hero-item__atn">
-                                        <a href="#" class="btn btn-primary btn-lg">Button 1</a>
-                                        <a href="#" class="btn btn-primary btn-lg btn-bdrd-mirror">Button 2</a>
-                                    </div>
-                                </div>
-                                <div class="col-10 col-md-8 col-lg-6 col--hero-mda">
-                                    <div class="hero-item__mda">
-                                        <img class="mover-x" src="stock/BEHF1.png" alt="">
-                                    </div>
+            <div class="hero-item content--center page-header" style="--color:#fff; --bg-image: url('https://cdn.stocksnap.io/img-thumbs/960w/woman-yoga_ZM6UUXW2SB.jpg'); --bg-backdrop: rgba(0,0,0,.6);">
+                <div class="hero-item__bkd"></div>
+                <div class="hero-item__wrp">
+                    <div class="container">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-11 col-md-9 col-lg-8 col--hero-cnt">
+                                <nav aria-label="breadcrumb" class="a-fadein a-fadein--up">
+                                    <ol class="breadcrumb">
+                                      <li class="breadcrumb-item"><a href="https://behf.info/">Home</a></li>
+                                      <li class="breadcrumb-item active" aria-current="page">About BEHF</li>
+                                    </ol>
+                                </nav>
+                                <div class="hero-item__cnt a-fadein a-fadein--up a-delay--25">
+                                    <h1>Page title</h1>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="hero-item content--center" style="--color:#fff; --bg-image: url('https://cdn.stocksnap.io/img-thumbs/960w/yoga-mom_8NQSLOPVMQ.jpg'); --bg-backdrop: rgba(56, 40, 24,.7);">
-                    <div class="hero-item__bkd"></div>
-                    <div class="hero-item__wrp">
-                        <div class="container">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-11 col-md-9 col-lg-6 col--hero-cnt">
-                                    <div class="hero-item__cnt">
-                                        <h5>Start a Happy Life</h5>
-                                        <h1>Start Healing Your Mind, Body & Soul</h1>
-                                        <p class="text-lg">
-                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.
-                                        </p>
-                                    </div>
-                                    <div class="hero-item__atn">
-                                        <a href="#" class="btn btn-primary btn-lg">Button A</a>
-                                        <a href="#" class="btn btn-primary btn-lg btn-bdrd-mirror">Button B</a>
-                                    </div>
-                                </div>
-                                <div class="col-10 col-md-8 col-lg-6 col--hero-mda">
-                                    <div class="hero-item__mda">
-                                        <img class="mover-x" src="stock/BEHF1.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-item content--right" style="--color:#000; --bg-image: url('https://cdn.stocksnap.io/img-thumbs/960w/new%20year-woman_IUVB39SSRQ.jpg'); --bg-backdrop: rgba(255, 255, 255,.5);">
-                    <div class="hero-item__bkd"></div>
-                    <div class="hero-item__wrp">
-                        <div class="container">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-11 col-md-9 col-lg-6 col--hero-cnt">
-                                    <div class="hero-item__cnt">
-                                        <h5>Label</h5>
-                                        <h1>Title</h1>
-                                        <p class="text-lg">Some text</p>
-                                    </div>
-                                    <div class="hero-item__atn">
-                                        <a href="#" class="btn btn-primary btn-lg">Button A</a>
-                                        <a href="#" class="btn btn-primary btn-lg btn-bdrd-mirror">Button B</a>
-                                    </div>
-                                </div>
-                                <div class="col-10 col-md-8 col-lg-6 col--hero-mda">
-                                    <div class="hero-item__mda">
-                                        <img class="mover-x" src="stock/behf.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section-hero__scd mover-y">
-                <button id="btnHeroScroll" class="btn btn-icon btn-lg" title="Scroll down">
-                    <i class="fa-solid fa-arrow-down"></i>
-                </button>
             </div>
         </section>
         <section class="container my-5">
@@ -381,7 +302,6 @@
 
         <div style="height: 100vh;"></div>
     </div>
-
 
 
     <!-- JS Libs-->

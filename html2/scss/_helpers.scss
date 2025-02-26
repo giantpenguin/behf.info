@@ -87,7 +87,7 @@
     &--init{
         animation-duration: 2s;
         animation-fill-mode: both;
-        animation-delay: .25rem;
+        animation-delay: .1s;
         &.a-fadein--left{
             animation-name: fadeInLeft;
         }
@@ -99,6 +99,30 @@
         }
         &.a-fadein--default{
             animation-name: fadeIn;
+        }
+        &.a-delay--25{
+            animation-delay: .25s;
+        }
+        &.a-delay--50{
+            animation-delay: .5s;
+        }
+        &.a-delay--75{
+            animation-delay: .75s;
+        }
+        &.a-delay--100{
+            animation-delay: 1s;
+        }
+        &.a-delay--125{
+            animation-delay: 1.25s;
+        }
+        &.a-delay--150{
+            animation-delay: 1.5s;
+        }
+        &.a-delay--175{
+            animation-delay: 1.75s;
+        }
+        &.a-delay--200{
+            animation-delay: 2s;
         }
     }
 }

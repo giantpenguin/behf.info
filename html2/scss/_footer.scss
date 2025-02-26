@@ -1,8 +1,10 @@
 .site-footer{
+    overflow: hidden;
     --footer-margin: 4rem 0 0;
     --footer-padding: 0;
     --middle-padding: 2rem 0 0;
     --bottom-padding: 1rem;
+    position: relative;
     @include media-breakpoint-up(md){
         --middle-padding: 3rem 0 1rem;
     }
@@ -19,16 +21,22 @@
         }
     }
     color: var(--color);
-    background-color: var(--background-color);
+    background-color: var(--bg-color);
     margin: var(--footer-margin);
     padding: var(--footer-padding);
     a:not(.btn){
         color: var(--color);
     }
+    .container{
+        position: relative;
+        z-index: 15;
+    }
     &__mid{
+        position: relative;
         padding: var(--middle-padding);
     }
     &__btm{
+        position: relative;
         border-top: 1px solid rgba(#fff,.2);
         padding: var(--bottom-padding);
         font-size: .875rem;
