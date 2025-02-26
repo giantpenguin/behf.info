@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <title>Layout | Page header</title>
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- <link rel="icon" href="img/icon.png">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
+    <link rel="manifest" href="./img/site.webmanifest"> -->
+
+    <!-- css -->
+    <link rel="stylesheet" href="./css/libs.css">
+    <link rel="stylesheet" href="./css/main.css">
+
+    <style>
+        .card-demo{
+            padding: 5rem 0;
+            margin: 0 0 2rem;
+            background-color: #ddd;
+            text-align: center;
+        }
+        .card-demo::before{
+            content: "Sample card"
+        }
+        .item-demo{
+            padding: 8rem 1rem;
+            margin: 0 0 2rem;
+            background-color: #ddd;
+            text-align: center;
+        }
+        .item-demo::before{
+            content: "Slider item"
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="site-header" style="--color:rgba(118,73,121,1); --active-color:rgba(97,45,145,1)">
+        <nav class="site-navbar navbar fixed-top navbar-expand-xl theme-hero">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="./stock/behf.png" alt="">
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#Navbar" aria-controls="Navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-lbl">Menu</span>
+                    <i class="fa-solid fa-bars"></i>
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="Navbar">
+                    <div class="navbar-collapse-wrap">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">About BEHF</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Programs</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSample1" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <span>Dropdown Full</span>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </a>
+                                <div class="navbar-dropdown-menu dropdown-menu size--full" aria-labelledby="navbarDropdownSample1">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSample2" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <span>Dropdown Auto</span>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </a>
+                                <div class="navbar-dropdown-menu dropdown-menu size--auto" aria-labelledby="navbarDropdownSample2">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">Level 2 item</a>
+                                                        <ul>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                            <li><a href="">Level 3 item</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item nav-button">
+                                <a href="#" class="btn btn-primary">Contact Us</a>
+                            </li>
+                            <li class="nav-item nav-button">
+                                <a href="#" class="btn btn-primary btn-bdrd-mirror">Donate</a>
+                            </li>
+                        </ul>
+                        <div class="site-navbar-group">
+                            <div class="site-navbar-srch dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbarSearch" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarSearch">
+                                    <form class="form-wrap">
+                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                        <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- <div class="site-navbar-cta">
+                                <a href="#" class="btn btn btn-primary">Contact Us</a>
+                                <a href="#" class="btn btn btn-primary btn-bdrd-mirror">Donate</a>
+                            </div> -->
+                            <div class="site-navbar-lang dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbarLanguage" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <span class="lang-flag"><img src="./img/flag/united-kingdom.png" alt=""></span>
+                                    <span class="lang-title">English</span>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarLanguage">
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="lang-flag"><img src="./img/flag/spain.png" alt=""></span>
+                                            <span class="lang-title">Español</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="lang-flag"><img src="./img/flag/portugal.png" alt=""></span>
+                                            <span class="lang-title">Português</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="lang-flag"><img src="./img/flag/japan.png" alt=""></span>
+                                            <span class="lang-title">日本語</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="lang-flag"><img src="./img/flag/china.png" alt=""></span>
+                                            <span class="lang-title">中国人</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="lang-flag"><img src="./img/flag/germany.png" alt=""></span>
+                                            <span class="lang-title">Deutsch</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="lang-flag"><img src="./img/flag/france.png" alt=""></span>
+                                            <span class="lang-title">Français</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="lang-flag"><img src="./img/flag/italy.png" alt=""></span>
+                                            <span class="lang-title">Italiano</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="site-content">
+        <section class="section-hero">
+            <div class="hero-item content--center page-header" style="background-image: url('https://cdn.stocksnap.io/img-thumbs/960w/woman-yoga_ZM6UUXW2SB.jpg');">
+                <div class="hero-item__bkd" style="background-color: rgba(0,0,0,.6);"></div>
+                <div class="hero-item__wrp">
+                    <div class="container">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-11 col-md-9 col-lg-8 col--hero-cnt a-fadein a-fadein--up">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                      <li class="breadcrumb-item"><a href="https://behf.info/">Home</a></li>
+                                      <li class="breadcrumb-item active" aria-current="page">About BEHF</li>
+                                    </ol>
+                                </nav>
+                                <div class="hero-item__cnt">
+                                    <h1>Title</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container my-5">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna. </p>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna. </p>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna. </p>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna. </p>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna. </p>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna. </p>
+        </section>
+
+        <div style="height: 100vh;"></div>
+    </div>
+
+
+    <!-- JS Libs-->
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/owl.carousel.min.js"></script>
+
+    <!-- JS Main -->
+    <script src="js/main.js"></script>
+    
+</body>
+</html>

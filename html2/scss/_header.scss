@@ -1,9 +1,12 @@
-body{
+:root{
     --navbar-height: 96px;
     --navbar-nav-item-height: 56px;
     --navbar-bg-color: #fff;
-    --navbar-color: #764979;
-    --navbar-dropdown-color: #764979;
+    --navbar-color: var(--color);
+    --navbar-active-color: var(--active-color);
+    --navbar-hero-color: #fff;
+    --navbar-hero-active-color: #fff;
+    --navbar-dropdown-color: var(--color);
     --navbar-box-shadow: 0 .25rem .5rem 0 rgba(0,0,0,.1);
     --navbar-button-height: 50px;
     --navbar-button-height--sm: 52px;
@@ -14,20 +17,28 @@ body{
     }
 }
 .site-navbar{
+    //--color
+    //--active-color
     padding: 0;
     background-color: var(--navbar-bg-color);
-    box-shadow: var(--navbar-box-shadow);
     height: var(--navbar-height);
+    background-color: var(--navbar-bg-color);
+    box-shadow: var(--navbar-box-shadow);
     transition: height .3s ease, background-color .3s ease, box-shadow .3s ease;
     will-change: height, background-color, box-shadow;
     &.theme-hero{
         --navbar-bg-color: transparent;
-        --navbar-color: #fff;
+        --navbar-color: var(--navbar-hero-color);
+        --navbar-active-color: var(--navbar-hero-active-color);
         --navbar-box-shadow: 0 0 0 0 transparent;
     }
     &.size-minimal{
+        --navbar-bg-color: #fff;
         --navbar-height: 56px;
         --navbar-button-height: 40px;
+        --navbar-color: var(--color);
+        --navbar-active-color: var(--active-color);
+        --navbar-box-shadow: 0 .25rem .5rem 0 rgba(0,0,0,.1);
     }
     &.fixed-top{
         .navbar-toggler{
@@ -298,6 +309,7 @@ body{
                     padding: .75rem;
                     text-align: center;
                     color: $secondary;
+                    font-weight: 500;
                 }
                 .btn{
                     display: inline-flex;
@@ -394,14 +406,18 @@ body{
                     display: flex;
                     align-items: center;
                     padding-top: 2px;
+                    font-weight: 500;
+                    color: var(--navbar-color);
                     height: var(--navbar-nav-item-height);
                     border-bottom: 2px solid transparent;
                     transition: border-bottom-color .3s ease;
                     &:hover{
-                        border-bottom-color: var(--navbar-color);
+                        color: var(--navbar-active-color);
+                        border-bottom-color: var(--navbar-active-color);
                     }
-                    &.show{
-                        border-bottom-color: var(--navbar-color);
+                    &.show, &.active{
+                        color: var(--navbar-active-color);
+                        border-bottom-color: var(--navbar-active-color);
                     }
                 }
             }

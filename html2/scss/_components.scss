@@ -335,13 +335,33 @@ a{
         position: absolute;
         z-index: 0;
         &.top-left{
-            top: -3rem;
-            left: -3rem;
+            top: -4.5rem;
+            left: -4.5rem;
+        }
+        &.top-left-down{
+            bottom: 50%;
+            margin-bottom: 2rem;
+            left: -6rem;
         }
         &.top-right{
-            top: -3rem;
-            right: -3rem;
+            top: -4rem;
+            right: -4rem;
         }
+        &.top-right{
+            top: -5rem;
+            left: -5rem;
+        }
+        &.top-right-down{
+            bottom: 50%;
+            margin-bottom: 2rem;
+            right: -6rem;
+        }
+    }
+}
+
+.card-jbt-cnt{
+    @include media-breakpoint-up(lg){
+        padding: 0 2rem;
     }
 }
 
