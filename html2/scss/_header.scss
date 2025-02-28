@@ -475,3 +475,42 @@
         }
     }
 }
+
+.share-icons{
+    --color: #fff;
+    --bg-color: #5c3960;
+    --icon-bg-color: #543458;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 900;
+    background-color: var(--bg-color);
+    border-radius: 0 24px 24px 0;
+    ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        padding: 6px;
+        li{
+            padding: 6px;
+            a{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 48px;
+                height: 48px;
+                color: var(--color);
+                background-color: var(--icon-bg-color);
+                font-size: 1.25rem;
+                text-decoration: none !important;
+                border-radius: 50%;
+                transition: color .3s ease, background-color .3s ease;
+                &:hover{
+                    color: var(--icon-bg-color);
+                    background-color: var(--color);
+                }
+            }
+        }
+    }
+}
