@@ -1,3 +1,9 @@
+$(window).on('load', function() {
+    var preLoder = $("#preloader");
+    preLoder.delay(800).fadeOut(500);
+});
+
+
 $(document).ready(function(){
     fixedHeaderOnScroll();
     fadeInOnScroll();
@@ -5,6 +11,11 @@ $(document).ready(function(){
         fixedHeaderOnScroll();
         fadeInOnScroll();
     });
+
+    // hide preloader
+    $('#preloader')
+
+    // hero button scroll to content after click
     $("#btnHeroScroll").on('click', function(e){
         e.preventDefault();
         $([document.documentElement, document.body]).animate({
