@@ -1,4 +1,6 @@
 ﻿@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
 @using Umbraco.Forms.Web;
 @using UmbNav.Core.Extensions
 @using UmbNav.Core.Models
@@ -7,8 +9,9 @@
 @{
     Layout = null;
     var homePage = UmbracoContext.Content.GetSingleByXPath("//homePage");
-    var bgrImage = Model.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("pageBackgroundImage");
-    var styleAttribute = bgrImage != null ? $"background-image: url({bgrImage.MediaUrl()});" : "";
+    var socialItems = homePage.Value<IEnumerable<BlockListItem>>("socialLinks") ?? Enumerable.Empty<BlockListItem>();
+    // var bgrImage = Model.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("pageBackgroundImage");
+    // var styleVal = bgrImage != null ? $"background-image: url({bgrImage.MediaUrl()});" : "";
 }
 
 <!doctype html>
@@ -21,37 +24,39 @@
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/aos.css">
     <link rel="stylesheet" href="/assets/css/custom-style.css">
-
-    <style>
-        .card-demo {
-            padding: 5rem 0;
-            margin: 0 0 2rem;
-            background-color: #ddd;
-            text-align: center;
-        }
-
-            .card-demo::before {
-                content: "Sample card"
-            }
-
-        .item-demo {
-            padding: 8rem 1rem;
-            margin: 0 0 2rem;
-            background-color: #ddd;
-            text-align: center;
-        }
-
-            .item-demo::before {
-                content: "Slider item"
-            }
-    </style>
 </head>
-<body data-bgimage="@bgrImage.MediaUrl()" style="@styleAttribute">
-    @* <div id="preloader">
-        <div class="loading_wrap">
-            <img src="/assets/images/loading_logo.png" alt="loading logo" />
+<body> @*data-bgimage="@bgrImage.MediaUrl()" style="@styleVal" *@
+    <div id="preloader" class="preloader">
+        <img src="/assets/images/loading_logo.png" alt="loading logo" />
+    </div>
+    @if (socialItems.Count() > 0)
+    {
+        <div class="share-icons center-left a-fadein a-fadein--left a-delay--25" style="--color: #fff; --bg-color: #5c3960; --icon-bg-color:#543458;">
+        <ul>
+            @foreach (var item in socialItems)
+            {
+                var socialClass = "";
+                var cta = item.Content.Value<Link>("actionUrl");
+                switch (cta.Name.ToLowerInvariant())
+                {
+                    case "facebook":
+                        socialClass = "fa-brands fa-facebook-f";
+                        break;
+                    case "youtube":
+                        socialClass = "fa-brands fa-youtube";
+                        break;
+                    case "instagram":
+                        socialClass = "fa-brands fa-instagram";
+                        break;
+                    case "twitter":
+                        socialClass = "fa-brands fa-twitter";
+                        break;
+                }
+                <li><a href="@cta.Url" target="@cta.Target" title="@cta.Name"><i class="@socialClass" aria-hidden="true"></i></a></li>
+            }
+        </ul>
         </div>
-    </div> *@    
+    }
     <partial name="headerh" model="homePage" />
     <div class="site-content">
         <main role="main" class="flex-grow-1">

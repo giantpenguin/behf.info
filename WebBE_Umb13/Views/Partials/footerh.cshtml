@@ -7,7 +7,7 @@
     var socialItems = Model.Value<IEnumerable<BlockListItem>>("socialLinks") ?? Enumerable.Empty<BlockListItem>();
 }
 
-<footer class="site-footer" style="--background-color: #764979; --color: #fff">
+<footer class="site-footer" style="--bg-color: #764979; --color: #fff">
     <div class="site-footer__mid">
         <div class="container">
             <div class="row">
@@ -92,5 +92,8 @@
             </div>
         </div>
     </div>
-    @* <figure class="animate-shape bottom-right a-fadein a-fadein--right"><img src="/assets/images/patterns/mandala_pattern6.png" alt="mandala"></figure> *@ 
+    @{
+        await Html.RenderPartialAsync("Figures/lotus-meditator-sketch-left-negative", Tuple.Create("center-right", "mover-x a-fadein a-fadein--right"));
+        // <figure class="animate-shape center-right mover-x a-fadein a-fadein--right"><img src="/assets/images/patterns/lotus-meditator-sketch-trimmedright-negative.png" alt="lotus meditator"></figure>
+    }
 </footer>

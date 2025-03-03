@@ -1,5 +1,8 @@
-﻿@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+﻿@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 @using Umbraco.Cms.Core.PropertyEditors;
+@using YeahWeb.Extensions;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 
 @{
@@ -11,83 +14,41 @@
     // Get the layout settings
     var hasSettings = Model.Settings != null;
 
-    var bgrColor = hasSettings ? Model.Settings.Value<ColorPickerValueConverter.PickedColor>("layoutBackgroundColor") : null;
-    var colorLabel = bgrColor?.Label;
+    var bgColor = Model.Settings?.Value<ColorPickerValueConverter.PickedColor>("layoutBackgroundColor");
+    // var colorLabel = bgColor?.Label;
 
-    var colorShade = hasSettings ? Model.Settings.Value<decimal>("layoutBackgroundColorShade") : (decimal?)null;
-    var colorOpacity = hasSettings ? Model.Settings.Value<decimal>("layoutBackgroundColorOpacity") : (decimal?)null;
+    // var colorShade = Model.Settings?.Value<decimal>("layoutBackgroundColorShade")!;
+    var colorOpacity = Model.Settings?.Value<decimal>("layoutBackgroundColorOpacity")!;
 
-    var bgrImage = hasSettings ? Model.Settings.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("layoutBackgroundImage") : null;
-    var bgrImageUrl = bgrImage?.MediaUrl();
-
-    /*
-     * I could not get ViewData to pass the value to area.cshtml
-     * So I moved this code to each layout
-     * It works, but it is not DRY
-     * I think it is to do with the order of execution
-     */
-    // // 1. Check if this block grid item has settings
-    // var hasSettings = Model.Settings != null;
-    // // 2. If this block grid item has settings, get the Areas background color
-    // var areasBackgroundColor = hasSettings ? Model.Settings.Value<ColorPickerValueConverter.PickedColor>("layoutAreasColorPicker") : null;
-    // // 3. Get the label from the color
-    // var areasColorLabelValue = areasBackgroundColor?.Label;
-    // // 4. If the area has a color, use it, otherwise use bg-light
-    // var areasColorLabel = areasColorLabelValue != null ? areasColorLabelValue : "bg-light";
-    // // 5. Set the TempData to use in the area
-    // ViewData["MyColor"] = areasColorLabel;
+    var bgImage = Model.Settings?.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("layoutBackgroundImage");
+    var bgImageUrl = bgImage?.MediaUrl();
 
     //NOTE: PickedColor when uncheck the selected color, the value changes to "transparent", issue???
 
     var styleAttribute = "";
-    if (!string.IsNullOrEmpty(bgrImageUrl))
+    if (!string.IsNullOrEmpty(bgImageUrl))
     {
-        styleAttribute = $"background-image: url({bgrImageUrl});";
+        styleAttribute = $"background-image: url({bgImageUrl});";
     }
-    else if (hasSettings && bgrColor != null)
+    else if (!string.IsNullOrEmpty(bgColor?.Color))
     {
-        // Set style attribute to background color to use rgba
-        styleAttribute = $"background-color: rgba(var({colorLabel}-{colorShade}), {colorOpacity});";
+        // style attr for background color (--bg-color) with rgba/hex
+        styleAttribute = $"--bg-color: rgba({Helpers.HexToRgb(bgColor.Color)}, {colorOpacity});";
     }
 
     //NOTE: IMPORTANT has issue when layoutBackgroundCss contains "parallax_bg" => layoutBackgroundCss must not have "parallax_bg"
-    var cssCustom = hasSettings ? Model.Settings.Value<string>("layoutBackgroundCss") : null;
-    var blockTypeAlias = Model.Content.ContentType.Alias;
+    var cssCustom = Model.Settings?.Value<string>("layoutBackgroundCss");
+
+    var figBlocks = Model.Settings?.Value<IEnumerable<BlockListItem>>("figures") ?? Enumerable.Empty<BlockListItem>();
 }
 
-<div class="section-block layout-item @cssCustom" data-bgimage="@bgrImageUrl" style="@styleAttribute" data-block-alias="@blockTypeAlias">
+<div class="section-block layout-item @cssCustom" data-bgimage="@bgImageUrl" style="@styleAttribute" data-block-alias="@Model.Content.ContentType.Alias">
     @RenderBody()
-    @* <h2>@myColor</h2> *@
-</div>
-
-@* @{
-    // Uncomment this block to Debug Colors
-    var hexColor = backgroundColor;
-    var hexColorHash = "#" + @hexColor;
-
-    // Convert the hex color to RGB
-    System.Drawing.Color color = System.Drawing.ColorTranslator.FromHtml(hexColorHash);
-
-    // Get the RGB components
-    int red = color.R;
-    int green = color.G;
-    int blue = color.B;
-
-    if (hexColor != null)
+    @foreach (var figItem in figBlocks.Select(b => b.Content).OfType<ContentModels.FigureItem>())
     {
-        <div class="btn btn-primary">
-            <dl>
-                <dt>HEX</dt>
-                <dd>@hexColor</dd>
-                <dt>RGB</dt>
-                <dd>@red, @green, @blue</dd>
-                <dt>Hash</dt>
-                <dd>@hexColorHash</dd>
-                <dt>Label</dt>
-                <dd>@colorLabel</dd>
-                <dt>Opacity</dt>
-                <dd>@colorOpacity</dd>
-            </dl>
-        </div>
+        var pos = $"{figItem.VerPosition}-{figItem.HozPosition}";
+        await Html.RenderPartialAsync($"Figures/{figItem.Figure}", Tuple.Create(pos, figItem.Effect));
+        @* var posEffect = string.IsNullOrEmpty(figItem.Effect) ? pos : $"{pos} {figItem.Effect}";
+        <figure class="animate-shape @posEffect a-fadein a-fadein--right a-fadein--init"><img src="/assets/images/patterns/golden-5petal-flower-trimmedright-shape1.png" alt="figure image"></figure> *@            
     }
-} *@
+</div>

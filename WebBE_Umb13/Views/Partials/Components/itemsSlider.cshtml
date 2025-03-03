@@ -1,0 +1,30 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IEnumerable<IPublishedContent>>
+
+@{
+    var items = Model;
+    var sliderId = $"slider{Guid.NewGuid()}";
+}
+
+<div id="@sliderId" class="c-carousel owl-carousel"
+     data-items-xs="1"
+     data-items-md="1"
+     data-items-lg="1"
+     data-loop="true"
+     data-center="false"
+     data-drag="false"
+     data-nav="true"
+     data-dots="true"
+     data-margin="32">
+
+    @for (int i = 0; i < items.Count(); i++)
+    {
+        var item = items.ElementAt(i);
+        var itemPatlView = $"Components/{item.ContentType.Alias}Item";
+
+        <div class="carousel__item">
+            @{ await Html.RenderPartialAsync(itemPatlView, item); }
+        </div>
+    }  
+</div>
