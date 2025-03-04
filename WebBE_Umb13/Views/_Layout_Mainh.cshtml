@@ -1,5 +1,4 @@
-﻿@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
-@using Umbraco.Cms.Core.Models
+﻿@using Umbraco.Cms.Core.Models
 @using Umbraco.Cms.Core.Models.Blocks
 @using Umbraco.Forms.Web;
 @using UmbNav.Core.Extensions
@@ -10,12 +9,14 @@
     Layout = null;
     var homePage = UmbracoContext.Content.GetSingleByXPath("//homePage");
     var socialItems = homePage.Value<IEnumerable<BlockListItem>>("socialLinks") ?? Enumerable.Empty<BlockListItem>();
+    var curCulture = Model.GetCultureFromDomains();
+
     // var bgrImage = Model.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("pageBackgroundImage");
     // var styleVal = bgrImage != null ? $"background-image: url({bgrImage.MediaUrl()});" : "";
 }
 
 <!doctype html>
-<html lang="en">
+<html lang="@curCulture">
 <head>
     <partial name="_meta" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
