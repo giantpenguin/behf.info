@@ -287,13 +287,12 @@
             margin: 0 -1rem;
             background-color: #fff;
             &-wrap{
-                display: flex;
-                flex-direction: column;
-                height: calc(100vh - var(--navbar-height) - 32px);
+                max-height: calc(100vh - var(--navbar-height) - 32px);
+                overflow: auto;
                 position: relative;
                 &:after{
                     position: fixed;
-                    inset: calc(100vh - var(--navbar-height)) 0 0;
+                    inset: calc(var(--navbar-height) + 8px) 0 0;
                     content: "";
                     background-color: transparent;
                     transition: .1s ease background-color;
@@ -307,10 +306,8 @@
             }
         }
         .navbar-nav{
-            flex: 1 1 auto;
             min-height: 0;
             padding: .75rem 0;
-            overflow: auto;
             text-align: center;
             display: flex;
             flex-wrap: wrap;
@@ -363,7 +360,6 @@
             }
         }
         .site-navbar-group{
-            flex: 0 0 auto;
             padding: 1rem 1rem 0;
             background-color: #fff;
         }
@@ -516,8 +512,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0;
-            margin: 0 0 1rem;
+            padding: 0 0 1rem;
+            margin: 0 0 0;
             li{
                 a{
 
