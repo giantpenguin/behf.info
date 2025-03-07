@@ -66,6 +66,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string ContactEmail => this.Value<string>(_publishedValueFallback, "contactEmail");
 
 		///<summary>
+		/// Contact Info Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("contactInfoText")]
+		public virtual string ContactInfoText => this.Value<string>(_publishedValueFallback, "contactInfoText");
+
+		///<summary>
 		/// Contact Phone
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
@@ -82,6 +90,22 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string CopyrightText => this.Value<string>(_publishedValueFallback, "copyrightText");
 
 		///<summary>
+		/// English
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("english")]
+		public virtual string English => this.Value<string>(_publishedValueFallback, "english");
+
+		///<summary>
+		/// HeroBanners
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("heroBanners")]
+		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent> HeroBanners => this.Value<global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>>(_publishedValueFallback, "heroBanners");
+
+		///<summary>
 		/// Logo
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
@@ -96,6 +120,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("mainMenu")]
 		public virtual global::System.Collections.Generic.IEnumerable<global::UmbNav.Core.Models.UmbNavItem> MainMenu => this.Value<global::System.Collections.Generic.IEnumerable<global::UmbNav.Core.Models.UmbNavItem>>(_publishedValueFallback, "mainMenu");
+
+		///<summary>
+		/// Quick Links Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("quickLinksText")]
+		public virtual string QuickLinksText => this.Value<string>(_publishedValueFallback, "quickLinksText");
 
 		///<summary>
 		/// Site Name
@@ -120,6 +152,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("socialLinks")]
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SocialLinks => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "socialLinks");
+
+		///<summary>
+		/// Vietnamese
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("vietnamese")]
+		public virtual string Vietnamese => this.Value<string>(_publishedValueFallback, "vietnamese");
 
 		///<summary>
 		/// Keywords: SEO keywords for page

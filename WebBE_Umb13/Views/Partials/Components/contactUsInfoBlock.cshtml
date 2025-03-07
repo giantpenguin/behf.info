@@ -9,27 +9,27 @@
     var subheading = Model.Content.Value<string>("subHeading");
 }
 
-<container>
-<div class="section-block__cnt">
-    @if (!string.IsNullOrWhiteSpace(subheading))
-    {
-        <h5 class="sub_heading">@subheading</h5>
-    }
-    <h4>@heading</h4>
-    <div class="text-lg">@Model.Content.Value("paragraph")</div>
-    <ul class="list-contact contact-info">
-    <li>
-        <i class="fa-solid fa-phone"></i>
-        <a href="tel:@homePage.ContactPhone">@homePage.ContactPhone</a>
-    </li>
-    <li>
-        <i class="fa-sharp fa-solid fa-envelope"></i>
-        <a href="mailto:@homePage.ContactEmail">@homePage.ContactEmail</a>
-    </li>
-    <li>
-        <i class="fa-solid fa-location-dot location"></i>
-        <address>@homePage.ContactAddress</address>
-    </li>
-    </ul>
+<div class="container">
+    <div class="section-block__cnt">
+        @if (!string.IsNullOrWhiteSpace(subheading))
+        {
+            <h5 class="sub_heading">@subheading</h5>
+        }
+        <h4>@heading</h4>
+        <div class="text-lg">@Model.Content.Value("paragraph")</div>
+        <ul class="list-contact contact-info">
+            <li>
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:@homePage.ContactPhone">@homePage.ContactPhone</a>
+            </li>
+            <li>
+                <i class="fa-sharp fa-solid fa-envelope"></i>
+                <a href="mailto:@homePage.ContactEmail">@homePage.ContactEmail</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-location-dot location"></i>
+                <address>@homePage.ContactAddress</address>
+            </li>
+        </ul>
+    </div>
 </div>
-</container>

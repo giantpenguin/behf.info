@@ -58,6 +58,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string Heading => this.Value<string>(_publishedValueFallback, "heading");
 
 		///<summary>
+		/// Highlight Paragraph
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("highlightParagraph")]
+		public virtual string HighlightParagraph => this.Value<string>(_publishedValueFallback, "highlightParagraph");
+
+		///<summary>
 		/// Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
@@ -73,12 +81,19 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual bool MediaOnRight => this.Value<bool>(_publishedValueFallback, "mediaOnRight");
 
 		///<summary>
+		/// Not use JbtOuter
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[ImplementPropertyType("notUseJbtOuter")]
+		public virtual bool NotUseJbtOuter => this.Value<bool>(_publishedValueFallback, "notUseJbtOuter");
+
+		///<summary>
 		/// Paragraph
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("paragraph")]
-		public virtual string Paragraph => this.Value<string>(_publishedValueFallback, "paragraph");
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Paragraph => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "paragraph");
 
 		///<summary>
 		/// Shadow Richtext: Add shadow effect to richtext part

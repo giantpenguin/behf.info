@@ -312,10 +312,14 @@ a{
 }
 
 .card-jbt-mda{
+    --jbt-padding: 0 2rem 2rem 0;
+    --jbt-media-bdrd: 12rem 0;
+    --jbt-sdw-inset: 2rem 0 0 2rem;
+    --jbt-sdw-bg: #764979;
     position: relative;
-    padding: 0 2rem 2rem 0;
+    padding: var(--jbt-padding);
     &__img{
-        border-radius: 12rem 0;
+        border-radius: var(--jbt-media-bdrd);
         overflow: hidden;
         z-index: 15;
         img{
@@ -327,13 +331,14 @@ a{
         position: absolute;
         z-index: 10;
         position: absolute;
-        inset: 2rem 0 0 2rem;
-        background-color: $secondary;
-        border-radius: 12rem 0;
+        inset: var(--jbt-sdw-inset);
+        background-color: var(--jbt-sdw-bg);
+        border-radius: var(--jbt-media-bdrd);
     }
     &__shp{
         position: absolute;
         z-index: 0;
+        inset: auto;
         &.top-left{
             top: -4.5rem;
             left: -4.5rem;
@@ -343,18 +348,22 @@ a{
             margin-bottom: 2rem;
             left: -6rem;
         }
-        &.top-right{
-            top: -4rem;
-            right: -4rem;
+        &.bottom-left{
+            bottom: -4rem;
+            left: -4rem;
         }
         &.top-right{
             top: -5rem;
-            left: -5rem;
+            right: -5rem;
         }
         &.top-right-down{
             bottom: 50%;
             margin-bottom: 2rem;
             right: -6rem;
+        }
+        &.bottom-right{
+            bottom: -4rem;
+            right: -4rem;
         }
     }
 }
@@ -364,4 +373,17 @@ a{
         padding: 0 2rem;
     }
 }
+
+.jbt-reverse{
+    @include media-breakpoint-up(lg){
+        flex-direction: row-reverse;
+        .card-jbt-mda{
+            --jbt-padding: 0 0 2rem 2rem;
+            --jbt-media-bdrd: 0 12rem;
+            --jbt-sdw-inset: 2rem 2rem 0 0;
+        }
+    }
+}
+
+
 

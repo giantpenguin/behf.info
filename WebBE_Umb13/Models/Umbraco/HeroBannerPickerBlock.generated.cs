@@ -18,7 +18,7 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Hero Banner Block - Picker</summary>
+	/// <summary>HeroBanner Block Picker</summary>
 	[PublishedModel("heroBannerPickerBlock")]
 	public partial class HeroBannerPickerBlock : PublishedElementModel
 	{
@@ -50,7 +50,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Hero Banners
+		/// HeroBanner Items
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]

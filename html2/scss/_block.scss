@@ -678,6 +678,7 @@
             .card-spec{
                 width: 50%;
                 flex: 0 0 auto;
+                margin: 0 0 .5rem;
                 &:nth-child(2n){
                     padding: 0 0 0 15%;
                     .card-spec__wrp{
@@ -697,10 +698,10 @@
                     }
                 }
                 &__wrp{
-                    max-width: 360px;
+                    max-width: 400px;
                 }
                 &__des{
-                    @include multi-line-ellipsis(1.5rem, 2, true);
+                    @include multi-line-ellipsis(1.5rem, 4, true);
                 }
             }
             &.count--1, &.count--2{
@@ -711,6 +712,12 @@
                     &:nth-child(2){
                         padding: 0 0 0 calc(10%);
                     }
+                }
+                &:before{
+                    background-image: none;
+                }
+                &:after{
+                    background-image: none;
                 }
             }
             &.count--3, &.count--4{
@@ -738,10 +745,10 @@
             &.count--5, &.count--6{
                 .card-spec{
                     &:nth-child(3){
-                        padding: 0 calc(15% + 24px) 0 0;
+                        padding: 0 calc(15% + 32px) 0 0;
                     }
                     &:nth-child(4){
-                        padding: 0 0 0 calc(15% + 24px);
+                        padding: 0 0 0 calc(15% + 32px);
                     }
                 }
             }
@@ -749,11 +756,11 @@
                 .card-spec{
                     &:nth-child(3),
                     &:nth-child(5){
-                        padding: 0 calc(15% + 32px) 0 0;
+                        padding: 0 calc(15% + 48px) 0 0;
                     }
                     &:nth-child(4),
                     &:nth-child(6){
-                        padding: 0 0 0 calc(15% + 32px);
+                        padding: 0 0 0 calc(15% + 48px);
                     }
                 }
             }
@@ -761,17 +768,17 @@
                 .card-spec{
                     &:nth-child(3),
                     &:nth-child(7){
-                        padding: 0 calc(15% + 40px) 0 0;
+                        padding: 0 calc(15% + 56px) 0 0;
                     }
                     &:nth-child(5){
-                        padding: 0 calc(15% + 52px) 0 0;
+                        padding: 0 calc(15% + 76px) 0 0;
                     }
                     &:nth-child(4),
                     &:nth-child(8){
-                        padding: 0 0 0 calc(15% + 40px);
+                        padding: 0 0 0 calc(15% + 56px); 
                     }
                     &:nth-child(6){
-                        padding: 0 0 0 calc(15% + 52px); 
+                        padding: 0 0 0 calc(15% + 76px); 
                     }
                 }
             }
@@ -779,19 +786,19 @@
                 .card-spec{
                     &:nth-child(3),
                     &:nth-child(9){
-                        padding: 0 calc(15% + 40px) 0 0;
+                        padding: 0 calc(15% + 50px) 0 0;
                     }
                     &:nth-child(5),
                     &:nth-child(7){
-                        padding: 0 calc(15% + 52px) 0 0;
+                        padding: 0 calc(15% + 96px) 0 0;
                     }
                     &:nth-child(4),
                     &:nth-child(10){
-                        padding: 0 0 0 calc(15% + 40px);
+                        padding: 0 0 0 calc(15% + 50px);
                     }
                     &:nth-child(6),
                     &:nth-child(8){
-                        padding: 0 0 0 calc(15% + 52px); 
+                        padding: 0 0 0 calc(15% + 96px); 
                     }
                 }
             }

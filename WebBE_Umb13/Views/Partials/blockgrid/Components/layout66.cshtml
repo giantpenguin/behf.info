@@ -5,18 +5,12 @@
 
 @{
     Layout = "_Layout_Grid.cshtml";
-    // 1. Check if this block grid item has settings
-    var hasSettings = Model.Settings != null;
-    // 2. If this block grid item has settings, get the Areas background Color
-    var areasBackgroundColor = hasSettings ? Model.Settings.Value<ColorPickerValueConverter.PickedColor>("layoutAreasColorPicker") : null;
-    // 3. Get the label from the Color
-    var areasColorLabelValue = areasBackgroundColor?.Label;
-    // // 4. If the area has a Color, use it, otherwise use bg-light
-    // var areasColorLabel = areasColorLabelValue != null ? areasColorLabelValue : "bg-white";
-    // 5. Set the TempData to use in the area
-    ViewData["AreaBackgroundColors"] = areasColorLabelValue;
+
+    var areasBgColor = Model.Settings?.Value<ColorPickerValueConverter.PickedColor>("layoutAreasColorPicker");
+    // Set the TempData to use in the area
+    ViewData["AreaBackgroundColors"] = areasBgColor?.Label;
 }
 
-@await Html.GetPreviewBlockGridItemAreasHtmlAsync(Model)
+@await Html.GetPreviewBlockGridItemAreasHtmlAsync(Model, "areash")
 
 

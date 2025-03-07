@@ -1,0 +1,7 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Tuple<string, string>>
+@{
+    // left/right figure is either non move or only mover-y effect
+    var posEffect = string.IsNullOrEmpty(Model.Item2) ? Model.Item1 : $"{Model.Item1} {Model.Item2}";
+}
+
+<figure class="animate-shape @posEffect a-fadein a-fadein--right a-fadein--init"><img src="/assets/images/patterns/golden-treebranch-trimmedright-shape1.png" alt="golden tree branch left"></figure>

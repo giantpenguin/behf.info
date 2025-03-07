@@ -1,0 +1,31 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
+
+@{
+    if (Model is null)
+        return;
+
+    var pname = Model.Value<string>("personName");
+    var porg = Model.Value<string>("organization");
+    var feedback = Model.Value<string>("feedback");
+    var imgUrl = Model.Value<IPublishedContent>("image")?.GetCropUrl(/* width: 150, height: 150 */);
+}
+
+<div class="card-quote">
+    <div class="card-quote__wrp">
+        <div class="card-quote__icn">
+            <i class="fa-solid fa-quote-left"></i>
+        </div>
+        <div class="card-quote__cnt">
+            @feedback
+        </div>
+        <div class="card-quote__aut">
+            <div class="quote-aut-avt">
+                <img src="@imgUrl" alt="avatar @pname">
+            </div>
+            <div class="quote-aut-tle">@pname</div>
+            <div class="quote-aut-stl">@porg</div>
+        </div>
+    </div>
+</div>

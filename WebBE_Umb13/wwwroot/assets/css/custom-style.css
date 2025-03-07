@@ -5,6 +5,12 @@
   Light purple: #8968ad rgb(137,104,173)
 */
 
+@media (min-width: 1200px) {
+  h1, .h1 {
+    font-size: 3rem;
+  }
+}
+
 /*can use "mt" instead???*/
 .site-footer {
   margin: 0 0;
@@ -27,22 +33,16 @@
     border-right: #e1ccad;
   }
 
- /*hero banner on top GeneralPage*/
-.top-hero-banner {
-  min-height: 450px;
-}
-
 .breadcrumb li a, .breadcrumb li {
   font-weight: 600;
 }
-.breadcrumb-item *, .breadcrumb-item + .breadcrumb-item::before {
+/*.breadcrumb-item *, .breadcrumb-item + .breadcrumb-item::before {
   color: #fff;
   text-decoration: none;
-}
+}*/
 
 .site-navbar .navbar-nav .nav-item .nav-link {
   font-weight: 800;
-  /*color: #612d91; dark purple*/
 }
 .site-navbar .navbar-nav .dropdown-menu ul.menu-level-2 > li > a {
   font-size: 1rem;
@@ -66,8 +66,30 @@
     display: inline;
   }
 
-  @media (min-width: 1200px) {
-    h1, .h1 {
-    font-size: 3rem;
+.highlight-text_wrapper {
+  position: relative;
+  color: #764979;
+}
+  .highlight-text_wrapper h6 {
+    margin-left: 12px;
+    margin-bottom: 25px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    text-transform: none;
   }
+  .highlight-text_wrapper .vertical-line {
+    position: absolute;
+    left: 0;
+    top: 5px;
+  }
+
+.share-icons ul {
+  padding-left: 0;
+  padding-right: 4px;
+}
+
+.card-jbt-mda {
+  padding: 0 1.3rem 1.3rem 0;
 }

@@ -18,7 +18,7 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Hero Banner Block</summary>
+	/// <summary>HeroBanner Block</summary>
 	[PublishedModel("heroBannerBlock")]
 	public partial class HeroBannerBlock : PublishedContentModel, ICTabutton
 	{
@@ -50,6 +50,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
+		/// Action Link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("actionLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Link ActionLink => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "actionLink");
+
+		///<summary>
 		/// Banner Color
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
@@ -58,7 +66,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor BannerColor => this.Value<global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor>(_publishedValueFallback, "bannerColor");
 
 		///<summary>
-		/// Banner Image
+		/// Background Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -80,6 +88,22 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("heading")]
 		public virtual string Heading => this.Value<string>(_publishedValueFallback, "heading");
+
+		///<summary>
+		/// Heading Effect Part
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("headingEffectPart")]
+		public virtual string HeadingEffectPart => this.Value<string>(_publishedValueFallback, "headingEffectPart");
+
+		///<summary>
+		/// Over Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("overImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops OverImage => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "overImage");
 
 		///<summary>
 		/// Paragraph

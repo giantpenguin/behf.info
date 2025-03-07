@@ -6,8 +6,9 @@
     string heading = Model.Content.Value<string>("heading");
     string subHeading = Model.Content.Value<string>("subHeading");
     var imgUrl = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image")?.GetCropUrl(/* width: 605 */);
-    var paragraph = Model.Content.Value("paragraph");
+    var highlightText = Model.Content.Value<string>("highlightParagraph");
     var ctaLink = Model.Content.Value<Link>("actionUrl");
+    var useJbtOuter = !Model.Content.Value<bool>("notUseJbtOuter");
     // var showIcon = Model.Content.Value<bool>("showIcon");
     // var mediaOnRight = Model.Content.Value<bool>("mediaOnRight") ? " order-1" : "";
     // var boxShadow = Model.Content.Value<bool>("shadowRichtext") ? "bg-white box_shadow4" : "" ;
@@ -15,37 +16,51 @@
     // var vdoClass = string.IsNullOrWhiteSpace(youtubeId) ? "" : "overlay_bg_30 video_box";
 }
 
-<container>
-<div class="section-block__cpn">
-    <div class="row align-items-center">
-        <div class="col-12 col-lg-6">
-            <div class="card-jbt-mda a-fadein a-fadein--left">
-                <div class="card-jbt-mda__img h-rect">
-                    <div class="h-rect__inner">
-                      <img src="@imgUrl" alt="@heading" title="@heading">
+<div class="container">
+    <div class="section-block__cpn">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                @if (useJbtOuter) {
+                    <div class="card-jbt-mda a-fadein a-fadein--left a-fadein--init">
+                        <div class="card-jbt-mda__img h-rect">
+                            <div class="h-rect__inner">
+                                <img src="@imgUrl" alt="@heading" title="@heading">
+                            </div>
+                        </div>
+                        <div class="card-jbt-mda__sdw"></div>
+                        <figure class="card-jbt-mda__shp top-left mover-y-x15"><img src="/assets/images/patterns/golden-5petal-flower-shape1.png" alt="golden 5petal flower"></figure>
                     </div>
-                </div>
-                <div class="card-jbt-mda__sdw"></div>
-                @* <figure class="card-jbt-mda__shp top-right mover-x"><img src="/assets/images/patterns/golden_5petal_flower_full-shape_patter1.png" alt="golden 5petal flower"></figure> *@
-                <figure class="card-jbt-mda__shp top-left mover-y-x15"><img src="/assets/images/patterns/golden_5petal_flower_full-shape_patter1.png" alt="golden 5petal flower"></figure>
+                }
+                else {
+                    <div class="a-fadein a-fadein--left a-fadein--init">
+                        <img src="@imgUrl" alt="@heading" title="@heading">
+                    </div>
+                }
             </div>
-        </div>
-        <div class="col-12 col-lg-5 offset-lg-1">
-            <div class="section-block__cnt a-fadein a-fadein--right">
-                @if (!string.IsNullOrWhiteSpace(subHeading))
-                {
-                  <h5>@subHeading</h5>
-                }
-                <h2>@heading</h2>
-                <p class="text-lg">@paragraph</p>
-                @if (ctaLink != null)
-                {
-                <div class="content-btns">
-                    <a href="@ctaLink.Url" class="btn btn-primary btn-lg btn-hover-slide-in btn-hover-jump-up">@ctaLink.Name</a>
+            <div class="col-12 col-lg-6">
+                <div class="section-block__cnt card-jbt-cnt a-fadein a-fadein--right a-fadein--init">
+                    @if (!string.IsNullOrWhiteSpace(subHeading))
+                    {
+                        <h5>@subHeading</h5>
+                    }
+                    <h2>@heading</h2>
+                    @if (Model.Content.HasValue("paragraph")){
+                        <div class="text-lg">@Model.Content.Value("paragraph")</div>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(highlightText)) { 
+                      <div class="highlight-text_wrapper">
+                        <h6>@highlightText</h6>
+                            <figure class="mb-0 vertical-line"><img src="/assets/images/vertical-purple_line.png" class="img-fluid" /></figure>
+                      </div>
+                    }
+                    @if (ctaLink != null)
+                    {
+                        <div class="content-btns">
+                            <a href="@ctaLink.Url" class="btn btn-primary btn-lg btn-hover-slide-in btn-hover-jump-up">@ctaLink.Name</a>
+                        </div>
+                    }
                 </div>
-                }
             </div>
         </div>
     </div>
 </div>
-</container>

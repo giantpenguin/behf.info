@@ -1,0 +1,6 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Tuple<string, string>>
+@{
+    var posEffect = string.IsNullOrEmpty(Model.Item2) ? Model.Item1 : $"{Model.Item1} {Model.Item2}";
+}
+
+<figure class="animate-shape @posEffect"><img src="/assets/images/patterns/lotus-meditator-sketch-trimmedright-negative.png" alt="lotus meditator left"></figure>

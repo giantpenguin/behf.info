@@ -1,5 +1,8 @@
 .site-footer{
     overflow: hidden;
+    --bg-color: #2b5c1f; 
+    --color: #fff; 
+    --hover-color: #e1ccad;
     --footer-margin: 4rem 0 0;
     --footer-padding: 0;
     --middle-padding: 2rem 0 0;
@@ -26,6 +29,10 @@
     padding: var(--footer-padding);
     a:not(.btn){
         color: var(--color);
+        transition: color .2s ease;
+        &:hover{
+            color: var(--hover-color);
+        }
     }
     .container{
         position: relative;

@@ -10,19 +10,19 @@
 }
 
 <div class="section-hero">
-    <div class="hero-item" style="background-image: url('@imgBannerUrl');">
+    <div class="hero-item content--center page-header" style="--bg-image: url('@imgBannerUrl');--bg-backdrop: rgba(0,0,0,.6);">
         @* <div class="hero-item__bkd" style="background-color: rgba(0,0,0,.6);"></div> *@
-        <div class="hero-item__wrp top-hero-banner">
+        <div class="hero-item__wrp">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-sm-12 text-center">
                         <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center">
+                            <ol class="breadcrumb justify-content-center a-fadein a-fadein--up">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
                             </ol>
                         </nav>
-                        <div class="page-title">
+                        <div class="page-title a-fadein a-fadein--up a-delay--50">
                             <h1>@pageTitle</h1>
                         </div>
                     </div>

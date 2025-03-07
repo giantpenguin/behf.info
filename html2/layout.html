@@ -45,10 +45,10 @@
 </head>
 
 <body>
-    <div id="preloader" class="preloader">
+    <!-- <div id="preloader" class="preloader">
         <img src="./stock/behf.png" alt="">
-    </div>
-    <div class="share-icons center-left a-fadein a-fadein--left a-delay--25" style=" --color: #fff; --bg-color: #5c3960; --icon-bg-color:#543458;">
+    </div> -->
+    <div class="share-icons center-left a-fadein a-fadein--left a-delay--25 d-none d-lg-block" style=" --color: #fff; --bg-color: #5c3960; --icon-bg-color:#543458;">
         <ul>
             <li><a href="#"><i class="fa-brands fa-facebook-f" aria-hidden="true" title="Facebook"></i></a></li>
             <li><a href="#"><i class="fa-brands fa-twitter" aria-hidden="true" title="Twitter"></i></a></li>
@@ -67,7 +67,7 @@
                     <i class="fa-solid fa-bars"></i>
                     <i class="fa-solid fa-xmark"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="Navbar">
+                <div class="collapse navbar-collapse show" id="Navbar">
                     <div class="navbar-collapse-wrap">
                         <ul class="navbar-nav">
                             <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
@@ -271,6 +271,13 @@
                                     </li>
                                 </ul>
                             </div>
+                            <div class="share-icons d-block d-lg-none">
+                                <ul>
+                                    <li><a href="#"><i class="fa-brands fa-facebook-f" aria-hidden="true" title="Facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa-brands fa-twitter" aria-hidden="true" title="Twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa-brands fa-linkedin-in" aria-hidden="true" title="LinkedIn"></i></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -393,10 +400,52 @@
             <figure class="animate-shape bottom-left mover-y-x20 a-fadein a-fadein--left"><img src="https://placehold.co/200x200/B2EBF2/ffffff" alt=""></figure>
             <figure class="animate-shape bottom-right mover-x a-fadein a-fadein--right"><img src="https://placehold.co/200x200/FFE082/ffffff" alt=""></figure>
         </section>
+        <section class="section-block" style="--bg-color: #fafafa">
+            <div class="container">
+                <div class="section-block__cpn">
+                    <div class="row align-items-center jbt-reverse">
+                        <div class="col-12 col-lg-6">
+                            <div class="card-jbt-mda a-fadein a-fadein--left">
+                                <div class="card-jbt-mda__img h-rect">
+                                    <div class="h-rect__inner">
+                                        <img src="https://placehold.co/1000x1000/" alt="">
+                                        <iframe 
+                                            src="https://www.youtube.com/embed/BHACKCNDMW8?autoplay"
+                                            referrerpolicy="strict-origin-when-cross-origin" 
+                                            frameborder="0" 
+                                        >
+                                        </iframe>
+                                    </div>
+                                </div>
+                                <div class="card-jbt-mda__sdw"></div>
+                                <figure class="card-jbt-mda__shp top-right mover-y"><img src="./stock/aboutus_top_shape.png" alt=""></figure>
+                                <figure class="card-jbt-mda__shp top-right-down mover-x-x15"><img src="./stock/aboutus_bottom_shape.png" alt=""></figure>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="section-block__cnt card-jbt-cnt a-fadein a-fadein--right">
+                                <h5>Section name</h5>
+                                <h2>Section title</h2>
+                                <p class="text-lg"> Aenean dignissim pellentesque felis. Morbi in sem quis dui placerat ornare. Pellentesque odio nisi euismod in pharetra a ultricies in diam. Sed arcu. Cras consequat.</p>
+                                <div class="text-highlight border-left" style="--color: #764979; --border-color: #764979; --border-width: 3px">
+                                    <p>Modi tempora incidunt ut labore dolore magnam aliquam auerat volutaem. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci.</p>
+                                </div>
+                                <div class="text-highlight border-right" style="--color: #e1ccad; --border-color: #e1ccad; --border-width: 2px">
+                                    <p>Modi tempora incidunt ut labore dolore magnam aliquam auerat volutaem. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci.</p>
+                                </div>
+                                <div class="content-btns">
+                                    <a href="#" class="btn btn-primary btn-lg btn-hover-slide-in btn-hover-jump-up">Button</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="section-block" style="--bg-color: #f9f9f9">
             <div class="container">
                 <div class="section-block__cpn">
-                    <div class="row align-items-center">
+                    <div class="row align-items-center aboutus-row--2">
                         <div class="col-12 col-lg-6">
                             <div class="card-jbt-mda a-fadein a-fadein--left">
                                 <div class="card-jbt-mda__img h-rect">
@@ -419,7 +468,13 @@
                             <div class="section-block__cnt card-jbt-cnt a-fadein a-fadein--right">
                                 <h5>Section name</h5>
                                 <h2>Section title</h2>
-                                <p class="text-lg">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Morbi in sem quis dui placerat ornare. Pellentesque odio nisi euismod in pharetra a ultricies in diam. Sed arcu. Cras consequat.</p>
+                                <p class="text-lg"> Aenean dignissim pellentesque felis. Morbi in sem quis dui placerat ornare. Pellentesque odio nisi euismod in pharetra a ultricies in diam. Sed arcu. Cras consequat.</p>
+                                <div class="text-highlight border-left" style="--color: #764979; --border-color: #764979; --border-width: 3px">
+                                    <p>Modi tempora incidunt ut labore dolore magnam aliquam auerat volutaem. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci.</p>
+                                </div>
+                                <div class="text-highlight border-right" style="--color: #e1ccad; --border-color: #e1ccad; --border-width: 2px">
+                                    <p>Modi tempora incidunt ut labore dolore magnam aliquam auerat volutaem. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci.</p>
+                                </div>
                                 <div class="content-btns">
                                     <a href="#" class="btn btn-primary btn-lg btn-hover-slide-in btn-hover-jump-up">Button</a>
                                 </div>
@@ -533,12 +588,14 @@
                                 <h4>Contact Info</h4>
                                 <ul class="list-contact">
                                     <li>
-                                        <i class="fa-solid fa-phone"></i>
-                                        <a href="#" class="text-decoration-none">+99 99 9999 999</a>
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fa-solid fa-phone"></i>+99 99 9999 999
+                                        </a>
                                     </li>
                                     <li>
-                                        <i class="fa-sharp fa-solid fa-envelope"></i>
-                                        <a href="mailto:info@email.com" class="text-decoration-none">info@email.com</a>
+                                        <a href="mailto:info@email.com" class="text-decoration-none">
+                                            <i class="fa-sharp fa-solid fa-envelope"></i>info@email.com
+                                        </a>
                                     </li>
                                     <li>
                                         <i class="fa-solid fa-location-dot location"></i>
@@ -587,7 +644,7 @@
                 </div>
             </div>
         </section>
-        <footer class="site-footer cover--subscribe" style="--bg-color: #2b5c1f; --color: #fff">
+        <footer class="site-footer cover--subscribe" style="--bg-color: #2b5c1f; --color: #fff; --hover-color: #e1ccad">
             <div class="site-footer__mid">
                 <div class="container">
                     <div class="row">

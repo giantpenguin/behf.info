@@ -18,7 +18,7 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Form Picker Block</summary>
+	/// <summary>Form Block Picker</summary>
 	[PublishedModel("formBlock")]
 	public partial class FormBlock : PublishedElementModel
 	{
