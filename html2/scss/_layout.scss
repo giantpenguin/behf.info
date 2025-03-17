@@ -297,7 +297,10 @@
         padding: 6rem 0;
     }
     &__cnt{
-        margin: 0 0 4rem;
+        margin: 0 0 2rem;
+        @include media-breakpoint-up(lg){
+            margin: 0 0 4rem;
+        }
         h5{
             color: $secondary;
         }

@@ -441,68 +441,59 @@
     }
 }
 
-.type--1{
-    .card-spec{
-        display: flex;
-        max-width: 100%;
-        margin: 0 0 2rem;
-        &__wrp{
-            flex: 1 1 auto;
-            min-width: 0;
-            display: flex;
-            align-items: flex-start;
-        }
-        &__icn{
-            flex: 0 0 auto;
-            display: block;
-            width: 72px;
-            height: 72px;
-            padding: .75rem;
-            margin: 0 1rem 0 0;
-            background-color: $secondary;
-            border-radius: 50%;
-            overflow: hidden;
-            img{
-                @include image-in-wrapper();
-                @include filter-color('white');   
-            }
-        }
-        &__cnt{
-            flex: 1 1 auto;
-            min-width: 0;;
-        }
-        &__tle{
-            margin: 0;
-            display: block;
-            font-size: 1.25rem;
-            font-weight: 700;
-            @include one-line-ellipsis();
-        }
-        &__des{
-            margin: .5rem 0 0;
-            font-size: 1rem;
-            color: $gray-700;
-            @include multi-line-ellipsis(1.5rem, 2);
-        }
-    }
-}
-.type--2,
-.type--3{
-    .card-spec{
+.card-spec{
+    &.icon--none,
+    &.icon--top,
+    &.icon--left{
         $hover--line-length:  32px;
         $hover--line-thickness:  2px;
         position: relative;
         padding: 1rem;
         cursor: default;
-        &:after, &:before{
-            inset: auto 1rem 1rem auto;
-        }
-        &__wrp{
-            &:after, &:before{
-                inset: 1rem auto auto 1rem;
+        .card-spec{
+            //xx
+            &__wrp{
+                display: block;
+                padding: 1.25rem;
+            }
+            &__wrp{
+                &:after, &:before{
+                    inset: 1rem auto auto 1rem;
+                }
+            }
+            &__cnt{
+                margin: 0;
+                padding: 0;
+            }
+            &__tle{
+                margin: 0 0;
+                padding: 0;
+                display: block;
+                font-family: $font-family-base;
+                font-size: 1.25rem;
+                font-weight: 700;
+                color: $secondary;
+            }
+            &__des{
+                margin: .5rem 0 0;
+                padding: 0;
+                font-size: .875rem;
+                color: $gray-700;
+            }
+            &__icn{
+                display: block;
+                width: 3rem;
+                height: 3rem;
+                padding: .25rem;
+                margin: .25rem 4% 1rem;
+                overflow: hidden;
+                img{
+                    @include image-in-wrapper();
+                    @include filter-color('primary');   
+                }
             }
         }
-        &, &__wrp{
+        &, .card-spec__wrp{
             &:after, &:before{
                 content: "";
                 display: block;
@@ -519,56 +510,28 @@
                 width: $hover--line-thickness;
             }
         }
-        &:hover{
-            &::after{
-                width: $hover--line-length;
+        &.hover--border{
+            &:after, &:before{
+                inset: auto 1rem 1rem auto;
             }
-            &::before{
-                height: $hover--line-length;
-            }
-            .card-spec__wrp{
+            &:hover{
                 &::after{
                     width: $hover--line-length;
                 }
                 &::before{
                     height: $hover--line-length;
                 }
+                .card-spec__wrp{
+                    &::after{
+                        width: $hover--line-length;
+                    }
+                    &::before{
+                        height: $hover--line-length;
+                    }
+                }
             }
         }
-        &__wrp{
-            display: block;
-            padding: 1rem;
-            text-align: center;
-        }
-        &__icn{
-            display: block;
-            width: 3rem;
-            height: 3rem;
-            margin: .25rem auto 1rem;
-            overflow: hidden;
-            img{
-                @include image-in-wrapper();
-                @include filter-color('primary');   
-            }
-        }
-        &__cnt{
-            padding: 0;
-        }
-        &__tle{
-            margin: 0;
-            display: block;
-            font-family: $font-family-base;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: $secondary;
-        }
-        &__des{
-            margin: .5rem 0 0;
-            padding: 0 5%;
-            font-size: .875rem;
-            color: $gray-700;
-        }
-        &.has--background{
+        &.has--shadow{
             .card-spec{
                 //xx
                 &__wrp{
@@ -578,9 +541,7 @@
             }
         }
     }
-}
-.type--3{
-    .card-spec{
+    &.icon--left{
         $hover--line-length:  32px;
         $hover--line-thickness:  2px;
         position: relative;
@@ -589,31 +550,66 @@
         &:after, &:before{
             inset: auto 1rem 1rem auto;
         }
-        &__wrp{
-            display: flex;
+        .card-spec{
+            //
+            &__wrp{
+                display: flex;
+            }
+            &__icn{
+                flex: 0 0 auto;
+                margin: 0 1rem 0 0;;
+            }
+            &__cnt{
+                flex: 1 1 auto;
+                min-width: 0;
+                padding: 0;
+                margin: 0
+            }
+            &__des{
+                margin: .25rem 0 0;
+                padding: 0;
+            }
+            &__tle{
+                padding: 0;
+            }
         }
-        &__icn{
-            flex: 0 0 auto;
-            margin: 0 1rem 0 0;;
+    }
+    &.align--center{
+        .card-spec{
+            //xx
+            &__wrp{
+                text-align: center;
+            }
+            &__icn{
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
-        &__wrp{
-            text-align: left;
-        }
-        &__cnt{
-            flex: 1 1 auto;
-            min-width: 0;
-        }
-        &__des{
-            margin: .25rem 0 0;
-            padding: 0;
+    }
+    &.has--shadow{
+        .card-spec{
+            //xx
+            &__wrp{
+                box-shadow: 0 .25rem 1.75rem 0 rgba(#000,.075);
+            }
         }
     }
 }
+
 .list-specs{
     position: relative;
     margin: 2rem 0;
     &.display--circle{
-        padding: 5rem 0 3rem;
+        padding: 1rem 0 0;
+        @include media-breakpoint-up(md){
+            padding: 2rem 0 0;
+        }
+        @include media-breakpoint-up(lg){
+            padding: 3rem 0 1rem;
+        }
+        @include media-breakpoint-up(xl){
+            padding: 4rem 0 2rem;
+        }
         &::after,
         &::before{
             content: "";
@@ -669,6 +665,48 @@
                     display: flex;
                     flex-wrap: wrap;
                 }
+            }
+        }
+        .card-spec{
+            display: flex;
+            max-width: 100%;
+            margin: 0 0 2rem;
+            &__wrp{
+                flex: 1 1 auto;
+                min-width: 0;
+                display: flex;
+                align-items: flex-start;
+            }
+            &__icn{
+                flex: 0 0 auto;
+                display: block;
+                width: 72px;
+                height: 72px;
+                padding: 1rem;
+                margin: 0 1rem 0 0;
+                background-color: $secondary;
+                border-radius: 50%;
+                overflow: hidden;
+                img{
+                    @include image-in-wrapper();
+                    @include filter-color('white');   
+                }
+            }
+            &__cnt{
+                flex: 1 1 auto;
+                min-width: 0;;
+            }
+            &__tle{
+                margin: 0;
+                display: block;
+                font-size: 1.25rem;
+                font-weight: 700;
+                @include one-line-ellipsis();
+            }
+            &__des{
+                margin: .5rem 0 0;
+                font-size: 1rem;
+                color: $gray-700;
             }
         }
         @include media-breakpoint-up(md){
@@ -832,19 +870,6 @@
             }
             &__wrp{
                 height: 100%;
-            }
-        }
-        &.type--2,
-        &.type--3{
-            .card-spec{
-                &:nth-child(2n){
-                    .card-spec__wrp{
-                        @include media-breakpoint-up(lg){
-                            background-color: #fff;
-                            box-shadow: 0 .25rem 1.75rem 0 rgba(#000,.075);
-                        }
-                    }
-                }
             }
         }
     }
