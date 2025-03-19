@@ -56,7 +56,7 @@ h5,.h5,h6,.h6{
         content: "";
         display: block;
         position: absolute;
-        inset: 4px auto 4px 0;
+        inset: 2px auto 2px 0;
         width: var(--border-width);
         background-color: var(--border-color);
     }
@@ -71,13 +71,13 @@ h5,.h5,h6,.h6{
     &.border-left{
         padding-left: 20px;
         &::after{
-            inset: 4px auto 4px 0;
+            inset: 2px auto 2px 0;
         }
     }
     &.border-right{
         padding-right: 20px;
         &::after{
-            inset: 4px 0 4px auto;
+            inset: 2px 0 2px auto;
         }
     }
 }
