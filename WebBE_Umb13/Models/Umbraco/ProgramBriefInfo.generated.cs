@@ -18,14 +18,14 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>HeadingParagraph Block</summary>
-	[PublishedModel("headingParagraphBlock")]
-	public partial class HeadingParagraphBlock : PublishedElementModel
+	/// <summary>Program Brief Info</summary>
+	[PublishedModel("programBriefInfo")]
+	public partial class ProgramBriefInfo : PublishedContentModel, ICommonContentBlock
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
-		public new const string ModelTypeAlias = "headingParagraphBlock";
+		public new const string ModelTypeAlias = "programBriefInfo";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
@@ -34,14 +34,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<HeadingParagraphBlock, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<ProgramBriefInfo, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public HeadingParagraphBlock(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
+		public ProgramBriefInfo(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -50,12 +50,28 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
+		/// Listing Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("listingImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops ListingImage => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "listingImage");
+
+		///<summary>
+		/// Objectives
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("objectives")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Objectives => this.Value<global::System.Collections.Generic.IEnumerable<string>>(_publishedValueFallback, "objectives");
+
+		///<summary>
 		/// Heading
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("heading")]
-		public virtual string Heading => this.Value<string>(_publishedValueFallback, "heading");
+		public virtual string Heading => global::Umbraco.Cms.Web.Common.PublishedModels.CommonContentBlock.GetHeading(this, _publishedValueFallback);
 
 		///<summary>
 		/// Paragraph
@@ -63,6 +79,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("paragraph")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Paragraph => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "paragraph");
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Paragraph => global::Umbraco.Cms.Web.Common.PublishedModels.CommonContentBlock.GetParagraph(this, _publishedValueFallback);
+
+		///<summary>
+		/// Sub Heading
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("subHeading")]
+		public virtual string SubHeading => global::Umbraco.Cms.Web.Common.PublishedModels.CommonContentBlock.GetSubHeading(this, _publishedValueFallback);
 	}
 }

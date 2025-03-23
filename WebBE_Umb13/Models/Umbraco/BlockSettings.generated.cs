@@ -26,6 +26,10 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor BackgroundColor { get; }
+
+		/// <summary>Background Color Opacity</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		decimal BackgroundColorOpacity { get; }
 	}
 
 	/// <summary>Block Settings</summary>
@@ -71,5 +75,16 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		public static global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor GetBackgroundColor(IBlockSettings that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor>(publishedValueFallback, "backgroundColor");
+
+		///<summary>
+		/// Background Color Opacity
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[ImplementPropertyType("backgroundColorOpacity")]
+		public virtual decimal BackgroundColorOpacity => GetBackgroundColorOpacity(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Background Color Opacity</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		public static decimal GetBackgroundColorOpacity(IBlockSettings that, IPublishedValueFallback publishedValueFallback) => that.Value<decimal>(publishedValueFallback, "backgroundColorOpacity");
 	}
 }

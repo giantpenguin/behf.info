@@ -1,0 +1,33 @@
+﻿@using Umbraco.Cms.Core.PropertyEditors.ValueConverters
+@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@using YeahWeb.Extensions;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var heading = Model.Content.Value<string>("heading");
+    var highlightText = Model.Content.Value<string>("highlightParagraph");
+    var bgColor = Model.Content.Value<ColorPickerValueConverter.PickedColor>("backgroundColor");
+    var styleVal = string.IsNullOrEmpty(bgColor?.Color) ? "" : $"background-color: #{bgColor.Color};";
+    // var colorOpacity = Model.Settings?.Value<decimal>("backgroundColorOpacity") ?? 1;
+    // var styleVal = $"--bg-color: rgba({Helpers.HexToRgb(bgColor?.Color)},{colorOpacity.ToStringFormat()});";
+    var addPadding = string.IsNullOrEmpty(styleVal) ? "" : "py-4 px-4";
+}
+
+<div class="section-block__cnt @addPadding" style="@styleVal">
+    <div class="row align-items-center">
+        <div class="col-12">
+            <div class="section-block__cpn a-fadein a-fadein--right a-fadein--init">
+                <h2>@heading</h2>
+                @if (!string.IsNullOrWhiteSpace(highlightText)) { 
+                  <div class="text-highlight border-left" style="--color: #764979; --border-color: #764979; --border-width: 3px">
+                      @highlightText
+                  </div>
+                }
+                @if (Model.Content.HasValue("paragraph")){
+                    <div class="text-lg card-plan__fet">@Model.Content.Value("paragraph")</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -18,7 +18,7 @@
     },
     "IIS": {
       "commandName": "IIS",
-      "workingDirectory": "C:\\ZRepos\\Umbraco\\Umbraco13Eval",
+      "workingDirectory": "C:\\ZRepos\\Umb_behf.info\\WebBE_Umb13",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -29,7 +29,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iis": {
-      "applicationUrl": "http://umb.eval",
+      "applicationUrl": "http://behf.local",
       "sslPort": 0
     },
     "iisExpress": {

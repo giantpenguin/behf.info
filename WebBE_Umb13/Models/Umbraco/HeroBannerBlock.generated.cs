@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>HeroBanner Block</summary>
 	[PublishedModel("heroBannerBlock")]
-	public partial class HeroBannerBlock : PublishedContentModel, ICTabutton
+	public partial class HeroBannerBlock : PublishedContentModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -120,21 +120,5 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("subHeading")]
 		public virtual string SubHeading => this.Value<string>(_publishedValueFallback, "subHeading");
-
-		///<summary>
-		/// Action Url
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("actionUrl")]
-		public virtual global::Umbraco.Cms.Core.Models.Link ActionUrl => global::Umbraco.Cms.Web.Common.PublishedModels.CTabutton.GetActionUrl(this, _publishedValueFallback);
-
-		///<summary>
-		/// Icon Image
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("iconImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops IconImage => global::Umbraco.Cms.Web.Common.PublishedModels.CTabutton.GetIconImage(this, _publishedValueFallback);
 	}
 }

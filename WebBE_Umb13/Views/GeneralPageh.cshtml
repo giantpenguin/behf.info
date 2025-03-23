@@ -6,11 +6,11 @@
     Layout = "_Layout_Mainh.cshtml";
     TempData["blocksWithGroupNames"] = Model.GetBlocksWithGroupNames("contentLayout");
     var pageTitle = Model.Value<string>("title");
-    var imgBannerUrl = Model.Value<IPublishedContent>("heroBanner")?.GetCropUrl(width: 1920, height: 650);
+    var imgUrl = Model.Value<IPublishedContent>("heroBanner", fallback: Fallback.ToDefaultLanguage)?.GetCropUrl(width: 1920, height: 650);
 }
 
 <div class="section-hero">
-    <div class="hero-item content--center page-header" style="--bg-image: url('@imgBannerUrl');--bg-backdrop: rgba(0,0,0,.6);">
+    <div class="hero-item content--center page-header" style="--bg-image: url('@imgUrl');--bg-backdrop: rgba(0,0,0,.6);">
         @* <div class="hero-item__bkd" style="background-color: rgba(0,0,0,.6);"></div> *@
         <div class="hero-item__wrp">
             <div class="container">
@@ -31,16 +31,5 @@
         </div>
     </div>
 </div>
-@* <div class="pageheader_section pt-5 pb-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="page-title">
-                    <h1>@pageTitle</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> *@
 @* <!-- BLOCK GRID --> *@
 @await Html.GetBlockGridHtmlAsync(Model, "contentLayout", "defaulth")

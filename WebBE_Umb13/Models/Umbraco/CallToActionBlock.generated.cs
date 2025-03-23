@@ -66,6 +66,13 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor BackgroundColor => global::Umbraco.Cms.Web.Common.PublishedModels.BlockSettings.GetBackgroundColor(this, _publishedValueFallback);
 
 		///<summary>
+		/// Background Color Opacity
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[ImplementPropertyType("backgroundColorOpacity")]
+		public virtual decimal BackgroundColorOpacity => global::Umbraco.Cms.Web.Common.PublishedModels.BlockSettings.GetBackgroundColorOpacity(this, _publishedValueFallback);
+
+		///<summary>
 		/// Heading
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]

@@ -1,7 +1,11 @@
-﻿namespace YeahWeb.Extensions
+﻿using System.Globalization;
+using Umbraco.Commerce.Core.Events.Validation;
+
+namespace YeahWeb.Extensions
 {
     public static class Helpers
     {
+        public static CultureInfo CultureEnUs => CultureInfo.GetCultureInfo("en-US");
         public static string HexToRgb(string hexColor, string fallback = "255,255,255")
         {
             if (string.IsNullOrEmpty(hexColor))
@@ -20,6 +24,11 @@
             int blue = Convert.ToInt32(hexColor.Substring(4, 2), 16);
 
             return $"{red},{green},{blue}";
+        }
+
+        public static string ToStringFormat(this decimal decNum, string format = "#.###")
+        {
+            return decNum.ToString(format, CultureEnUs);
         }
     }
 }

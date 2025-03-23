@@ -1,0 +1,68 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var selItems = Model.Content.Value<IEnumerable<IPublishedContent>>("programsPicker") ?? Enumerable.Empty<IPublishedContent>();
+}
+<div class="row justify-content-center">
+    @foreach (var item in selItems)
+    {
+        var heading = item.Value<string>("heading");
+        var subheading = item.Value<string>("subHeading");
+        var imgUrl = item.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("listingImage")?.GetCropUrl(width: 500);
+        var objectives = item.Value<IEnumerable<string>>("objectives") ?? Enumerable.Empty<string>();
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-plan">
+                <div class="card-plan__wrp">
+                    <div class="card-plan__mda">
+                        <div class="plan-cover-wrap h-rect">
+                            <div class="h-rect__inner">
+                                <img src="@imgUrl" alt="@heading">
+                            </div>
+                        </div>
+                        @if (!string.IsNullOrEmpty(subheading))
+                        {
+                            <div class="card-teaser__lbl">
+                                <span>@subheading</span>
+                            </div>
+                        }
+                        else {
+                          <div class="plan-icon-wrap">
+                             <img src="/assets/images/icons/lotus.png" alt="Icon">
+                          </div>
+                        }
+                    </div>
+                    <div class="card-plan__cnt">
+                        <div class="plan-cnt-top">
+                            <h4 class="card-plan__tle">@heading</h4>
+                            @if (item.HasValue("paragraph"))
+                            {
+                                <div class="card-plan__fet">@item.Value("paragraph")</div>
+                            }
+                            <div class="card-plan__fet">
+                                <ul>
+                                    @foreach (var str in objectives)
+                                    {
+                                        <li>@str</li>                           
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        @* <div class="plan-cnt-btm">
+                            <div class="card-plan__prc">
+                                <div class="plan-prc-num">$0</div>
+                                <div class="plan-prc-per">/xx</div>
+                            </div>
+                            <div class="card-plan__cta">
+                                <a href="#" class="btn btn-primary btn-lg">Enroll now</a>
+                            </div>
+                        </div> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

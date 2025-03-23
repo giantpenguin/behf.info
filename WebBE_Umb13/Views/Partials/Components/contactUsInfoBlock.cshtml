@@ -18,17 +18,18 @@
         <h4>@heading</h4>
         <div class="text-lg">@Model.Content.Value("paragraph")</div>
         <ul class="list-contact contact-info">
-            <li>
-                <i class="fa-solid fa-phone"></i>
-                <a href="tel:@homePage.ContactPhone">@homePage.ContactPhone</a>
+            <li>                
+                <a href="tel:@homePage.ContactPhone" class="text-decoration-none">
+                  <i class="fa-solid fa-phone"></i>@homePage.ContactPhone
+                </a>
             </li>
-            <li>
-                <i class="fa-sharp fa-solid fa-envelope"></i>
-                <a href="mailto:@homePage.ContactEmail">@homePage.ContactEmail</a>
+            <li>                
+                <a href="mailto:@homePage.ContactEmail" class="text-decoration-none">
+                  <i class="fa-sharp fa-solid fa-envelope"></i>@homePage.ContactEmail
+                </a>
             </li>
-            <li>
-                <i class="fa-solid fa-location-dot location"></i>
-                <address>@homePage.ContactAddress</address>
+            <li>                
+                <address><i class="fa-solid fa-location-dot location"></i>@homePage.ContactAddress</address>
             </li>
         </ul>
     </div>

@@ -8,9 +8,9 @@
 @{
     Layout = null;
     var homePage = UmbracoContext.Content.GetSingleByXPath("//homePage");
-    var socialItems = homePage.Value<IEnumerable<BlockListItem>>("socialLinks") ?? Enumerable.Empty<BlockListItem>();
     var curCulture = Model.GetCultureFromDomains();
 
+    // var socialItems = homePage.Value<IEnumerable<BlockListItem>>("socialLinks") ?? Enumerable.Empty<BlockListItem>();
     // var bgrImage = Model.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("pageBackgroundImage");
     // var styleVal = bgrImage != null ? $"background-image: url({bgrImage.MediaUrl()});" : "";
 }
@@ -30,9 +30,9 @@
     <div id="preloader" class="preloader">
         <img src="/assets/images/loading_logo.png" alt="loading logo" />
     </div>
-    @if (socialItems.Count() > 0)
+    @* @if (socialItems.Count() > 0)
     {
-        <div class="share-icons center-left a-fadein a-fadein--left a-delay--25" style="--color: #fff; --bg-color: #5c3960; --icon-bg-color:#543458;">
+        <div class="share-icons center-left a-fadein a-fadein--left a-delay--25 d-none d-lg-block" style="--color: #fff; --bg-color: #5c3960; --icon-bg-color:#543458;">
         <ul>
             @foreach (var item in socialItems)
             {
@@ -57,7 +57,7 @@
             }
         </ul>
         </div>
-    }
+    } *@
     <partial name="headerh" model="homePage" />
     <div class="site-content">
         <main role="main" class="flex-grow-1">

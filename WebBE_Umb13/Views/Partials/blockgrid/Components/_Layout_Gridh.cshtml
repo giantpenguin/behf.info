@@ -18,7 +18,7 @@
     // var colorLabel = bgColor?.Label;
 
     // var colorShade = Model.Settings?.Value<decimal>("layoutBackgroundColorShade")!;
-    var colorOpacity = Model.Settings?.Value<decimal>("layoutBackgroundColorOpacity")!;
+    var colorOpacity = Model.Settings?.Value<decimal>("layoutBackgroundColorOpacity") ?? 1;
 
     var bgImage = Model.Settings?.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("layoutBackgroundImage");
     var bgImageUrl = bgImage?.MediaUrl();
@@ -33,7 +33,7 @@
     else if (!string.IsNullOrEmpty(bgColor?.Color))
     {
         // style attr for background color (--bg-color) with rgba/hex
-        styleAttribute = $"--bg-color: rgba({Helpers.HexToRgb(bgColor.Color)}, {colorOpacity});";
+        styleAttribute = $"--bg-color: rgba({Helpers.HexToRgb(bgColor.Color)},{colorOpacity.ToStringFormat()});";
     }
 
     //NOTE: IMPORTANT has issue when layoutBackgroundCss contains "parallax_bg" => layoutBackgroundCss must not have "parallax_bg"

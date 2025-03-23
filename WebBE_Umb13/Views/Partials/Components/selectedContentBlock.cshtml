@@ -1,0 +1,47 @@
+﻿@using Umbraco.Cms.Core.PropertyEditors.ValueConverters
+@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@using YeahWeb.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var content = Model.Content.Value<IPublishedContent>("selectedContent");
+    var heading = content.Value<string>("heading");
+    var subHeading = content.Value<string>("subHeading");
+    var imgUrl = content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("listingImage")?.GetCropUrl(width: 600);
+    var bgColor = content.Value<ColorPickerValueConverter.PickedColor>("backgroundColor");
+    var styleVal = string.IsNullOrEmpty(bgColor?.Color) ? "" : $"background-color: #{bgColor.Color};";
+    // var ctaLink = Model.Content.Value<Link>("actionLink");
+}
+
+<div class="section-block__cnt pt-4 pb-4" style="@styleVal">
+    <div class="row align-items-center gy-3">
+        <div class="col-12 col-lg-6">
+            <div class="card-jbt-mda a-fadein a-fadein--left">
+                <div class="card-jbt-mda__img h-rect">
+                    <div class="h-rect__inner">
+                        <img src="@imgUrl" alt="@heading" title="@heading">
+                    </div>
+                </div>
+                <div class="card-jbt-mda__sdw"></div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="card-jbt-cnt a-fadein a-fadein--right a-fadein--init">
+              @if (!string.IsNullOrWhiteSpace(subHeading)) {
+                <h5 class="section-block__top">@subHeading</h5>
+              }
+              <h2>@heading</h2>
+              @if (content.HasValue("paragraph"))
+              {
+                    <div class="text-lg card-plan__fet">@content.Value("paragraph")</div>
+              }
+              @* @if (ctaLink != null) {
+                  <div class="content-btns">
+                      <a href="@ctaLink.Url" class="btn btn-primary btn-lg btn-hover-slide-in btn-hover-jump-up">@ctaLink.Name</a>
+                  </div>
+              } *@
+            </div>
+        </div>
+    </div>
+</div>

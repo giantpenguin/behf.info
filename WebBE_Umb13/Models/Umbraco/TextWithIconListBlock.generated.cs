@@ -50,6 +50,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
+		/// Display Style
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("displayStyle")]
+		public virtual string DisplayStyle => this.Value<string>(_publishedValueFallback, "displayStyle");
+
+		///<summary>
 		/// Heading
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
@@ -58,12 +66,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string Heading => this.Value<string>(_publishedValueFallback, "heading");
 
 		///<summary>
-		/// Icon Box Style
+		/// Icon Position
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("iconBoxStyle")]
-		public virtual string IconBoxStyle => this.Value<string>(_publishedValueFallback, "iconBoxStyle");
+		[ImplementPropertyType("iconPosition")]
+		public virtual string IconPosition => this.Value<string>(_publishedValueFallback, "iconPosition");
 
 		///<summary>
 		/// Image
@@ -87,7 +95,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("paragraph")]
-		public virtual string Paragraph => this.Value<string>(_publishedValueFallback, "paragraph");
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Paragraph => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "paragraph");
 
 		///<summary>
 		/// Sub Heading

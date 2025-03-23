@@ -58,31 +58,12 @@
   .contact-info li i {
     min-width: 1.25rem;
     display: inline-block;
-    margin: 0 .75rem 0 0;
+    margin: 0 .5rem 0 0;
     text-align: center;
     color: #764979;
   }
   .contact-info address {
     display: inline;
-  }
-
-.highlight-text_wrapper {
-  position: relative;
-  color: #764979;
-}
-  .highlight-text_wrapper h6 {
-    margin-left: 12px;
-    margin-bottom: 25px;
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 26px;
-    text-transform: none;
-  }
-  .highlight-text_wrapper .vertical-line {
-    position: absolute;
-    left: 0;
-    top: 5px;
   }
 
 .share-icons ul {
@@ -92,4 +73,82 @@
 
 .card-jbt-mda {
   padding: 0 1.3rem 1.3rem 0;
+}
+
+.card-plan .card-teaser__lbl span {
+  display: block;
+  /*margin: 0 .25rem .25rem 0;*/
+  padding: .25rem .75rem;
+  text-transform: uppercase;
+  line-height: 1.25;
+  font-size: .875rem;
+  color: #fff;
+  background-color: #764979;
+  border-radius: .75rem 0;
+}
+
+@media (max-width: 1199px) {
+  .type--1 .card-spec__icn {
+    width: 60px;
+    height: 60px;
+  }
+  .type--1 .card-spec__tle {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .card-jbt-mda {
+    padding: 0 0.7rem 0.7rem 0;
+    --jbt-media-bdrd: 6rem 0;
+  }
+
+  .card-jbt-mda__img {
+    border-radius: 6rem 0;
+  }
+
+  .card-jbt-mda__shp img {
+    max-width: 50%;
+  }
+
+  .card-jbt-mda__shp.top-left {
+    top: -3.0rem;
+    left: -2.0rem;
+  }
+
+  .type--1 .card-spec__icn {
+    width: 48px;
+    height: 48px;
+    padding: .5rem;
+    margin: 0 0.75rem 0 0;
+  }
+
+  .type--1 .card-spec__tle {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .type--1 .card-spec__des {
+  }
+}
+
+@media (min-width: 768px) {
+  .list-specs.type--4 .list-specs__row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .list-specs.type--4 .card-spec:nth-child(2n+1)
+
+{
+  /* padding: 0 15% 0 0; */
+  /* justify-content: flex-end; */
+}
+
+  .list-specs.type--4 .card-spec {
+    width: 50%;
+    flex: 0 0 auto;
+    margin: 0 0 .5rem;
+  }
 }

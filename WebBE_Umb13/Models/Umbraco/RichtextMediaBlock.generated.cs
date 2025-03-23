@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Richtext Media Block</summary>
 	[PublishedModel("richtextMediaBlock")]
-	public partial class RichtextMediaBlock : PublishedElementModel, ICTabutton
+	public partial class RichtextMediaBlock : PublishedElementModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -48,6 +48,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		}
 
 		// properties
+
+		///<summary>
+		/// Action Link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("actionLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Link ActionLink => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "actionLink");
 
 		///<summary>
 		/// Heading
@@ -124,21 +132,5 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("youtubeVideo")]
 		public virtual string YoutubeVideo => this.Value<string>(_publishedValueFallback, "youtubeVideo");
-
-		///<summary>
-		/// Action Url
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("actionUrl")]
-		public virtual global::Umbraco.Cms.Core.Models.Link ActionUrl => global::Umbraco.Cms.Web.Common.PublishedModels.CTabutton.GetActionUrl(this, _publishedValueFallback);
-
-		///<summary>
-		/// Icon Image
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("iconImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops IconImage => global::Umbraco.Cms.Web.Common.PublishedModels.CTabutton.GetIconImage(this, _publishedValueFallback);
 	}
 }

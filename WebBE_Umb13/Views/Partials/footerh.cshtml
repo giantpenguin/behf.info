@@ -3,7 +3,8 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<HomePage>
 @{
     Layout = null;
-    var socialItems = Model.Value<IEnumerable<BlockListItem>>("socialLinks") ?? Enumerable.Empty<BlockListItem>();
+    var socialLinks = Model.Value<IEnumerable<Link>>("socialLinks") ?? Enumerable.Empty<Link>();
+    var blogLink = Model.BlogLink;
 }
 
 <footer class="site-footer" style="--bg-color: #764979; --color: #fff">
@@ -22,15 +23,17 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="footer-group">
                         <h4>BEHF</h4>
-                        <p>Benevolence, Evolution, Humbleness, Friendship.</p>
-                        @if (socialItems.Count() > 0)
+                        <p>@Model.BEhfbrief</p>
+                        @if (blogLink != null) {
+                            <a href="@blogLink.Url" target="@blogLink.Target" title="@blogLink.Name">@blogLink.Name</a>
+                        }
+                        @if (socialLinks.Count() > 0)
                         {
                             <ul class="list-social">
-                                @foreach (var item in socialItems)
+                                @foreach (var item in socialLinks)
                                 {
-                                    var socialClass = "";
-                                    var cta = item.Content.Value<Link>("actionUrl");
-                                    switch (cta.Name.ToLowerInvariant())
+                                    var socialClass = "";                                    
+                                    switch (item.Name.ToLowerInvariant())
                                     {
                                         case "facebook":
                                             socialClass = "fa-brands fa-facebook-f";
@@ -38,14 +41,17 @@
                                         case "youtube":
                                             socialClass = "fa-brands fa-youtube";
                                             break;
-                                        case "instagram":
+                                        case "zalo":
+                                            socialClass = "fa-brands fa-zalo";
+                                            break;
+                                        @* case "instagram":
                                             socialClass = "fa-brands fa-instagram";
                                             break;
                                         case "twitter":
                                             socialClass = "fa-brands fa-twitter";
-                                            break;
+                                            break; *@
                                     }
-                                    <li><a href="@cta.Url" target="@cta.Target" title="@cta.Name"><i class="@socialClass" aria-hidden="true"></i></a></li>
+                                    <li><a href="@item.Url" target="@item.Target" title="@item.Name"><i class="@socialClass" aria-hidden="true"></i></a></li>
                                 }
                             </ul>
                         }
@@ -55,24 +61,25 @@
                     <div class="footer-group">
                         <h4>@(Model.QuickLinksText ?? "Quick Links")</h4>
                         <ul class="list-links">
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/about-behf">About BEHF</a></li>
-                            <li><a href="/contact-us">Contact Us</a></li>
-                            <li><a href="#">Privacy Policy</a></li>                            
+                        @foreach (var item in Model.QuickLinks) {
+                            <li><a href="@item.Url" target="@item.Target" title="@item.Name">@item.Name</a></li>
+                        }
                         </ul>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="footer-group">
-                        <h4>@(Model.ContactInfoText ?? "Contact Info")"</h4>
+                        <h4>@(Model.ContactInfoText ?? "Contact Info")</h4>
                         <ul class="list-contact">
-                            <li>
-                                <i class="fa-solid fa-phone"></i>
-                                <a href="tel:@Model.ContactPhone" class="text-decoration-none">@Model.ContactPhone</a>
+                            <li>                                
+                                <a href="tel:@Model.ContactPhone" class="text-decoration-none">
+                                  <i class="fa-solid fa-phone"></i>@Model.ContactPhone
+                                </a>
                             </li>
-                            <li>
-                                <i class="fa-sharp fa-solid fa-envelope"></i>
-                                <a href="mailto:@Model.ContactEmail" class="text-decoration-none">@Model.ContactEmail</a>
+                            <li>                                
+                                <a href="mailto:@Model.ContactEmail" class="text-decoration-none">
+                                  <i class="fa-sharp fa-solid fa-envelope"></i>@Model.ContactEmail
+                                </a>
                             </li>
                             <li>
                                 <i class="fa-solid fa-location-dot location"></i>
