@@ -386,5 +386,33 @@ a{
     }
 }
 
+.icon{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    &.icon-zalo{
+        background-image: url('./../img/icons/zalo.svg');
+    }
+    &.icon-lg{
+        width: 24px;
+        height: 24px;
+    }
+    &.icon-2x{
+        width: 32px;
+        height: 32px;
+    }
+    &.icon-3x{
+        width: 48px;
+        height: 48px;
+    }
+    &.icon-4x{
+        width: 64px;
+        height: 64px;
+    }
+}
+
 
 

@@ -83,7 +83,9 @@
                 display: inline-block;
                 vertical-align: top;
                 a{
-                    display: block;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     width: 3rem;
                     height: 3rem;
                     padding: 0;
