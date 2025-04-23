@@ -58,6 +58,36 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string HighlightParagraph => this.Value<string>(_publishedValueFallback, "highlightParagraph");
 
 		///<summary>
+		/// Icon Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("iconImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops IconImage => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "iconImage");
+
+		///<summary>
+		/// Icon Image Bigger: icon-img-aside_big
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[ImplementPropertyType("iconImageBigger")]
+		public virtual bool IconImageBigger => this.Value<bool>(_publishedValueFallback, "iconImageBigger");
+
+		///<summary>
+		/// Icon Image Caption
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("iconImageCaption")]
+		public virtual string IconImageCaption => this.Value<string>(_publishedValueFallback, "iconImageCaption");
+
+		///<summary>
+		/// Icon Image On Right
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[ImplementPropertyType("iconImageOnRight")]
+		public virtual bool IconImageOnRight => this.Value<bool>(_publishedValueFallback, "iconImageOnRight");
+
+		///<summary>
 		/// Background Color
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]

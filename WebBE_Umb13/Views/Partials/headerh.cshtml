@@ -13,7 +13,7 @@
     var pageCulture = currentPage?.GetCultureFromDomains()?.ToLower();
     var curCulItem = availCultures.FirstOrDefault(i => i.Key == pageCulture);
     if (!string.IsNullOrEmpty(pageCulture))
-      availCultures.Remove(pageCulture);
+        availCultures.Remove(pageCulture);
 }
 @if (socialLinks.Count() > 0)
 {
@@ -33,7 +33,7 @@
                     case "zalo":
                         socialClass = "icon icon-zalo icon-2x";
                         break;
-                    @* case "instagram":
+                        @* case "instagram":
                         socialClass = "fa-brands fa-instagram";
                         break;
                     case "twitter":
@@ -60,40 +60,53 @@
             <div class="collapse navbar-collapse" id="Navbar">
                 <div class="navbar-collapse-wrap">
                     <ul class="navbar-nav">
-                        @foreach (var menuItem in Model.MainMenu!)
-                        {
-                            var custCss = menuItem.CustomClasses ?? "";
-                            var childClass = menuItem.Children.Any() ? "dropdown" : "";
+                    @foreach (var meuItemL1 in Model.MainMenu!)
+                    {
+                        var custCss = meuItemL1.CustomClasses ?? "";
+                        var dropdownCss = meuItemL1.Children.Any() ? "dropdown" : "";
 
-                            <li class="nav-item @childClass @custCss">
-                                @if (string.IsNullOrEmpty(childClass))
-                                {
-                                    var navLinkCss = custCss.Contains("nav-button_reverse") ? "btn btn-primary btn-bdrd-mirror" : custCss.Contains("nav-button") ? "btn btn-primary" : "nav-link";
-                                    <a class="@navLinkCss @Html.If(menuItem.IsActive(currentPage, false), "active")" href="@menuItem.Url()" target="@menuItem.Target">@menuItem.Title</a>
-                                }
-                                else
-                                {
-                                    <a class="nav-link dropdown" href="@menuItem.Url()" target="@menuItem.Target" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                        <span>@menuItem.Title</span>
-                                        <i class="fa-solid fa-angle-down"></i>
-                                    </a>
-                                    <div class="navbar-dropdown-menu size--auto dropdown-menu" aria-labelledby="navbarDropdownSample2">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-12 col-md-6 col-lg-3">
-                                                    <ul class="menu-level-2">
-                                                        @foreach (var subItem in menuItem.Children)
+                        <li class="nav-item @dropdownCss @custCss">
+                            @if (string.IsNullOrEmpty(dropdownCss))
+                            {
+                                var navLinkCss = custCss.Contains("nav-button_reverse") ? "btn btn-primary btn-bdrd-mirror" : custCss.Contains("nav-button") ? "btn btn-primary" : "nav-link";
+                                <a class="@navLinkCss @Html.If(meuItemL1.IsActive(currentPage, false), "active")" href="@meuItemL1.Url()" target="@meuItemL1.Target">@meuItemL1.Title</a>
+                            }
+                            else
+                            {
+                                <a class="nav-link dropdown-toggle" href="@meuItemL1.Url()" target="@meuItemL1.Target" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <span>@meuItemL1.Title</span>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </a>
+                                <div class="navbar-dropdown-menu dropdown-menu size--auto" aria-labelledby="navbarDropdownSample2">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <ul class="menu-level-2">
+                                                @foreach (var meuItemL2 in meuItemL1.Children)
+                                                {
+                                                    <li>
+                                                        <a class="@Html.If(meuItemL2.IsActive(currentPage, false), "active")" href="@meuItemL2.Url()">@meuItemL2.Title</a>
+                                                        @if (meuItemL2.Children.Any())
                                                         {
-                                                            <li><a class="dropdown-item @Html.If(subItem.IsActive(currentPage, false), "active")" href="@subItem.Url()">@subItem.Title</a></li>
+                                                            <ul class="menu-level-3">
+                                                            @foreach (var meuItemL3 in meuItemL2.Children)
+                                                            {
+                                                                <li>
+                                                                  <a class="@Html.If(meuItemL3.IsActive(currentPage, false), "active")" href="@meuItemL3.Url()">@meuItemL3.Title</a>
+                                                                </li>
+                                                            }
+                                                          </ul>
                                                         }
-                                                    </ul>
-                                                </div>
+                                                    </li>
+                                                }
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
-                                }
-                            </li>
-                        }                        
+                                </div>
+                            }
+                        </li>
+                    }                        
                     </ul>
                     <div class="site-navbar-group">
                         @* <div class="site-navbar-srch dropdown">
@@ -108,49 +121,49 @@
                             </div>
                         </div> *@
                         <div class="site-navbar-lang dropdown">
-                            <a class="dropdown-toggle" href="#" id="navbarLanguage" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                            <a id="navbarLanguage" class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                 <span class="lang-flag"><img src="/assets/images/flag/@curCulItem.Value.Item3" alt=""></span>
                                 <span class="lang-title">@curCulItem.Value.Item1</span>
                                 <i class="fa-solid fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarLanguage">
-                                @foreach (var kv in availCultures){
+                            @foreach (var kv in availCultures){
                                 <li>
                                       <a class="dropdown-item" href="@kv.Value.Item2">
                                         <span class="lang-flag"><img src="/assets/images/flag/@kv.Value.Item3" alt=""></span>
                                         <span class="lang-title">@kv.Value.Item1</span>
                                     </a>
                                 </li>
-                                }
+                            }
                             </ul>
                         </div>
                         @if (socialLinks.Count() > 0)
                         {
                             <div class="share-icons d-block d-lg-none">
                                 <ul>
-                                    @foreach (var item in socialLinks)
+                                @foreach (var item in socialLinks)
+                                {
+                                    var socialClass = "";
+                                    switch (item.Name.ToLowerInvariant())
                                     {
-                                        var socialClass = "";
-                                        switch (item.Name.ToLowerInvariant())
-                                        {
-                                            case "facebook":
-                                                socialClass = "fa-brands fa-facebook-f";
-                                                break;
-                                            case "youtube":
-                                                socialClass = "fa-brands fa-youtube";
-                                                break;
-                                            case "zalo":
-                                                socialClass = "icon icon-zalo icon-2x";
-                                                break;
-                                            @* case "instagram":
-                                                socialClass = "fa-brands fa-instagram";
-                                                break;
-                                            case "twitter":
-                                                socialClass = "fa-brands fa-twitter";
-                                                break; *@
-                                        }
-                                        <li><a href="@item.Url" target="@item.Target" title="@item.Name"><i class="@socialClass" aria-hidden="true"></i></a></li>
+                                        case "facebook":
+                                            socialClass = "fa-brands fa-facebook-f";
+                                            break;
+                                        case "youtube":
+                                            socialClass = "fa-brands fa-youtube";
+                                            break;
+                                        case "zalo":
+                                            socialClass = "icon icon-zalo icon-2x";
+                                            break;
+                                        @* case "instagram":
+                                            socialClass = "fa-brands fa-instagram";
+                                            break;
+                                        case "twitter":
+                                            socialClass = "fa-brands fa-twitter";
+                                            break; *@
                                     }
+                                    <li><a href="@item.Url" target="@item.Target" title="@item.Name"><i class="@socialClass" aria-hidden="true"></i></a></li>
+                                }
                                 </ul>
                             </div>
                         }

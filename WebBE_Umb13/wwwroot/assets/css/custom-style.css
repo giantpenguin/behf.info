@@ -11,6 +11,26 @@
   }
 }
 
+.site-navbar .navbar-nav .nav-item .nav-link {
+  font-weight: 800;
+}
+
+.site-navbar .navbar-nav .dropdown-menu ul.menu-level-2 ul {
+  margin: 0.25px 0.5rem 0px;
+}
+
+.site-navbar .navbar-nav .dropdown-menu ul.menu-level-2 > li > a {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.site-navbar .navbar-nav .dropdown-menu ul.menu-level-3 > li > a {
+  /*font-size: 1rem;*/
+  font-weight: 700;
+  color: rgb(118, 73, 121);
+}
+
 /*can use "mt" instead???*/
 .site-footer {
   margin: 0 0;
@@ -40,15 +60,6 @@
   color: #fff;
   text-decoration: none;
 }*/
-
-.site-navbar .navbar-nav .nav-item .nav-link {
-  font-weight: 800;
-}
-.site-navbar .navbar-nav .dropdown-menu ul.menu-level-2 > li > a {
-  font-size: 1rem;
-  font-weight: 700;
-  text-transform: none;
-}
 
 .contact-info {
   margin: 1rem 0;
@@ -97,7 +108,6 @@
     line-height: 20px;
   }
 }
-
 
 @media (max-width: 768px) {
   .card-jbt-mda {
@@ -151,4 +161,67 @@
     flex: 0 0 auto;
     margin: 0 0 .5rem;
   }
+}
+
+.icon-img-aside {  
+  height: auto;
+  object-fit: cover;
+}
+
+.icon-img-aside {
+  max-width: 150px;
+}
+
+.icon-img-aside_bigger {
+  max-width: 320px;
+}
+
+@media (max-width: 991.98px) {
+  .icon-img-aside {
+    max-width: 115px;
+  }
+  .icon-img-aside_bigger {
+    max-width: 225px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .icon-img-aside {
+    max-width: 80px;
+  }
+  .icon-img-aside_bigger {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .icon-img-aside {
+    max-width: 60px;
+  }
+  /* stack for only larger image */
+  .stack-on-xs {
+    flex-direction: column !important;
+  }
+
+    .stack-on-xs .img-container {
+      margin: 0 0 1rem 0 !important;
+      max-width: 100%;
+    }
+    .stack-on-xs .icon-img-aside_bigger {
+      max-width: 100% !important;
+    }
+}
+
+figcaption {
+  font-size: 0.85rem;
+  text-align: center;
+  color: #612d91;
+  margin-top: 0.5rem;
+}
+
+.text-quote {
+  color: #764979;
+  line-height: 1.5;
+  font-weight: 600;
+  font-style:italic;
 }

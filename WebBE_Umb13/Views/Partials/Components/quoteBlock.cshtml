@@ -1,0 +1,22 @@
+﻿@using Umbraco.Cms.Core.PropertyEditors.ValueConverters
+@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    // var imgUrl = Model.Value<IPublishedContent>("image")?.GetCropUrl(/* width: 150, height: 150 */);
+    var bgColor = Model.Content.Value<ColorPickerValueConverter.PickedColor>("backgroundColor");
+    var styleColor = string.IsNullOrEmpty(bgColor?.Color) ? "" : $"background-color: #{bgColor.Color};";
+    var padding = string.IsNullOrEmpty(styleColor) ? "" : "py-4 px-4";
+}
+
+<div class="card-quote @padding" style="@styleColor">
+    <div class="card-quote__wrp">
+        <div class="card-quote__icn">
+            <i class="fa-solid fa-quote-left"></i>
+        </div>
+        <div class="card-quote__cnt text-quote a-fadein a-fadein--left">
+            @Model.Content.Value("paragraph")
+        </div>
+    </div>
+</div>

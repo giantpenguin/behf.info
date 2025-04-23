@@ -18,9 +18,15 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
+	// Mixin Content Type with alias "folderPage"
+	/// <summary>Folder Page</summary>
+	public partial interface IFolderPage : IPublishedContent
+	{
+	}
+
 	/// <summary>Folder Page</summary>
 	[PublishedModel("folderPage")]
-	public partial class FolderPage : PublishedContentModel
+	public partial class FolderPage : PublishedContentModel, IFolderPage
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant

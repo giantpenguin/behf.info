@@ -80,5 +80,13 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("personName")]
 		public virtual string PersonName => this.Value<string>(_publishedValueFallback, "personName");
+
+		///<summary>
+		/// Quote
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("quote")]
+		public virtual string Quote => this.Value<string>(_publishedValueFallback, "quote");
 	}
 }

@@ -9,6 +9,7 @@
     var pname = Model.Value<string>("personName");
     var porg = Model.Value<string>("organization");
     var feedback = Model.Value<string>("feedback");
+    var quote = Model.Value<string>("quote");
     var imgUrl = Model.Value<IPublishedContent>("image")?.GetCropUrl(/* width: 150, height: 150 */);
 }
 
@@ -17,6 +18,12 @@
         <div class="card-quote__icn">
             <i class="fa-solid fa-quote-left"></i>
         </div>
+        @if (!string.IsNullOrEmpty(quote))
+        {
+            <div class="text-quote">
+                @quote
+            </div>
+        }
         <div class="card-quote__cnt">
             @feedback
         </div>
