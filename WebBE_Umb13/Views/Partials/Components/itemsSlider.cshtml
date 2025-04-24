@@ -1,22 +1,20 @@
 ﻿@using Umbraco.Extensions
 @using Umbraco.Cms.Core.Models
+@using YeahWeb.Extensions
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IEnumerable<IPublishedContent>>
 
 @{
-    var items = Model;
+    var items = Model.RandomizeFirstItem();
+    if (items?.Any() == false)
+        return;
+
     var sliderId = $"slider{Guid.NewGuid()}";
 }
 
 <div id="@sliderId" class="c-carousel owl-carousel"
-     data-items-xs="1"
-     data-items-md="1"
-     data-items-lg="1"
-     data-loop="true"
-     data-center="false"
-     data-drag="false"
-     data-nav="true"
-     data-dots="true"
-     data-margin="32">
+data-items-xs="1" data-items-md="1" data-items-lg="1"
+data-loop="true" data-center="false" data-drag="false"
+data-nav="true" data-dots="true" data-margin="32">
 
     @for (int i = 0; i < items.Count(); i++)
     {

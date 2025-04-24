@@ -54,5 +54,28 @@ namespace YeahWeb.Extensions
             //https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-8.0&viewFallbackFrom=aspnetcore-2.2
             return httpContext.Connection.RemoteIpAddress?.ToString();
         }
+
+        private static Random _random => new();
+        public static IEnumerable<T> RandomizeFirstItem<T>(this IEnumerable<T> srcItems)
+        {
+            var srcList = srcItems?.ToList();
+            if (srcList == null || srcList.Count <= 1)
+                return srcList;
+
+            // random integer >= minValue and < maxValue
+            int randomIndex = _random.Next(1, srcList.Count);
+            T selectedItem = srcList.ElementAt(randomIndex);
+
+            // Shift elements one position to the right
+            for (int i = randomIndex; i > 0; i--)
+            {
+                srcList[i] = srcList[i - 1];
+            }
+
+            // place selected item at the first
+            srcList[0] = selectedItem;
+
+            return srcList;
+        }
     }
 }
