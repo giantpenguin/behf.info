@@ -1,0 +1,19 @@
+@model Umbraco.Forms.Web.Models.FormViewModel
+
+@if (Model.MessageOnSubmitIsHtml)
+{
+    <div class="umbraco-forms-submitmessage-html">
+        <div id="alert-msg" class="alert-msg alert-msg-success">
+            @Model.GetMessageOnSubmit()
+        </div>        
+    </div>
+}
+else
+{
+    <div>
+        <span class="umbraco-forms-submitmessage">
+            @Model.GetMessageOnSubmit()
+        </span>
+    </div>
+}
+@await Html.PartialAsync("Forms/Themes/default/ScrollToFormScript")

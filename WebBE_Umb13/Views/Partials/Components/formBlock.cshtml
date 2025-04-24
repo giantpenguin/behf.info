@@ -1,8 +1,24 @@
 ﻿@using Umbraco.Extensions
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@* @inject Umbraco.Cms.Web.Common.UmbracoHelper Umb
+@inject Umbraco.Forms.Web.Services.IFormRenderingService FormRenderingService
+@inject Umbraco.Forms.Web.Services.IFormThemeResolver FormThemeResolver *@
 
 @{
-    var pickedForm = Model.Content.Value("formPicker");
+    var pickedFormId = Model.Content.Value<Guid>("formPicker");
+    // var homePage = Umb.ContentAtRoot().First(p => p.ContentType.Alias == HomePage.ModelTypeAlias);
+    // var isDonationForm = pickedFormId == new Guid("79be098b-b737-4971-97c5-79ddf4db8fc4");
 }
 
-@(await Component.InvokeAsync("RenderForm", new { formId = pickedForm, theme = "default", includeScripts = false }))
+@* @if (isDonationForm){
+    var formModel = await FormRenderingService.GetFormModelAsync(Context, pickedFormId, null, "default", null);
+    formModel.RenderScriptFiles = false;
+    formModel.SubmitHandled = false;
+    var formView = FormThemeResolver.GetFormRender(formModel);
+
+    <div>Donation Form goes here</div>
+    @await Html.PartialAsync(formView, formModel)
+
+return;
+} *@
+@(await Component.InvokeAsync("RenderForm", new { formId = pickedFormId, theme = "default", includeScripts = false }))

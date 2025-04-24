@@ -1,0 +1,40 @@
+﻿@using Umbraco.Extensions
+@using YeahWeb.Donation
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var heading = Model.Content.Value<string>("heading");
+}
+
+@using (Html.BeginUmbracoForm<DonationTransferController>("ProcessDonation"))
+{
+    <div class="umbraco-forms-page" id="donationForm">
+        <h4 class="umbraco-forms-caption">@heading</h4>
+        <div class="umbraco-forms-fieldset umbraco-forms-hidden" id="b0e7590d-afe8-4f97-b174-ad74eaa5a0b7">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label for="donorName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="donorName" name="DonorName" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="donorEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="donorEmail" name="DonorEmail" placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="amount" class="form-label">Money amount</label>
+                        <input type="number" class="form-control" id="amount" name="Amount" placeholder="10000">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Donation message</label>
+                        <input type="text" class="form-control" id="message" name="Message" placeholder="I donate ...">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="umbraco-forms-navigation row-fluid">
+            <input type="submit" class="btn btn-default btn-secondary" value="Submit" name="__next" data-form-navigate="next" data-umb="submit-forms-form">
+        </div>
+    </div>
+}
