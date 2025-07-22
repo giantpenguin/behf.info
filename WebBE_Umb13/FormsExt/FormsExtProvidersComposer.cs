@@ -7,6 +7,6 @@ public class FormsExtProvidersComposer : IComposer
 {
     public void Compose(IUmbracoBuilder builder)
     {
-        builder.FormsFields().Add<FieldTextExt>();
+        builder.FormsFields().Add<PlainNote>();
     }
 }

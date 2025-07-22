@@ -3,16 +3,16 @@ using Umbraco.Forms.Core.Attributes;
 
 namespace YeahWeb.FormsExt;
 
-public class FieldTextExt : Text
+public class PlainNote : Text
 {
-    public FieldTextExt()
+    public PlainNote()
     {
         // new name
-        Name = "Headline Text ext";
-        Description = "Title and description's extension";
+        Name = "Plain Note";
+        Description = "Simple short note";
 
         // different view for this fieldtype
-        FieldTypeViewName = "FieldType.TextExt.cshtml";
+        FieldTypeViewName = "FieldType.PlainNote.cshtml";
     }
 
     [Setting("Css Classes", Description = "Css assign to class attribute", View = "TextField")]
