@@ -26,24 +26,39 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		decimal Amount { get; }
 
+		/// <summary>Initial Time</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		global::System.DateTime InitialTime { get; }
+
 		/// <summary>Message</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		string Message { get; }
 
-		/// <summary>Payment Gate</summary>
+		/// <summary>PayGate Name</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		string PaymentGate { get; }
+		string PayGateName { get; }
+
+		/// <summary>PayGate Record Id</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		string PayGateRecordId { get; }
+
+		/// <summary>PayGate Response</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		string PayGateResponse { get; }
+
+		/// <summary>Paying Status</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		string PayingStatus { get; }
 
 		/// <summary>Paymentor</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		string Paymentor { get; }
-
-		/// <summary>Start Time</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
-		global::System.DateTime StartTime { get; }
 
 		/// <summary>Status</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
@@ -103,6 +118,17 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public static decimal GetAmount(IPaymentTransaction that, IPublishedValueFallback publishedValueFallback) => that.Value<decimal>(publishedValueFallback, "amount");
 
 		///<summary>
+		/// Initial Time
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[ImplementPropertyType("initialTime")]
+		public virtual global::System.DateTime InitialTime => GetInitialTime(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Initial Time</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		public static global::System.DateTime GetInitialTime(IPaymentTransaction that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.DateTime>(publishedValueFallback, "initialTime");
+
+		///<summary>
 		/// Message
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
@@ -116,17 +142,56 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public static string GetMessage(IPaymentTransaction that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "message");
 
 		///<summary>
-		/// Payment Gate
+		/// PayGate Name
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("paymentGate")]
-		public virtual string PaymentGate => GetPaymentGate(this, _publishedValueFallback);
+		[ImplementPropertyType("payGateName")]
+		public virtual string PayGateName => GetPayGateName(this, _publishedValueFallback);
 
-		/// <summary>Static getter for Payment Gate</summary>
+		/// <summary>Static getter for PayGate Name</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static string GetPaymentGate(IPaymentTransaction that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "paymentGate");
+		public static string GetPayGateName(IPaymentTransaction that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "payGateName");
+
+		///<summary>
+		/// PayGate Record Id
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("payGateRecordId")]
+		public virtual string PayGateRecordId => GetPayGateRecordId(this, _publishedValueFallback);
+
+		/// <summary>Static getter for PayGate Record Id</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static string GetPayGateRecordId(IPaymentTransaction that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "payGateRecordId");
+
+		///<summary>
+		/// PayGate Response
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("payGateResponse")]
+		public virtual string PayGateResponse => GetPayGateResponse(this, _publishedValueFallback);
+
+		/// <summary>Static getter for PayGate Response</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static string GetPayGateResponse(IPaymentTransaction that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "payGateResponse");
+
+		///<summary>
+		/// Paying Status
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("payingStatus")]
+		public virtual string PayingStatus => GetPayingStatus(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Paying Status</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static string GetPayingStatus(IPaymentTransaction that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "payingStatus");
 
 		///<summary>
 		/// Paymentor
@@ -140,17 +205,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		public static string GetPaymentor(IPaymentTransaction that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "paymentor");
-
-		///<summary>
-		/// Start Time
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
-		[ImplementPropertyType("startTime")]
-		public virtual global::System.DateTime StartTime => GetStartTime(this, _publishedValueFallback);
-
-		/// <summary>Static getter for Start Time</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
-		public static global::System.DateTime GetStartTime(IPaymentTransaction that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.DateTime>(publishedValueFallback, "startTime");
 
 		///<summary>
 		/// Status

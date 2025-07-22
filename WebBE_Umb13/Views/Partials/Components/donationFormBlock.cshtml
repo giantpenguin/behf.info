@@ -6,7 +6,7 @@
     var heading = Model.Content.Value<string>("heading");
 }
 
-@using (Html.BeginUmbracoForm<DonationTransferController>("ProcessDonation"))
+@using (Html.BeginUmbracoForm<DonationHandleSurfaceController>("ProcessDonation"))
 {
     <div class="umbraco-forms-page" id="donationForm">
         <h4 class="umbraco-forms-caption">@heading</h4>

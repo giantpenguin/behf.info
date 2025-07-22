@@ -6,6 +6,7 @@
 
 @{
     var pickedFormId = Model.Content.Value<Guid>("formPicker");
+    var isTransForm = Model.Content.Value<bool>("isTransactionForm");
     // var homePage = Umb.ContentAtRoot().First(p => p.ContentType.Alias == HomePage.ModelTypeAlias);
     // var isDonationForm = pickedFormId == new Guid("79be098b-b737-4971-97c5-79ddf4db8fc4");
 }
@@ -21,4 +22,21 @@
 
 return;
 } *@
-@(await Component.InvokeAsync("RenderForm", new { formId = pickedFormId, theme = "default", includeScripts = false }))
+
+@if (!isTransForm)
+{
+    @(await Component.InvokeAsync("RenderForm", new { formId = pickedFormId, theme = "default", includeScripts = false }))
+}
+else
+{
+    @* Dictionary<string, string> additionalData = new() { { "currentCulture", ViewContext.ViewData.GetValueAsString("currentCulture") } }; *@
+    var additionalData = ViewContext.ViewData.GetValue("additionalData") as Dictionary<string, string>;
+    bool.TryParse(TempData["TransactionSuccess"]?.ToString(), out var transSuccess);
+
+    <div class="form-area" @* style="visibility:@(rspCode=="00"? "hidden":"block");" *@>
+        @(await Component.InvokeAsync("RenderForm", new { formId = pickedFormId, theme = "bootstrap3-horizontal", includeScripts = false, additionalData }))
+    </div>
+    @* <div class="noti-area">
+        <span>@TempData["TransactionMessage"]</span>
+    </div> *@
+}

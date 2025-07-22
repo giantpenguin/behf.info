@@ -6,17 +6,17 @@ public class DonationViewModel
 {
     [Required]
     [Display(Name = "Full Name")]
-    public string DonorName { get; set; }
+    public string DonatorName { get; set; }
 
     [Required]
     [EmailAddress]
     [Display(Name = "Email")]
-    public string DonorEmail { get; set; }
+    public string DonatorEmail { get; set; }
 
     [Required]
     [Display(Name = "Amount (VND)")]
     [Range(1000, 100000000)] // 1000 VND to 100M VND
-    public decimal Amount { get; set; }
+    public double MoneyAmount { get; set; }
 
     [Required]
     [Display(Name = "Message")]

@@ -8,8 +8,8 @@ namespace YeahWeb.PaymentsIntegration;
 public class VNPayLib
 {
     //public const string VERSION = "2.1.0";
-    private SortedList<string, string> _requestData = new(new VnPayCompare());
-    private SortedList<string, string> _responseData = new(new VnPayCompare());
+    private readonly SortedList<string, string> _requestData = new(new VnPayCompare());
+    private readonly SortedList<string, string> _responseData = new(new VnPayCompare());
 
     public void AddRequestData(string key, string value)
     {

@@ -7,14 +7,21 @@ using System.Globalization;
 
 namespace YeahWeb.Donation.Services;
 
-public interface IDonationStoreService
+public interface IDonationTransRepository
 {
-    string CreateDonationTransaction(DonationRequest request);
+    string RootContainerName { get; }
+    int RootContainerId { get; }
+    string StoreTransaction(DonationRequest request);
+
+    IContent? GetTransaction(string transactionId);
+
+    bool UpdateTransaction(IContent transContent);
+
     bool UpdateTransactionStatus(string transactionId, DateTime transDate, string status, string gatewayResponse);
     //IContent GetTransactionForUpdate(string transactionId, DateTime transDate);
 }
 
-public class DonationStoreService : IDonationStoreService
+public class DonationTransRepository : IDonationTransRepository
 {
     //NOTE: should not Publish these contents???
 
@@ -22,45 +29,57 @@ public class DonationStoreService : IDonationStoreService
     //private readonly IQuery<IContent> _contentQuery;
     //private readonly INotificationService _notificationService;
     private readonly IContentTypeBaseServiceProvider _contentTypeBaseServiceProvider;
-    private readonly ILogger<DonationStoreService> _logger;
+    private readonly ILogger<DonationTransRepository> _logger;
     private readonly ConcurrentDictionary<int, int> dictContainerTree = [];
     private static string TransContainerTypeAlias => DonationTransContainer.ModelTypeAlias;
     private static string DonationTransTypeAlias => DonationTransaction.ModelTypeAlias;
+    private const string DATETIMEFORMAT = "yyyyMMddHHmmss";
+    private const string TRANSNAMEPREFIX = "Donation-";
 
-    public DonationStoreService(
-        IContentService contentService,
-        //IQuery<IContent> contentQuery,
-        //INotificationService notificationService,
-        IContentTypeBaseServiceProvider contentTypeBaseServiceProvider,
-        ILogger<DonationStoreService> logger)
+    public string RootContainerName => "Donation Transactions";
+
+    public int RootContainerId => GetOrCreateRootContainer();
+
+    public DonationTransRepository(ILogger<DonationTransRepository> logger,
+        IContentService contentService, /*IQuery<IContent> contentQuery, INotificationService notificationService,*/
+        IContentTypeBaseServiceProvider contentTypeBaseServiceProvider)
     {
+        _logger = logger;
         _contentService = contentService;
         //_contentQuery = contentQuery;
         //_notificationService = notificationService;
         _contentTypeBaseServiceProvider = contentTypeBaseServiceProvider;
-        _logger = logger;
     }
 
-    public string CreateDonationTransaction(DonationRequest request)
+    public string StoreTransaction(DonationRequest request)
     {
-            var transTime = DateTime.Now;
+        //TODO: UTC???
+        var transTime = DateTime.Now;
         try
         {
             var containerId = GetTransactionsContainerId(transTime);
-            var transId = $"Donation-{transTime.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture)}";
+            //TODO: include some more data to avoid duplicate
+            var transId = $"{TRANSNAMEPREFIX}{transTime.ToString(DATETIMEFORMAT, CultureInfo.InvariantCulture)}";
 
             var transactionContent = _contentService.Create(transId, containerId, DonationTransTypeAlias);
-            transactionContent.SetValue(nameof(DonationTransaction.TransactionId).ToFirstLower()/*"transactionId"*/, transId);
-            transactionContent.SetValue(nameof(DonationTransaction.Amount).ToFirstLower()/*"amount"*/, request.Amount);
+
+            transactionContent.SetValue(nameof(DonationTransaction.TransactionId).ToFirstLower(), transId);
+            transactionContent.SetValue(nameof(DonationTransaction.InitialTime).ToFirstLower(), transTime);
+            transactionContent.SetValue(nameof(DonationTransaction.Status).ToFirstLower(), "Pending");
+            transactionContent.SetValue(nameof(DonationTransaction.PayingStatus).ToFirstLower(), "Pending");
+
             transactionContent.SetValue(nameof(DonationTransaction.Paymentor).ToFirstLower(), request.DonorName);
-            transactionContent.SetValue(nameof(DonationTransaction.DonorEmail).ToFirstLower()/*"donorEmail"*/, request.DonorEmail);
-            transactionContent.SetValue(nameof(DonationTransaction.Message).ToFirstLower()/*"message"*/, request.Message);
-            transactionContent.SetValue(nameof(DonationTransaction.StartTime).ToFirstLower()/*"transactionTime"*/, transTime);
-            transactionContent.SetValue(nameof(DonationTransaction.Status).ToFirstLower()/*"status"*/, "Pending");
-            transactionContent.SetValue(nameof(DonationTransaction.PaymentGate).ToFirstLower(), request.PayGate);
+            transactionContent.SetValue(nameof(DonationTransaction.DonorEmail).ToFirstLower(), request.DonorEmail);
+            transactionContent.SetValue(nameof(DonationTransaction.Amount).ToFirstLower(), request.Amount);
+            transactionContent.SetValue(nameof(DonationTransaction.Message).ToFirstLower(), request.Message);
+            transactionContent.SetValue(nameof(DonationTransaction.PayGateName).ToFirstLower(), request.PayGate);
+            transactionContent.SetValue(nameof(DonationTransaction.Locale).ToFirstLower(), request.Locale);
+            transactionContent.SetValue(nameof(DonationTransaction.SubmittedRecordId).ToFirstLower(), request.FormRecordId);
+            transactionContent.SetValue(nameof(DonationTransaction.SubmitReferrer).ToFirstLower(), request.SubmitReferrer);
 
             _contentService.Save(transactionContent);
-            //TODO: cache dictionary of TransactionId & Content Id for latter processing
+            //TODO: cache (align with PayGate expiration time) TransactionId & ContentId for latter processing???
+
             return transId;
         }
         catch (Exception ex)
@@ -70,8 +89,18 @@ public class DonationStoreService : IDonationStoreService
         }
     }
 
+    public bool UpdateTransaction(IContent transContent)
+    {
+        ArgumentNullException.ThrowIfNullOrEmpty(nameof(transContent));
+
+        transContent.SetValue(nameof(DonationTransaction.UpdatedTime).ToFirstLower(), DateTime.Now);
+
+        var result = _contentService.Save(transContent);
+        return result.Success;
+    }
+
     public bool UpdateTransactionStatus(string transactionId, DateTime transDate, string status, string gatewayResponse)
-    {                
+    {
         if (TryGetTransactionContent(transactionId, transDate, out var tranContent, true))
         {
             throw new Exception($"Transaction {transactionId} not found");
@@ -89,8 +118,7 @@ public class DonationStoreService : IDonationStoreService
     //private IQuery<IContent> QueryTransactionContents(DateTime date) => _contentQuery.Where(c => /*c.ContentType.Alias == "donationTransaction"*/ c.UpdateDate <= date);
     private int GetTransactionsContainerId(DateTime transDate)
     {
-        // Get/Create top-level Donation Transactions container
-        var rootContainerId = GetOrCreateRootContainer();
+        var rootContainerId = RootContainerId;  // GetOrCreateRootContainer();
         int keyYearMonth = transDate.Year + transDate.Month;
 
         return dictContainerTree.GetOrAdd(keyYearMonth, (a) =>
@@ -99,14 +127,14 @@ public class DonationStoreService : IDonationStoreService
             var containerYear = transDate.Year.ToString("D4");
 
             // year folder
-            var yearContainered = _contentService.GetPagedChildren(rootContainerId, 0, 100, out _/*, QueryContainerContentType*/)
+            var yearContainer = _contentService.GetPagedChildren(rootContainerId, 0, 100, out _/*, QueryContainerContentType*/)
                 .FirstOrDefault(x => x.Name == containerYear);
-            if (yearContainered == null)
+            if (yearContainer == null)
             {
                 try
                 {
-                    yearContainered = _contentService.Create(containerYear, rootContainerId, TransContainerTypeAlias);
-                    _contentService.SaveAndPublish(yearContainered);
+                    yearContainer = _contentService.Create(containerYear, rootContainerId, TransContainerTypeAlias);
+                    _contentService.SaveAndPublish(yearContainer);
                 }
                 catch (Exception ex)
                 {
@@ -116,14 +144,14 @@ public class DonationStoreService : IDonationStoreService
             }
 
             // month folder, should 12 months under each year
-            var monthContainered = _contentService.GetPagedChildren(yearContainered.Id, 0, 20, out _/*, QueryContainerContentType*/)
+            var monthContainer = _contentService.GetPagedChildren(yearContainer.Id, 0, 20, out _/*, QueryContainerContentType*/)
                 .FirstOrDefault(x => x.Name == containerMonth);
-            if (monthContainered == null)
+            if (monthContainer == null)
             {
                 try
                 {
-                    monthContainered = _contentService.Create(containerMonth, yearContainered.Id, TransContainerTypeAlias);
-                    _contentService.SaveAndPublish(monthContainered);
+                    monthContainer = _contentService.Create(containerMonth, yearContainer.Id, TransContainerTypeAlias);
+                    _contentService.SaveAndPublish(monthContainer);
                 }
                 catch (Exception ex)
                 {
@@ -132,20 +160,20 @@ public class DonationStoreService : IDonationStoreService
                 }
             }
 
-            return monthContainered.Id;
+            return monthContainer.Id;
         });
     }
 
     private int GetOrCreateRootContainer()
     {
         return dictContainerTree.GetOrAdd(-1, (a) =>
-        {            
+        {
             var transRootContainer = _contentService.GetByLevel(1).FirstOrDefault(x => x.ContentType.Alias == TransContainerTypeAlias);
             if (transRootContainer == null)
             {
                 try
                 {
-                    transRootContainer = _contentService.Create("Donation Transactions", -1, TransContainerTypeAlias);
+                    transRootContainer = _contentService.Create(RootContainerName, -1, TransContainerTypeAlias);
                     _contentService.SaveAndPublish(transRootContainer);
                 }
                 catch (Exception ex)
@@ -162,19 +190,35 @@ public class DonationStoreService : IDonationStoreService
     {
         var containerId = GetTransactionsContainerId(date);
 
-        //TODO: fine tune transaction finding
+        //TODO: fine tune transaction finding???
         // Find transaction by transactionId
         contentTrans = _contentService.GetPagedChildren(containerId, 0, 100, out _/*, QueryTransactionContents(date)*/)
             .FirstOrDefault(x => x.GetValue<string>("transactionId") == transactionId);
         if (contentTrans == null)
         {
             _logger.LogWarning("Transaction {transactionId} in {date:yyyyMMdd} not found", transactionId, date);
-            if (tryExtend) // try extend finding in a day before Container
-            {                
+            if (tryExtend) // try extend finding in day-before Container
+            {
                 return TryGetTransactionContent(transactionId, date: date.AddDays(-1), out contentTrans, false);
             }
         }
 
         return contentTrans != null;
+    }
+
+    public IContent? GetTransaction(string transactionId)
+    {
+        if (string.IsNullOrEmpty(transactionId) || !transactionId.StartsWith(TRANSNAMEPREFIX)
+            || !TryGetTransDateTime(transactionId, out var dateTime))
+            return null;
+
+        TryGetTransactionContent(transactionId, dateTime, out var contentTrans, true);
+        return contentTrans;
+    }
+
+    private bool TryGetTransDateTime(string transactionId, out DateTime dateTime)
+    {
+        var sdt = transactionId.Substring(TRANSNAMEPREFIX.Length);
+        return DateTime.TryParseExact(sdt, DATETIMEFORMAT, null, DateTimeStyles.None, out dateTime);
     }
 }

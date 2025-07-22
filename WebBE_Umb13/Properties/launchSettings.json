@@ -29,7 +29,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iis": {
-      "applicationUrl": "http://behf.local",
+      "applicationUrl": "https://behf.local",
       "sslPort": 0
     },
     "iisExpress": {

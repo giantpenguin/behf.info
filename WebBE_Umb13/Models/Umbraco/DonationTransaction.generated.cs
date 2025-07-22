@@ -58,11 +58,42 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string DonorEmail => this.Value<string>(_publishedValueFallback, "donorEmail");
 
 		///<summary>
+		/// Locale
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("locale")]
+		public virtual string Locale => this.Value<string>(_publishedValueFallback, "locale");
+
+		///<summary>
+		/// Submit Referrer
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("submitReferrer")]
+		public virtual string SubmitReferrer => this.Value<string>(_publishedValueFallback, "submitReferrer");
+
+		///<summary>
+		/// Submitted RecordId
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("submittedRecordId")]
+		public virtual string SubmittedRecordId => this.Value<string>(_publishedValueFallback, "submittedRecordId");
+
+		///<summary>
 		/// Amount
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[ImplementPropertyType("amount")]
 		public virtual decimal Amount => global::Umbraco.Cms.Web.Common.PublishedModels.PaymentTransaction.GetAmount(this, _publishedValueFallback);
+
+		///<summary>
+		/// Initial Time
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[ImplementPropertyType("initialTime")]
+		public virtual global::System.DateTime InitialTime => global::Umbraco.Cms.Web.Common.PublishedModels.PaymentTransaction.GetInitialTime(this, _publishedValueFallback);
 
 		///<summary>
 		/// Message
@@ -73,12 +104,36 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string Message => global::Umbraco.Cms.Web.Common.PublishedModels.PaymentTransaction.GetMessage(this, _publishedValueFallback);
 
 		///<summary>
-		/// Payment Gate
+		/// PayGate Name
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("paymentGate")]
-		public virtual string PaymentGate => global::Umbraco.Cms.Web.Common.PublishedModels.PaymentTransaction.GetPaymentGate(this, _publishedValueFallback);
+		[ImplementPropertyType("payGateName")]
+		public virtual string PayGateName => global::Umbraco.Cms.Web.Common.PublishedModels.PaymentTransaction.GetPayGateName(this, _publishedValueFallback);
+
+		///<summary>
+		/// PayGate Record Id
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("payGateRecordId")]
+		public virtual string PayGateRecordId => global::Umbraco.Cms.Web.Common.PublishedModels.PaymentTransaction.GetPayGateRecordId(this, _publishedValueFallback);
+
+		///<summary>
+		/// PayGate Response
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("payGateResponse")]
+		public virtual string PayGateResponse => global::Umbraco.Cms.Web.Common.PublishedModels.PaymentTransaction.GetPayGateResponse(this, _publishedValueFallback);
+
+		///<summary>
+		/// Paying Status
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("payingStatus")]
+		public virtual string PayingStatus => global::Umbraco.Cms.Web.Common.PublishedModels.PaymentTransaction.GetPayingStatus(this, _publishedValueFallback);
 
 		///<summary>
 		/// Paymentor
@@ -87,13 +142,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("paymentor")]
 		public virtual string Paymentor => global::Umbraco.Cms.Web.Common.PublishedModels.PaymentTransaction.GetPaymentor(this, _publishedValueFallback);
-
-		///<summary>
-		/// Start Time
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
-		[ImplementPropertyType("startTime")]
-		public virtual global::System.DateTime StartTime => global::Umbraco.Cms.Web.Common.PublishedModels.PaymentTransaction.GetStartTime(this, _publishedValueFallback);
 
 		///<summary>
 		/// Status

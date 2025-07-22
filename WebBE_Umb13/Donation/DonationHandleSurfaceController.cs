@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+using System.Web;
 using Umbraco.Cms.Core.Cache;
 using Umbraco.Cms.Core.Logging;
 using Umbraco.Cms.Core.Routing;
@@ -14,13 +15,13 @@ using YeahWeb.PaymentsIntegration;
 
 namespace YeahWeb.Donation;
 
-public class DonationTransferController : SurfaceController
+public class DonationHandleSurfaceController : SurfaceController
 {
-    private readonly IDonationStoreService _donationStoreService;
+    private readonly IDonationRepository _donationStoreService;
     private readonly VNPayService _vnPayService;
-    private readonly ILogger<DonationTransferController> _logger;
+    private readonly ILogger<DonationHandleSurfaceController> _logger;
 
-    public DonationTransferController(IDonationStoreService donationStoreService, VNPayService vnPayService,ILogger<DonationTransferController> logger,
+    public DonationHandleSurfaceController(ILogger<DonationHandleSurfaceController> logger, IDonationRepository donationStoreService, VNPayService vnPayService,
         IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory, ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger,
         IPublishedUrlProvider publishedUrlProvider) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
     {
@@ -29,11 +30,13 @@ public class DonationTransferController : SurfaceController
         _logger = logger;
     }
 
-    [HttpPost]
-    [ValidateUmbracoFormRouteString]
-    [ValidateAntiForgeryToken]
+    [Obsolete]
+    [HttpPost("process")]
+    //[ValidateUmbracoFormRouteString]
+    //[ValidateAntiForgeryToken]
     public IActionResult ProcessDonation(DonationViewModel model)
     {
+        throw new NotImplementedException();
             if (!ModelState.IsValid)
             {
                 return CurrentUmbracoPage();
@@ -41,31 +44,31 @@ public class DonationTransferController : SurfaceController
 
             var request = new DonationRequest
             {
-                Amount = model.Amount,
-                DonorName = model.DonorName,
-                DonorEmail = model.DonorEmail,
+                Amount = model.MoneyAmount,
+                DonorName = model.DonatorName,
+                DonorEmail = model.DonatorEmail,
                 Message = model.Message,
-                PayGate = model.PayGate
+                PayGate = model.PayGate,
+                Locale = model.Locale
             };
 
         try
         {
-            var transId = _donationStoreService.CreateDonationTransaction(request);
+            var transId = _donationStoreService.StoreTransaction(request);
 
             var paymentUrl = _vnPayService.CreatePaymentUrl(new VNPayPayRequest
             {
+                Name = model.DonatorName,
+                Email = model.DonatorEmail,
                 OrderId = transId,
-                Amount = model.Amount,
-                //Name = model.DonorName,
-                //Email = model.DonorEmail,
+                Amount = (decimal)model.MoneyAmount,
                 OrderDescription = model.Message,
-                BankCode = model.BankCode,
                 Locale = model.Locale,
-                OrderType = "other-donation",
+                OrderType = "donation",
+                BankCode = model.BankCode,
             }, HttpContext.GetRemoteIPString());
 
             return Redirect(paymentUrl);
-
         }
         catch (Exception ex)
         {
@@ -76,11 +79,12 @@ public class DonationTransferController : SurfaceController
     }
 
     [HttpGet]
-    public IActionResult PayGateReturn([FromQuery] IQueryCollection collections)
+    public IActionResult PayGateReturn(/*[FromQuery] IQueryCollection collections*/)
     {
+        //HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString());
         try
         {
-            var response = _vnPayService.ProcessPaymentResponse(collections);
+            var response = _vnPayService.ProcessPaymentResponse(HttpContext.Request.Query);
 
             // Update transaction status
             _donationStoreService.UpdateTransactionStatus(response.OrderId, response.PayDate,
