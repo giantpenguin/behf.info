@@ -39,11 +39,11 @@ public static class PublishedContentExtensions
         var culPairs = homePage.Cultures.Select(i => Tuple.Create(i.Key.ToLower(), CultureInfo.GetCultureInfo(i.Key)));
 
         Dictionary<string, Tuple<string, string, string>> dictLangInfos = [];
-        foreach (var item in culPairs)
+        foreach (var pair in culPairs)
         {
-            var flag = umbHelper.GetDictionaryValueOrDefault("languageFlag", "N/A");
-            var langUrl = currentPage?.Url(item.Item1, UrlMode.Relative) ?? homePage.Url(item.Item1, UrlMode.Relative);
-            dictLangInfos.Add(item.Item1, Tuple.Create(item.Item2.NativeName, langUrl, flag));
+            var flag = umbHelper.GetDictionaryValueOrDefault("languageFlag", pair.Item2, "N/A");
+            var langUrl = currentPage?.Url(pair.Item1, UrlMode.Relative) ?? homePage.Url(pair.Item1, UrlMode.Relative);
+            dictLangInfos.Add(pair.Item1, Tuple.Create(pair.Item2.NativeName, langUrl, flag));
         }
 
         return dictLangInfos;
