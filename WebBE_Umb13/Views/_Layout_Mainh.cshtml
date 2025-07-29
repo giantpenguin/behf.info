@@ -9,7 +9,7 @@
     Layout = null;
     var homePage = Umbraco.ContentAtRoot().First(c => c.ContentType.Alias == HomePage.ModelTypeAlias);
     var curCulture = Model.GetCultureFromDomains();
-
+    
     // var socialItems = homePage.Value<IEnumerable<BlockListItem>>("socialLinks") ?? Enumerable.Empty<BlockListItem>();
     // var bgrImage = Model.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("pageBackgroundImage");
     // var styleVal = bgrImage != null ? $"background-image: url({bgrImage.MediaUrl()});" : "";
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/assets/css/libs.css">
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/aos.css">
+    <link rel="stylesheet" href="/assets/css/themify-icons.css">
     <link rel="stylesheet" href="/assets/css/custom-style.css">
 </head>
 <body> @*data-bgimage="@bgrImage.MediaUrl()" style="@styleVal" *@

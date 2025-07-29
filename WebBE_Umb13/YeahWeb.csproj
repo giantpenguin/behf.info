@@ -12,17 +12,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HarmonyX" Version="2.13.0" />
-    <PackageReference Include="HotChilli.Umbraco.PageNotFound" Version="2.2.1" />
+    <PackageReference Include="HarmonyX" Version="2.14.0" />
+    <PackageReference Include="HotChilli.Umbraco.PageNotFound" Version="2.2.2" />
     <!-- Opt-in to app-local ICU to ensure consistent globalization APIs across different platforms -->
     <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
     <PackageReference Include="Our.Umbraco.UmbNav.Web" Version="3.0.2" />
-    <PackageReference Include="Umbraco.Cms" Version="13.5.2" />
+    <PackageReference Include="Umbraco.Cms" Version="13.9.2" />
     <PackageReference Include="Umbraco.Commerce" Version="13.1.13" />
     <PackageReference Include="Umbraco.Commerce.Checkout" Version="13.1.2" />
     <PackageReference Include="Umbraco.Commerce.PaymentProviders.PayPal" Version="13.1.1" />
-    <PackageReference Include="Umbraco.Community.BlockPreview" Version="1.10.5" />
-    <PackageReference Include="Umbraco.Forms" Version="13.3.1" />
+    <PackageReference Include="Umbraco.Community.BlockPreview" Version="1.13.6" />
+    <PackageReference Include="Umbraco.Forms" Version="13.5.0" />
     <PackageReference Include="uSync" Version="13.2.6" />
     <PackageReference Include="uSync.Expansions.Core" Version="13.1.8" />
     <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="72.1.0.3" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />

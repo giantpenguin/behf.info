@@ -1,0 +1,42 @@
+// clear placeholder value on focus
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; } /* Firefox 18- */
+input:focus::-moz-placeholder { color:transparent; } /* Firefox 19+ */
+input:focus:-ms-input-placeholder { color:transparent; } /* oldIE ;) */
+textarea::-webkit-input-placeholder { color:transparent; }
+textarea:focus:-moz-placeholder { color:transparent; } /* Firefox 18- */
+textarea:focus::-moz-placeholder { color:transparent; } /* Firefox 19+ */
+textarea:focus:-ms-input-placeholder { color:transparent; } /* oldIE ;) */
+
+.umbraco-forms-hidden, .umbraco-forms-form .hiddenfield {
+  display: none !important
+}
+.form-control:focus {
+    border-color: #8968ad;
+    box-shadow: 0 0 0 0.25rem rgba(137,104,173, 0.25);
+}
+
+.umbraco-forms-error-message {
+  padding: .8em;
+  margin-bottom: .5em;
+  border: 2px solid #fbc2c4
+}
+
+.umbraco-forms-error-message {
+  background: #fbe3e4;
+  color: #8a1f11
+}
+
+.umbraco-forms-form input.input-validation-error, .umbraco-forms-form textarea.input-validation-error {
+  background: #fbe3e4;
+  border-color: #fbc2c4
+}
+
+.umbraco-forms-form span.field-validation-error {
+  color: #8a1f11 !important;
+  background: 0 0 !important
+}
+
+.umbraco-forms-form .field-validation-error {
+  padding-left: 5px
+}

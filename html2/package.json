@@ -4,8 +4,14 @@
   "description": "compile scss to css",
   "main": "scss/",
   "scripts": {
+    "sass-dev": "sass --style=expanded scss:assets/css",
+    "sass-devupdate": "sass --watch --update --style=expanded scss:assets/css",
+    "sass-prod": "sass --no-source-map --style=compressed scss:assets/css",
     "sass-watch": "sass scss:css --watch --style compressed"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.89.2"
+  }
 }
