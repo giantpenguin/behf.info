@@ -6,6 +6,15 @@
     <Version>1.0.1</Version>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Features\**" />
+    <Content Remove="Features\**" />
+    <EmbeddedResource Remove="Features\**" />
+    <None Remove="Features\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Donation\DonationHandleSurfaceController.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="App_Plugins\Login\custom_login_screen.js" />
     <Content Include="App_Plugins\Login\custom_login_screen.css" />
     <Content Include="App_Plugins\Login\umbraco-package.json" />
@@ -29,9 +38,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="App_Plugins\umbracoforms\Backoffice\Common\FieldTypes\" />
     <Folder Include="Infra\" />
     <Folder Include="Views\Partials\blocklist\Components\" />
-    <Folder Include="Views\Partials\Forms\Themes\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
 
@@ -48,6 +57,12 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="IISUrlRewrite.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <PropertyGroup>

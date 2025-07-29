@@ -2,7 +2,31 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 
 @{
-    var pickedForm = Model.Content.Value("formPicker");
+    var pickedFormId = Model.Content.Value<Guid>("formPicker");
+    var isTransForm = Model.Content.Value<bool>("isTransactionForm");
+    // var currentPage = UmbracoContext?.PublishedRequest?.PublishedContent;
 }
 
-@(await Component.InvokeAsync("RenderForm", new { formId = pickedForm, theme = "default", includeScripts = false }))
+@if (!isTransForm)
+{
+    @(await Component.InvokeAsync("RenderForm", new { formId = pickedFormId, theme = "yeahweb", includeScripts = false }))
+}
+else
+{
+    var additionalData = ViewContext.ViewData.GetValue("additionalData") as Dictionary<string, string>;
+    var transMsg = TempData["TransactionMessage"]?.ToString();
+    if (bool.TryParse(TempData["TransactionSuccess"]?.ToString(), out var transSuccess) && transSuccess)
+    {
+        TempData["UmbracoFormSubmittedFromCurrentPage"] = pickedFormId;
+    }
+
+    <div class="form-area">
+        @(await Component.InvokeAsync("RenderForm", new { formId = pickedFormId, theme = "yeahweb", includeScripts = false, additionalData }))
+        @if (!transSuccess && !string.IsNullOrEmpty(transMsg))
+        {
+          <div class="text-bg-warning p-3 mt-3">
+              @Html.Raw(transMsg.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "<br />"))
+          </div>
+        }
+    </div>
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rewrite>
+  <rules>
+    <rule name="VNPay IPN Strict Validation" enabled="true" stopProcessing="true">
+      <match url="^ipn/?$" />
+        <!-- Ensure some vnp_XYZ has a non-empty value -->
+      <conditions logicalGrouping="MatchAll" trackAllCaptures="true">
+        <add input="{QUERY_STRING}" pattern="(^|&amp;)vnp_TmnCode=([^&amp;]+)" />
+        <add input="{C:2}" pattern="^.+$" />
+        <add input="{QUERY_STRING}" pattern="(^|&amp;)vnp_TransactionNo=([^&amp;]+)" />
+        <add input="{C:2}" pattern="^.+$" />
+        <!--<add input="{QUERY_STRING}" pattern="(^|&amp;)vnp_ResponseCode=([^&amp;]+)" />
+        <add input="{C:2}" pattern="^.+$" />-->
+      </conditions>
+      <action type="Rewrite" url="api/transactionhandle/vnpayipn" appendQueryString="true" logRewrittenUrl="true" />
+    </rule>
+    <!-- Fallback for invalid IPN requests - Redirect to error handler -->
+    <rule name="Invalid VNPay IPN response" stopProcessing="true">
+      <match url="^ipn/?$" />
+        <!-- Check if any vnp_XYZ is missing or empty -->
+      <conditions logicalGrouping="MatchAny">
+        <add input="{QUERY_STRING}" pattern="[?&amp;]vnp_SecureHash=.+" negate="true" />
+        <add input="{QUERY_STRING}" pattern="[?&amp;]vnp_TmnCode=.+" negate="true" />
+        <add input="{QUERY_STRING}" pattern="[?&amp;]vnp_TransactionNo=.+" negate="true" />
+      </conditions>
+      <!--Single Complex Negative Lookahead Pattern
+      <conditions>
+        <add input="{QUERY_STRING}" pattern="^(?!.*[?&amp;]vnp_ResponseCode=.+)|(?!.*[?&amp;]vnp_TmnCode=.+)|(?!.*[?&amp;]vnp_TransactionNo=.+)" />
+      </conditions>-->
+      <action type="Redirect" url="api/transactionhandle/vnpayerror?code=99&amp;message=Invalid PayGate response" redirectType="Temporary" logRewrittenUrl="true" />
+    </rule>
+    <rule name="VNPay IPN Redirect" enabled="false" stopProcessing="true">
+      <match url="^ipn/?$" />
+      <conditions logicalGrouping="MatchAll" trackAllCaptures="true">
+        <add input="{QUERY_STRING}" pattern="(^|&amp;)vnp_ResponseCode=([^&amp;]+)" />
+        <add input="{QUERY_STRING}" pattern="(^|&amp;)vnp_TmnCode=([^&amp;]+)" />
+        <add input="{QUERY_STRING}" pattern="(^|&amp;)vnp_TransactionNo=([^&amp;]+)" />
+      </conditions>
+      <action type="Rewrite" url="api/transactionhandle/vnpayipn" appendQueryString="true" logRewrittenUrl="true" />
+    </rule>
+  </rules>
+</rewrite>

@@ -55,5 +55,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
 		[ImplementPropertyType("formPicker")]
 		public virtual global::System.Nullable<global::System.Guid> FormPicker => this.Value<global::System.Nullable<global::System.Guid>>(_publishedValueFallback, "formPicker");
+
+		///<summary>
+		/// Is Transaction Form
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[ImplementPropertyType("isTransactionForm")]
+		public virtual bool IsTransactionForm => this.Value<bool>(_publishedValueFallback, "isTransactionForm");
 	}
 }
