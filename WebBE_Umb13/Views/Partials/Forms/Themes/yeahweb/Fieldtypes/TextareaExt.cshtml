@@ -1,0 +1,45 @@
+@using Umbraco.Forms.Web
+@model Umbraco.Forms.Web.Models.FieldViewModel
+
+@{
+    var autocompleteAttribute = Model.GetSettingValue<string>("AutocompleteAttribute", string.Empty);
+    var numberOfRows = Model.GetSettingValue<int>("NumberOfRows", global::Umbraco.Forms.Core.Providers.FieldTypes.Textarea.DefaultNumberOfRows);
+    var maxLength = Model.GetSettingValue<int>("MaximumLength", 0);
+
+    var formText = Model.GetSettingValue<string>("FormText");
+    var ariaDescBy = !string.IsNullOrEmpty(Model.ToolTip) ? $"{Model.Id}_description" : "";
+    if (!string.IsNullOrEmpty(formText))
+        ariaDescBy = string.IsNullOrEmpty(ariaDescBy) ? $"{Model.Id}_FormText" : $"{ariaDescBy} {Model.Id}_FormText";
+    var leftInputText = Model.GetSettingValue<string>("LeftInputGroupText");
+}
+@if (string.IsNullOrEmpty(leftInputText))
+{
+  <textarea class="@Html.GetFormFieldClass(Model.FieldTypeName) form-control-sm" name="@Model.Name" id="@Model.Id" data-umb="@Model.Id"
+          rows="@numberOfRows" cols="20"
+          @{if (string.IsNullOrEmpty(Model.PlaceholderText) == false) { <text> placeholder="@Model.PlaceholderText" </text> } }
+          @{if (string.IsNullOrEmpty(autocompleteAttribute) == false) { <text> autocomplete="@autocompleteAttribute" </text> } }
+          @{if (maxLength > 0) { <text> maxlength="@maxLength" </text> } }
+          @{if (Model.Mandatory || Model.Validate) { <text> data-val="true" </text> } }
+          @{if (Model.Mandatory) { <text> data-val-required="@Model.RequiredErrorMessage" aria-required="true" </text> }}
+          @{if (Model.Validate) { <text> data-val-regex="@Model.InvalidErrorMessage" data-val-regex-pattern="@Html.Raw(Model.Regex)" </text> }}
+          @{if (!string.IsNullOrEmpty(ariaDescBy)) { <text> aria-describedby="@ariaDescBy" </text> } }>@Model.ValueAsHtmlString</textarea>
+}
+else
+{
+  <div class="input-group">
+    <span class="input-group-text">@Html.Raw(leftInputText)</span>
+    <textarea class="@Html.GetFormFieldClass(Model.FieldTypeName) form-control-sm" name="@Model.Name" id="@Model.Id" data-umb="@Model.Id"
+          rows="@numberOfRows" cols="20"
+          @{if (string.IsNullOrEmpty(Model.PlaceholderText) == false) { <text> placeholder="@Model.PlaceholderText" </text> } }
+          @{if (string.IsNullOrEmpty(autocompleteAttribute) == false) { <text> autocomplete="@autocompleteAttribute" </text> } }
+          @{if (maxLength > 0) { <text> maxlength="@maxLength" </text> } }
+          @{if (Model.Mandatory || Model.Validate) { <text> data-val="true" </text> } }
+          @{if (Model.Mandatory) { <text> data-val-required="@Model.RequiredErrorMessage" aria-required="true" </text> }}
+          @{if (Model.Validate) { <text> data-val-regex="@Model.InvalidErrorMessage" data-val-regex-pattern="@Html.Raw(Model.Regex)" </text> }}
+          @{if (!string.IsNullOrEmpty(ariaDescBy)) { <text> aria-describedby="@ariaDescBy" </text> } }>@Model.ValueAsHtmlString</textarea>
+  </div>
+}
+@if (!string.IsNullOrEmpty(formText))
+{
+    <span class="form-text px-3" id="@(Model.Id)_FormText">@formText</span>
+}

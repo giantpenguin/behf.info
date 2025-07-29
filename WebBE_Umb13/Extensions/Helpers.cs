@@ -5,7 +5,7 @@ using System.Text;
 namespace YeahWeb.Extensions
 {
     public static class Helpers
-    {
+    {        
         public static CultureInfo CultureEnUs => CultureInfo.GetCultureInfo("en-US");
         public static string HexToRgb(string hexColor, string fallback = "255,255,255")
         {
@@ -49,6 +49,7 @@ namespace YeahWeb.Extensions
             return hash.ToString();
         }
 
+        //NOTE: use the Umbraco.Forms.Web.Helpers.GetRequestIpAddressToRecord???
         public static string? GetRemoteIPString(this HttpContext httpContext)
         {
             //https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-8.0&viewFallbackFrom=aspnetcore-2.2

@@ -43,7 +43,7 @@ public class DonationPageController : RenderController
         Dictionary<string, string> additionalData = new() { { "currentCulture", CurrentPage.GetCultureFromDomains() } };
 
         if (Request.Query.IsNullOrEmpty())
-        {            
+        {
             ViewData["additionalData"] = additionalData;
             return base.Index(); // View("~/Views/DonationPage.cshtml");
         }
@@ -55,11 +55,9 @@ public class DonationPageController : RenderController
         TempData["TransactionSuccess"] = paySuccess;
         if (paySuccess)
         {
-            var thankyouMsg = string.Format(translationItems["thankyouMessage_Format"], payResp.Amount);
+            var thankyouMsg = string.Format(translationItems["thankyouMessage_Format"], payResp.Amount)
+                .Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "<br />");
             additionalData.Add("donationThankyouMessage", thankyouMsg);
-            TempData["UmbracoFormSubmittedFromCurrentPage"] = Guid.Parse("79be098b-b737-4971-97c5-79ddf4db8fc4");
-
-            //TempData["TransactionMessage"] = string.Format(translationItems["thankyouMessage_Format"], payResp.Amount);
         }
         else
         {

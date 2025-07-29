@@ -1,42 +1,32 @@
 ﻿@using Umbraco.Extensions
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
-@* @inject Umbraco.Cms.Web.Common.UmbracoHelper Umb
-@inject Umbraco.Forms.Web.Services.IFormRenderingService FormRenderingService
-@inject Umbraco.Forms.Web.Services.IFormThemeResolver FormThemeResolver *@
 
 @{
     var pickedFormId = Model.Content.Value<Guid>("formPicker");
     var isTransForm = Model.Content.Value<bool>("isTransactionForm");
-    // var homePage = Umb.ContentAtRoot().First(p => p.ContentType.Alias == HomePage.ModelTypeAlias);
-    // var isDonationForm = pickedFormId == new Guid("79be098b-b737-4971-97c5-79ddf4db8fc4");
+    // var currentPage = UmbracoContext?.PublishedRequest?.PublishedContent;
 }
-
-@* @if (isDonationForm){
-    var formModel = await FormRenderingService.GetFormModelAsync(Context, pickedFormId, null, "default", null);
-    formModel.RenderScriptFiles = false;
-    formModel.SubmitHandled = false;
-    var formView = FormThemeResolver.GetFormRender(formModel);
-
-    <div>Donation Form goes here</div>
-    @await Html.PartialAsync(formView, formModel)
-
-return;
-} *@
 
 @if (!isTransForm)
 {
-    @(await Component.InvokeAsync("RenderForm", new { formId = pickedFormId, theme = "default", includeScripts = false }))
+    @(await Component.InvokeAsync("RenderForm", new { formId = pickedFormId, theme = "yeahweb", includeScripts = false }))
 }
 else
 {
-    @* Dictionary<string, string> additionalData = new() { { "currentCulture", ViewContext.ViewData.GetValueAsString("currentCulture") } }; *@
     var additionalData = ViewContext.ViewData.GetValue("additionalData") as Dictionary<string, string>;
-    bool.TryParse(TempData["TransactionSuccess"]?.ToString(), out var transSuccess);
+    var transMsg = TempData["TransactionMessage"]?.ToString();
+    if (bool.TryParse(TempData["TransactionSuccess"]?.ToString(), out var transSuccess) && transSuccess)
+    {
+        TempData["UmbracoFormSubmittedFromCurrentPage"] = pickedFormId;
+    }
 
-    <div class="form-area" @* style="visibility:@(rspCode=="00"? "hidden":"block");" *@>
-        @(await Component.InvokeAsync("RenderForm", new { formId = pickedFormId, theme = "bootstrap3-horizontal", includeScripts = false, additionalData }))
+    <div class="form-area">
+        @(await Component.InvokeAsync("RenderForm", new { formId = pickedFormId, theme = "yeahweb", includeScripts = false, additionalData }))
+        @if (!transSuccess && !string.IsNullOrEmpty(transMsg))
+        {
+          <div class="text-bg-warning p-3 mt-3">
+              @Html.Raw(transMsg.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "<br />"))
+          </div>
+        }
     </div>
-    @* <div class="noti-area">
-        <span>@TempData["TransactionMessage"]</span>
-    </div> *@
 }

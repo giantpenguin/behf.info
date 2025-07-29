@@ -1,0 +1,47 @@
+@using Umbraco.Forms.Web
+@using Umbraco.Forms.Web.Models
+@model Umbraco.Forms.Web.Models.FieldViewModel
+@{
+    var maxLength = Model.GetSettingValue<int>("MaximumLength", 255);
+    var fieldType = Model.GetSettingValue<string>("FieldType", "text");
+    var autocompleteAttribute = Model.GetSettingValue<string>("AutocompleteAttribute", string.Empty);
+
+    var formText = Model.GetSettingValue<string>("FormText");
+    var ariaDescBy = !string.IsNullOrEmpty(Model.ToolTip) ? $"{Model.Id}_description" : "";
+    if (!string.IsNullOrEmpty(formText))
+        ariaDescBy = string.IsNullOrEmpty(ariaDescBy) ? $"{Model.Id}_FormText" : $"{ariaDescBy} {Model.Id}_FormText";
+    var leftInputText = Model.GetSettingValue<string>("LeftInputGroupText");
+    var rightInputText = Model.GetSettingValue<string>("RightInputGroupText");
+}
+@if (string.IsNullOrEmpty(leftInputText) && string.IsNullOrEmpty(rightInputText))
+{
+  <input type="@fieldType" name="@Model.Name" id="@Model.Id" data-umb="@Model.Id" class="@Html.GetFormFieldClass(Model.FieldTypeName) text form-control-sm" value="@Model.ValueAsHtmlString" maxlength="@maxLength"
+       @{if (!string.IsNullOrEmpty(Model.PlaceholderText)) { <text> placeholder="@Model.PlaceholderText" </text>  }}
+       @{if (!string.IsNullOrEmpty(autocompleteAttribute)) { <text> autocomplete="@autocompleteAttribute" </text>  }}
+       @{if (Model.Mandatory || Model.Validate) { <text> data-val="true" </text>  }}
+       @{if (Model.Mandatory) { <text> data-val-required="@Model.RequiredErrorMessage" aria-required="true" </text>  }}
+       @{if (Model.Validate) { <text> data-val-regex="@Model.InvalidErrorMessage" data-val-regex-pattern="@Html.Raw(Model.Regex)" </text>  }}
+       @{if (!string.IsNullOrEmpty(ariaDescBy)) { <text> aria-describedby="@ariaDescBy" </text> } } />
+}
+else
+{
+  <div class="input-group">
+    @if (!string.IsNullOrEmpty(leftInputText)){
+    <span class="input-group-text">@Html.Raw(leftInputText)</span>
+    }
+    <input type="@fieldType" name="@Model.Name" id="@Model.Id" data-umb="@Model.Id" class="@Html.GetFormFieldClass(Model.FieldTypeName) text form-control-sm" value="@Model.ValueAsHtmlString" maxlength="@maxLength"
+       @{if (!string.IsNullOrEmpty(Model.PlaceholderText)) { <text> placeholder="@Model.PlaceholderText" </text>  }}
+       @{if (!string.IsNullOrEmpty(autocompleteAttribute)) { <text> autocomplete="@autocompleteAttribute" </text>  }}
+       @{if (Model.Mandatory || Model.Validate) { <text> data-val="true" </text>  }}
+       @{if (Model.Mandatory) { <text> data-val-required="@Model.RequiredErrorMessage" aria-required="true" </text>  }}
+       @{if (Model.Validate) { <text> data-val-regex="@Model.InvalidErrorMessage" data-val-regex-pattern="@Html.Raw(Model.Regex)" </text>  }}
+       @{if (!string.IsNullOrEmpty(ariaDescBy)) { <text> aria-describedby="@ariaDescBy" </text> } } />
+    @if (!string.IsNullOrEmpty(rightInputText)){
+    <span class="input-group-text">@Html.Raw(rightInputText)</span>
+    }
+  </div>
+}
+@if (!string.IsNullOrEmpty(formText))
+{
+    <span class="form-text px-3" id="@(Model.Id)_FormText">@formText</span>
+}

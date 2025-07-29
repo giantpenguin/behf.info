@@ -1,0 +1,30 @@
+@using Microsoft.Extensions.Options
+@using Umbraco.Forms.Core.Configuration
+@using Umbraco.Forms.Web
+@model Umbraco.Forms.Web.Models.FieldViewModel
+@inject IOptionsSnapshot<TitleAndDescriptionSettings> Configuration
+
+@{
+    var caption = Model.GetSettingValue<string>("Caption");    
+    var captionTag = Model.GetSettingValue<string>("CaptionTag", "h2");
+    var bodyText = Model.GetSettingValue<string>("BodyText");
+    var customCss = Model.GetSettingValue<string>("CustomCss");
+}
+
+<div id="@Model.Id" data-umb="@Model.Id" class="@Html.GetFormFieldClass(Model.FieldTypeName) form-control-sm @customCss">
+    @if (!string.IsNullOrEmpty(caption))
+    {
+        @Html.Raw("<" + captionTag + ">")@caption@Html.Raw("</" + captionTag + ">")
+    }
+    @if (!string.IsNullOrEmpty(bodyText))
+    {
+        if (Configuration.Value.AllowUnsafeHtmlRendering)
+        {
+            <p>@Html.Raw(bodyText.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "<br />"))</p>
+        }
+        else
+        {
+            <p>@bodyText</p>
+        }
+    }
+</div>
