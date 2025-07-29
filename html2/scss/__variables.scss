@@ -10,6 +10,9 @@ $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
 $black:    #000 !default;
 
+$primary: #e1ccad;
+$secondary: #764979;
+
 $font-family-sans-serif: "Karla", serif;
 $font-family-serif: "Playfair Display", serif;
 
@@ -27,9 +30,6 @@ $h3-margin: $font-size-base * 1.25;
 $h4-margin: $font-size-base * 1.25;
 $h5-margin: $font-size-base * 1;
 $h6-margin: $font-size-base;
-
-$primary: #e1ccad;
-$secondary: #764979;
 
 $border-color: $gray-400;
 
@@ -73,6 +73,8 @@ $form-select-focus-box-shadow:    0 0 0 0 transparent;
 $form-check-input-checked-bg-color: $secondary;
 $form-check-input-indeterminate-bg-color: $secondary;
 
+$form-text-font-size: 1em;
+$form-text-color: $gray-600;
 
 $container-max-widths: (
   sm: 540px,

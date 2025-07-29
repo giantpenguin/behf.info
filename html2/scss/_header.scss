@@ -5,7 +5,7 @@
     --navbar-color: var(--color);
     --navbar-active-color: var(--active-color);
     --navbar-hero-color: #fff;
-    --navbar-hero-active-color: #fff;
+    --navbar-hero-active-color: var(--active-color);
     --navbar-dropdown-color: var(--color);
     --navbar-box-shadow: 0 .25rem .5rem 0 rgba(0,0,0,.1);
     --navbar-button-height: 50px;
@@ -20,14 +20,13 @@
     //--color
     //--active-color
     padding: 0;
-    background-color: var(--navbar-bg-color);
     height: var(--navbar-height);
     background-color: var(--navbar-bg-color);
     box-shadow: var(--navbar-box-shadow);
     transition: height .3s ease, background-color .3s ease, box-shadow .3s ease;
     will-change: height, background-color, box-shadow;
     &.theme-hero{
-        --navbar-bg-color: transparent;
+        --navbar-bg-color: rgba(20,110,230,.3);
         --navbar-color: var(--navbar-hero-color);
         --navbar-active-color: var(--navbar-hero-active-color);
         --navbar-box-shadow: 0 0 0 0 transparent;
