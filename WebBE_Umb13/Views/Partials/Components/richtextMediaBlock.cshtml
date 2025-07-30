@@ -9,17 +9,13 @@
     var highlightText = Model.Content.Value<string>("highlightParagraph");
     var ctaLink = Model.Content.Value<Link>("actionLink");
     var useJbtOuter = !Model.Content.Value<bool>("notUseJbtOuter");
-    // var showIcon = Model.Content.Value<bool>("showIcon");
-    // var mediaOnRight = Model.Content.Value<bool>("mediaOnRight") ? " order-1" : "";
-    // var boxShadow = Model.Content.Value<bool>("shadowRichtext") ? "bg-white box_shadow4" : "" ;
-    // var youtubeId = Model.Content.Value<string>("youtubeVideo")?.Trim();
-    // var vdoClass = string.IsNullOrWhiteSpace(youtubeId) ? "" : "overlay_bg_30 video_box";
 }
 
 <div class="section-block__cnt">
     <div class="row align-items-center gy-3">
         <div class="col-12 col-lg-6">
-            @if (useJbtOuter) {
+            @if (useJbtOuter) 
+            {
                 <div class="card-jbt-mda a-fadein a-fadein--left">
                     <div class="card-jbt-mda__img h-rect">
                         <div class="h-rect__inner">
@@ -30,20 +26,22 @@
                     <figure class="card-jbt-mda__shp top-left mover-y-x15"><img src="/assets/images/patterns/golden-5petal-flower-shape1.png" alt="golden 5petal flower"></figure>
                 </div>
             }
-            else {
+            else 
+            {
                 <div class="a-fadein a-fadein--left">
                     <img src="@imgUrl" alt="@heading" title="@heading">
                 </div>
             }
         </div>
         <div class="col-12 col-lg-6">
-            <div class="section-block__cpn card-jbt-cnt a-fadein a-fadein--right a-fadein--init">
+            <div class="section-block__cpn a-fadein a-fadein--right">@* card-jbt-cnt *@
                 @if (!string.IsNullOrWhiteSpace(subHeading))
                 {
                     <h5>@subHeading</h5>
                 }
                 <h2>@heading</h2>
-                @if (Model.Content.HasValue("paragraph")){
+                @if (Model.Content.HasValue("paragraph"))
+                {
                     <div class="text-lg card-plan__fet">@Model.Content.Value("paragraph")</div>
                 }
                 @if (!string.IsNullOrWhiteSpace(highlightText)) { 

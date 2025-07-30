@@ -24,7 +24,7 @@ else
         @(await Component.InvokeAsync("RenderForm", new { formId = pickedFormId, theme = "yeahweb", includeScripts = false, additionalData }))
         @if (!transSuccess && !string.IsNullOrEmpty(transMsg))
         {
-          <div class="text-bg-warning p-3 mt-3">
+          <div class="alert alert-warning" role="alert">
               @Html.Raw(transMsg.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "<br />"))
           </div>
         }

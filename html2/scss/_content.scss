@@ -69,13 +69,13 @@ h5,.h5,h6,.h6{
         }
     }
     &.border-left{
-        padding-left: 20px;
+        padding-left: 15px;
         &::after{
             inset: 2px auto 2px 0;
         }
     }
     &.border-right{
-        padding-right: 20px;
+        padding-right: 15px;
         &::after{
             inset: 2px 0 2px auto;
         }

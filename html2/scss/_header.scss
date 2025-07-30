@@ -5,7 +5,7 @@
     --navbar-color: var(--color);
     --navbar-active-color: var(--active-color);
     --navbar-hero-color: #fff;
-    --navbar-hero-active-color: var(--active-color);
+    // --navbar-hero-active-color: var(--active-color);
     --navbar-dropdown-color: var(--color);
     --navbar-box-shadow: 0 .25rem .5rem 0 rgba(0,0,0,.1);
     --navbar-button-height: 50px;
@@ -28,7 +28,7 @@
     &.theme-hero{
         --navbar-bg-color: rgba(20,110,230,.3);
         --navbar-color: var(--navbar-hero-color);
-        --navbar-active-color: var(--navbar-hero-active-color);
+        --navbar-active-color: var(--active-color);
         --navbar-box-shadow: 0 0 0 0 transparent;
     }
     &.size-minimal{

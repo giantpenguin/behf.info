@@ -2,15 +2,16 @@
 
 @if (Model.MessageOnSubmitIsHtml)
 {
+    var msgOnSumit = Model.GetMessageOnSubmit()?.ToString()?.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "<br/>");
     <div class="umbraco-forms-submitmessage-html">
-        <div id="alert-msg" class="alert-msg alert-msg-success">
-            @Html.Raw(Model.GetMessageOnSubmit())
+        <div id="alert-msg" class="alert alert-success" role="alert">
+            @Html.Raw(msgOnSumit)
         </div>        
     </div>
 }
 else
 {
-    <div>
+    <div class="alert alert-success" role="alert">
         <span class="umbraco-forms-submitmessage">
             @Model.GetMessageOnSubmit()
         </span>

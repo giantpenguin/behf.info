@@ -55,13 +55,13 @@ public class DonationPageController : RenderController
         TempData["TransactionSuccess"] = paySuccess;
         if (paySuccess)
         {
-            var thankyouMsg = string.Format(translationItems["thankyouMessage_Format"], payResp.Amount)
-                .Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "<br />");
+            var thankyouMsg = string.Format(translationItems["donationThankyouMessage_Format"], payResp.Amount, payResp.TransactionNo);
+                /*.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "<br/>");*/
             additionalData.Add("donationThankyouMessage", thankyouMsg);
         }
         else
         {
-            TempData["TransactionMessage"] = translationItems["unsuccessMessage"];
+            TempData["TransactionMessage"] = translationItems["donationUnsuccessMessage"];
         }
 
         ViewData["additionalData"] = additionalData;
