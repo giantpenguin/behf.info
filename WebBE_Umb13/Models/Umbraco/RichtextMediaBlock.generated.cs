@@ -111,11 +111,11 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual bool ShadowRichtext => this.Value<bool>(_publishedValueFallback, "shadowRichtext");
 
 		///<summary>
-		/// Show Icon: Show Icon under Heading
+		/// Show stack content: Show Heading on the image then on other content
 		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
-		[ImplementPropertyType("showIcon")]
-		public virtual bool ShowIcon => this.Value<bool>(_publishedValueFallback, "showIcon");
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
+		[ImplementPropertyType("stackContent")]
+		public virtual bool StackContent => this.Value<bool>(_publishedValueFallback, "stackContent");
 
 		///<summary>
 		/// Sub Heading

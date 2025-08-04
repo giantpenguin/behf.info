@@ -1,3 +1,47 @@
+$blues-colors-rgb: map-loop($blues, to-rgb, "$value") !default;
+$indigos-colors-rgb: map-loop($indigos, to-rgb, "$value") !default;
+$purples-colors-rgb: map-loop($purples, to-rgb, "$value") !default;
+$pinks-colors-rgb: map-loop($pinks, to-rgb, "$value") !default;
+$reds-colors-rgb: map-loop($reds, to-rgb, "$value") !default;
+$oranges-colors-rgb: map-loop($oranges, to-rgb, "$value") !default;
+$yellows-colors-rgb: map-loop($yellows, to-rgb, "$value") !default;
+$greens-colors-rgb: map-loop($greens, to-rgb, "$value") !default;
+$teals-colors-rgb: map-loop($teals, to-rgb, "$value") !default;
+$cyans-colors-rgb: map-loop($cyans, to-rgb, "$value") !default;
+
+:root{
+    @each $color, $value in $blues-colors-rgb {
+    --#{$prefix}#{str-replace($color, '-', '-rgb-')}: #{$value};
+  }
+    @each $color, $value in $indigos-colors-rgb {
+    --#{$prefix}#{str-replace($color, '-', '-rgb-')}: #{$value};
+  }
+    @each $color, $value in $purples-colors-rgb {
+    --#{$prefix}#{str-replace($color, '-', '-rgb-')}: #{$value};
+  }
+    @each $color, $value in $pinks-colors-rgb {
+    --#{$prefix}#{str-replace($color, '-', '-rgb-')}: #{$value};
+  }
+    @each $color, $value in $reds-colors-rgb {
+    --#{$prefix}#{str-replace($color, '-', '-rgb-')}: #{$value};
+  }
+    @each $color, $value in $oranges-colors-rgb {
+    --#{$prefix}#{str-replace($color, '-', '-rgb-')}: #{$value};
+  }
+    @each $color, $value in $yellows-colors-rgb {
+    --#{$prefix}#{str-replace($color, '-', '-rgb-')}: #{$value};
+  }
+    @each $color, $value in $greens-colors-rgb {
+    --#{$prefix}#{str-replace($color, '-', '-rgb-')}: #{$value};
+  }
+    @each $color, $value in $teals-colors-rgb {
+    --#{$prefix}#{str-replace($color, '-', '-rgb-')}: #{$value};
+  }
+    @each $color, $value in $cyans-colors-rgb {
+    --#{$prefix}#{str-replace($color, '-', '-rgb-')}: #{$value};
+  }
+}
+
 .site-content{
     min-height: 101vh;
 }
