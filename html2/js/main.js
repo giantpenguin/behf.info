@@ -64,6 +64,7 @@ $(document).ready(function(){
             itemDots = this.getAttribute('data-dots'),
             itemMargin = this.getAttribute('data-margin'),
             itemAutoHeight = this.getAttribute('data-auto-height');
+            autoPlay = this.getAttribute('data-auto-play');
         $(this).owlCarousel({
             responsive:{
                 0:{
@@ -87,6 +88,7 @@ $(document).ready(function(){
             dots: (itemDots == 'true'),
             margin: itemMargin !== null ? Number(itemMargin) : 32,
             autoHeight: (itemAutoHeight == 'true'),
+            autoplay: (autoPlay == 'true'),
         });
     });
 });

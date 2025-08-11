@@ -1,3 +1,4 @@
+$grays-colors-rgb: map-loop($grays, to-rgb, "$value") !default;
 $blues-colors-rgb: map-loop($blues, to-rgb, "$value") !default;
 $indigos-colors-rgb: map-loop($indigos, to-rgb, "$value") !default;
 $purples-colors-rgb: map-loop($purples, to-rgb, "$value") !default;
@@ -10,6 +11,9 @@ $teals-colors-rgb: map-loop($teals, to-rgb, "$value") !default;
 $cyans-colors-rgb: map-loop($cyans, to-rgb, "$value") !default;
 
 :root{
+    @each $color, $value in $grays-colors-rgb {
+    --#{$prefix}#{str-replace($color, '-', '-rgb-')}: #{$value};
+  }    
     @each $color, $value in $blues-colors-rgb {
     --#{$prefix}#{str-replace($color, '-', '-rgb-')}: #{$value};
   }
