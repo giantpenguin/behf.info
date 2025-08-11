@@ -48,4 +48,13 @@ public static class PublishedContentExtensions
 
         return dictLangInfos;
     }
+
+    public static string GetTextReadMore(this UmbracoHelper umbHelper, IPublishedElement? currentContent)
+    {
+        var readMore = currentContent is IItemSettings itmSettings ? itmSettings.TextReadMore : "";
+        //var readMore = currentContent is IItemSettings ? currentContent.Value<string>("textReadMore") : "";
+
+        return string.IsNullOrEmpty(readMore) ? umbHelper.GetDictionaryValueOrDefault("textReadMore", "Read More") : readMore;
+    }
+
 }

@@ -5,18 +5,19 @@
 
 @{
     var items = Model.RandomizeFirstItem();
-    if (items?.Any() == false)
+    var count = items?.Count();
+    if (count <= 0)
         return;
 
     var sliderId = $"slider{Guid.NewGuid()}";
+    var autoPlay = ViewData.TryGetValue("autoPlay", out var val) ? val.ToString() : "false";
 }
 
-<div id="@sliderId" class="c-carousel owl-carousel"
-data-items-xs="1" data-items-md="1" data-items-lg="1"
-data-loop="true" data-center="false" data-drag="false"
-data-nav="true" data-dots="true" data-margin="32">
+<div id="@sliderId" class="c-carousel owl-carousel" data-items-xs="1" data-items-md="1" data-items-lg="1"
+  data-loop="true" data-center="false" data-drag="false" data-nav="true" data-dots="true" data-margin="32"
+     data-auto-height="true" data-auto-play="@autoPlay">
 
-    @for (int i = 0; i < items.Count(); i++)
+    @for (int i = 0; i < count; i++)
     {
         var item = items.ElementAt(i);
         var itemPatlView = $"Components/{item.ContentType.Alias}Item";

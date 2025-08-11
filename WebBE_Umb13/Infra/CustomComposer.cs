@@ -1,4 +1,5 @@
 using Umbraco.Cms.Core.Composing;
+using Umbraco.Cms.Core.Dashboards;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Notifications;
 
@@ -9,5 +10,6 @@ public class CustomComposer : IComposer
     public void Compose(IUmbracoBuilder builder)
     {
         PatchLicense.DoPatch();
+        builder.Dashboards().Remove<ContentDashboard>();
     }
 }

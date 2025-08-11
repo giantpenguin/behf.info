@@ -7,32 +7,40 @@
         return;
 
     var bannerImgUrl = Model.Value<IPublishedContent>("bannerImage")?.GetCropUrl();
-    var heading = Model.Value<string>("heading");
-    var effectPart = Model.Value<string>("headingEffectPart"); // e.g., "<span class=\"ityped\">Body &amp; Soul</span><span class=\"ityped-cursor\">|</span>";
-    var subh = Model.Value<string>("subHeading");
-    var overImgUrl = Model.Value<IPublishedContent>("overImage")?.GetCropUrl();
-    var actLink = Model.Value<Link>("actionLink");
-
     var styleVal = string.IsNullOrEmpty(bannerImgUrl) ? "" : $"background-image: url('{bannerImgUrl}');";
+    var heading = Model.Value<string>("heading");
+    var subh = Model.Value<string>("subHeading");
+    var effectPart = Model.Value<string>("headingEffectPart"); // e.g., "<span class=\"ityped\">Body &amp; Soul</span><span class=\"ityped-cursor\">|</span>";
+    var overImgUrl = Model.Value<IPublishedContent>("overImage")?.GetCropUrl();
+    var textOrder = Model.Value<bool>("textContentRightSide") ? "order-1" : "";
+
+    var youtubeId = Model.Value<string>("videoYouTubeId");
+    var youtubeEmbed = string.IsNullOrEmpty(youtubeId) ? "" : $"//www.youtube.com/embed/{youtubeId}?autoplay=1&mute=1&loop=1&playsinline=1&playlist={youtubeId}&rel=0";
+    var actLink = Model.Value<Link>("actionLink");
 }
 
-<div class="hero-item content--left" style="@styleVal">
-    @* <div class="hero-item__bkd" style="background-color: rgba(0,0,0,.6);"></div> *@
-    <div class="hero-item__wrp">
-        @* hero-item__wrp home_banner *@
+<div class="hero-item" style="@styleVal">
+    @if (!string.IsNullOrEmpty(youtubeEmbed))
+    {
+        <div class="hero-item__vid">
+            <iframe src="@youtubeEmbed" title="@heading" referrerpolicy="strict-origin-when-cross-origin" frameborder="0"></iframe>
+        </div>
+        <div class="hero-item__bkd" style="background-color: rgba(0,0,0,.6);"></div>
+    }
+    <div class="hero-item__wrp">     
         <div class="container">
             <div class="row justify-content-center align-items-center">
-                <div class="col-11 col-md-9 col-lg-6 col--hero-cnt a-fadein a-fadein--right">
+                <div class="col-11 col-md-9 col-lg-6 col--hero-cnt @textOrder a-fadein a-fadein--right">
                     <div class="section-hero__cnt">
-                        @if (!string.IsNullOrWhiteSpace(subh))
-                        {
-                            <h5>@subh</h5>
-                        }
+                    @if (!string.IsNullOrWhiteSpace(subh))
+                    {
+                        <h5>@subh</h5>
+                    }
                         <h1 data-aos="fade-up" class="aos-init aos-animate">@heading @Html.Raw(effectPart)</h1>
-                        @if (Model.HasValue("paragraph"))
-                        {
-                            <div class="text-lg">@Model.Value("paragraph")</div>
-                        }
+                    @if (Model.HasValue("paragraph"))
+                    {
+                        <div class="text-lg">@Model.Value("paragraph")</div>
+                    }
                     </div>
                     @if (actLink != null)
                     {
@@ -42,11 +50,12 @@
                     }
                 </div>
                 <div class="col-10 col-md-8 col-lg-6 col--hero-mda a-fadein a-fadein--left">
-                  @if(!string.IsNullOrWhiteSpace(overImgUrl)) {
+                @if (!string.IsNullOrWhiteSpace(overImgUrl))
+                {
                     <div class="section-hero__mda mover-x">
                         <img src="@overImgUrl" alt="@heading">
                     </div>
-                  }
+                }
                 </div>
             </div>
         </div>

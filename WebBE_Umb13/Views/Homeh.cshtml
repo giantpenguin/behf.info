@@ -5,13 +5,15 @@
 @{
     Layout = "_Layout_Mainh.cshtml";
     TempData["blocksWithGroupNames"] = Model.GetBlocksWithGroupNames("contentLayout");
-    var heroBanners = Model.Value<IEnumerable<IPublishedContent>>("heroBanners") ?? Enumerable.Empty<IPublishedContent>();
+    var heroBanners = Model.Value<IEnumerable<IPublishedContent>>("heroBanners") ?? Enumerable.Empty<IPublishedContent>();    
+    var viewData = new ViewDataDictionary(ViewData);
+    viewData.Add("autoPlay", Model.Value<string>("autoPlayBanners")?.ToLowerInvariant());
 }
 
-<div class="section-hero">
+<div class="section-hero home-banner">
     @if (heroBanners.Count() > 1)
     {
-        await Html.RenderPartialAsync("Components/itemsSlider", heroBanners);
+        await Html.RenderPartialAsync("Components/itemsSlider", heroBanners, viewData);
     }
     else 
     {

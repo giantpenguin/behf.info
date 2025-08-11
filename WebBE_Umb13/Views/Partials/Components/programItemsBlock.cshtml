@@ -1,16 +1,17 @@
 ﻿@using Umbraco.Extensions
 @using Umbraco.Cms.Core.Models
 @using Umbraco.Cms.Core.Models.Blocks
+@using YeahWeb.Extensions
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 
 @{
-    var selItems = Model.Content.Value<IEnumerable<IPublishedContent>>("programsPicker") ?? Enumerable.Empty<IPublishedContent>();
+    var selItems = Model.Content.Value<IEnumerable<IPublishedContent>>("programsPicker")?.Where(i => i.IsPublished()) ?? Enumerable.Empty<IPublishedContent>();
+    var readMore = Umbraco.GetTextReadMore(Model.Content);
 }
 <div class="row justify-content-center">
     @foreach (var item in selItems)
     {
-        var heading = item.Value<string>("heading");
-        var subheading = item.Value<string>("subHeading");
+        var progTitle = item.Value<string>("programTitle");
         var imgUrl = item.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("listingImage")?.GetCropUrl(width: 500);
         var objectives = item.Value<IEnumerable<string>>("objectives") ?? Enumerable.Empty<string>();
 
@@ -20,13 +21,13 @@
                     <div class="card-plan__mda">
                         <div class="plan-cover-wrap h-rect">
                             <div class="h-rect__inner">
-                                <img src="@imgUrl" alt="@heading">
+                                <img src="@imgUrl" alt="@progTitle">
                             </div>
                         </div>
-                        @if (!string.IsNullOrEmpty(subheading))
+                        @if (!string.IsNullOrEmpty(progTitle))
                         {
-                            <div class="card-teaser__lbl">
-                                <span>@subheading</span>
+                            <div class="card-teaser__lbl text-center">
+                                <span class="py-2">@progTitle</span>
                             </div>
                         }
                         else {
@@ -37,29 +38,29 @@
                     </div>
                     <div class="card-plan__cnt">
                         <div class="plan-cnt-top">
-                            <h4 class="card-plan__tle">@heading</h4>
-                            @if (item.HasValue("paragraph"))
+                            @* <h4 class="card-plan__tle">@progTitle</h4> *@
+                            @if (item.HasValue("excerpt"))
                             {
-                                <div class="card-plan__fet">@item.Value("paragraph")</div>
+                                <div class="card-plan__fet">@item.Value("excerpt")</div>
                             }
-                            <div class="card-plan__fet">
+                            @* <div class="card-plan__fet">
                                 <ul>
                                     @foreach (var str in objectives)
                                     {
                                         <li>@str</li>                           
                                     }
                                 </ul>
-                            </div>
+                            </div> *@
                         </div>
-                        @* <div class="plan-cnt-btm">
-                            <div class="card-plan__prc">
+                        <div class="plan-cnt-btm">
+                            @* <div class="card-plan__prc">
                                 <div class="plan-prc-num">$0</div>
                                 <div class="plan-prc-per">/xx</div>
-                            </div>
+                            </div> *@
                             <div class="card-plan__cta">
-                                <a href="#" class="btn btn-primary btn-lg">Enroll now</a>
+                                <a href="@item.Url()" class="btn btn-primary btn-lg" title="@readMore">@readMore</a>
                             </div>
-                        </div> *@
+                        </div>
                     </div>
                 </div>
             </div>
