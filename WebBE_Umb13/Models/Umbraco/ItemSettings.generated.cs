@@ -22,7 +22,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 	/// <summary>Item Settings</summary>
 	public partial interface IItemSettings : IPublishedElement
 	{
-		/// <summary>Text ReadMore</summary>
+		/// <summary>Button Text</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		string TextReadMore { get; }
@@ -60,14 +60,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Text ReadMore
+		/// Button Text
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("textReadMore")]
 		public virtual string TextReadMore => GetTextReadMore(this, _publishedValueFallback);
 
-		/// <summary>Static getter for Text ReadMore</summary>
+		/// <summary>Static getter for Button Text</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		public static string GetTextReadMore(IItemSettings that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "textReadMore");

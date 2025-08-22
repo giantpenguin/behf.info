@@ -17,8 +17,7 @@
 
     var imgCaption = Model.Content.Value<string>("iconImageCaption");
 
-    var bgColor = Model.Content.Value<ColorPickerValueConverter.PickedColor>("backgroundColor");
-    var styleColor = string.IsNullOrEmpty(bgColor?.Color) ? "" : $"background-color: #{bgColor.Color};";
+    var styleColor = Model.Content.GetBgrRGBAForStyle();
     var addPadding = string.IsNullOrEmpty(styleColor) ? "" : "py-4 px-4";
 }
 

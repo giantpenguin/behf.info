@@ -8,7 +8,7 @@
     bool layout = blockGroups?.Any(kv => contentTypes.Contains(kv.Key) && kv.Value == "Layout Blocks") ?? false;
 }
 
-<div class="@(layout ? "layout-" : "feature-")items d-flex flex-column @(layout ? "gap-0" : "gap-3")">
+<div class="@(layout ? "layout-" : "feature-")items @(layout ? "gap-0" : "gap-3")"> @* d-flex flex-column *@
 @foreach (var item in Model)
 {
     var partialView = layout ? $"blockgrid/Components/{item.Content.ContentType.Alias}h" : $"Components/{item.Content.ContentType.Alias}";

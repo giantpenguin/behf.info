@@ -1,0 +1,32 @@
+﻿@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using YeahWeb.Extensions;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
+
+@{
+    var pageTitle = Model.Value<string>("title");
+    var homePage = Umbraco.GetHomepage();
+    var imgBanner = Model.Value<IPublishedContent>("heroBanner", fallback: Fallback.ToDefaultLanguage);
+    if (imgBanner == null)
+        imgBanner = homePage.Value<IPublishedContent>("defaultBannerImage", fallback: Fallback.ToDefaultLanguage);
+    var imgUrl = imgBanner?.GetCropUrl(width: 1920, height: 650);
+}
+
+<div class="hero-item content--center page-header" style="--bg-image: url('@imgUrl');--bg-backdrop: rgba(0,0,0,.6);">
+    <div class="hero-item__wrp">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-sm-12 text-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center a-fadein a-fadein--up">
+                            <li class="breadcrumb-item"><a href="@homePage.Url()">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+                        </ol>
+                    </nav>
+                    <div class="page-title a-fadein a-fadein--up a-delay--50">
+                        <h1>@pageTitle</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

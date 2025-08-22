@@ -1,3 +1,4 @@
 ﻿:root {
   --umb-login-curves-display: none;
+  --umb-login-image: url(../umbraco/myLogin.png);
 }

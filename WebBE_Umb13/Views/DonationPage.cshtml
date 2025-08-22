@@ -5,33 +5,11 @@
 @{
     Layout = "_Layout_Mainh.cshtml";
     TempData["blocksWithGroupNames"] = Model.GetBlocksWithGroupNames("contentLayout");
-    var pageTitle = Model.Value<string>("title");
-    var imgUrl = Model.Value<IPublishedContent>("heroBanner", fallback: Fallback.ToDefaultLanguage)?.GetCropUrl(width: 1920, height: 650);
-
-    // ViewContext.ViewData["currentCulture"] = Model.GetCultureFromDomains();
 }
 
+<partial name="initValues" model="Model" />
 <div class="section-hero">
-    <div class="hero-item content--center page-header" style="--bg-image: url('@imgUrl');--bg-backdrop: rgba(0,0,0,.6);">
-        @* <div class="hero-item__bkd" style="background-color: rgba(0,0,0,.6);"></div> *@
-        <div class="hero-item__wrp">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-sm-12 text-center">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center a-fadein a-fadein--up">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
-                            </ol>
-                        </nav>
-                        <div class="page-title a-fadein a-fadein--up a-delay--50">
-                            <h1>@pageTitle</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <partial name="breadcrumbHeroBanner" model="Model" />
 </div>
 @* <!-- BLOCK GRID --> *@
 @await Html.GetBlockGridHtmlAsync(Model, "contentLayout", "defaulth")

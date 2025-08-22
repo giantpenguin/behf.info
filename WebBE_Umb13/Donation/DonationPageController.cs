@@ -8,6 +8,7 @@ using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.Controllers;
 using Umbraco.Forms.Core;
 using YeahWeb.Donation.Services;
+using YeahWeb.Extensions;
 using YeahWeb.PaymentsIntegration;
 
 namespace YeahWeb.Donation;
@@ -39,32 +40,31 @@ public class DonationPageController : RenderController
         //if (!string.IsNullOrEmpty(redirectUrl))
         //    return Redirect(redirectUrl);
 
-        // "currentCulture" to populate for formLocale field
-        Dictionary<string, string> additionalData = new() { { "currentCulture", CurrentPage.GetCultureFromDomains() } };
-
         if (Request.Query.IsNullOrEmpty())
         {
-            ViewData["additionalData"] = additionalData;
             return base.Index(); // View("~/Views/DonationPage.cshtml");
         }
 
+        // populate additional data used by the Form on current DonationPage
+        //Dictionary<string, string> formAdinalData = [];
         var validCheck = _vnPayService.CheckResponse(Request.Query, out var payResp);
-        var paySuccess = validCheck && payResp.Success/*.ResponseCode == "00" & payResp.TransactionStatus == "00"*/;
         var translationItems = _dictionaryFactory.CreateDictionary();
 
+        var paySuccess = validCheck && payResp.Success/*.ResponseCode == "00" & payResp.TransactionStatus == "00"*/;
         TempData["TransactionSuccess"] = paySuccess;
         if (paySuccess)
         {
             var thankyouMsg = string.Format(translationItems["donationThankyouMessage_Format"], payResp.Amount, payResp.TransactionNo);
-                /*.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "<br/>");*/
-            additionalData.Add("donationThankyouMessage", thankyouMsg);
+            /*.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "<br/>");*/
+            ViewData.AddFormAdditionalData("donationThankyouMessage", thankyouMsg);
+            //formAdinalData.Add("donationThankyouMessage", thankyouMsg);
         }
         else
         {
             TempData["TransactionMessage"] = translationItems["donationUnsuccessMessage"];
         }
 
-        ViewData["additionalData"] = additionalData;
+        //ViewData["formAdditionalData"] = formAdinalData;
         return base.Index(); // View("~/Views/DonationPage.cshtml");
     }
 }

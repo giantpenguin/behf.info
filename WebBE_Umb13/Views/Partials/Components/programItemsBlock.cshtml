@@ -5,15 +5,17 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 
 @{
-    var selItems = Model.Content.Value<IEnumerable<IPublishedContent>>("programsPicker")?.Where(i => i.IsPublished()) ?? Enumerable.Empty<IPublishedContent>();
-    var readMore = Umbraco.GetTextReadMore(Model.Content);
+    var selItems = Model.Content.Value<IEnumerable<IPublishedContent>>("programsPicker")?
+    .Where(i => i!= null && i.IsPublished()) ?? Enumerable.Empty<IPublishedContent>();
+    var readMore = Umbraco.GetButtonText(Model.Content);
 }
 <div class="row justify-content-center">
     @foreach (var item in selItems)
     {
+        var progUrl = item.Url();
         var progTitle = item.Value<string>("programTitle");
-        var imgUrl = item.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("listingImage")?.GetCropUrl(width: 500);
-        var objectives = item.Value<IEnumerable<string>>("objectives") ?? Enumerable.Empty<string>();
+        var imgUrl = item.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("thumbnailImage")?.GetCropUrl(width: 500);
+        @* var objectives = item.Value<IEnumerable<string>>("objectives") ?? Enumerable.Empty<string>(); *@
 
         <div class="col-12 col-md-6 col-lg-4">
             <div class="card-plan">
@@ -26,11 +28,12 @@
                         </div>
                         @if (!string.IsNullOrEmpty(progTitle))
                         {
-                            <div class="card-teaser__lbl text-center">
-                                <span class="py-2">@progTitle</span>
+                            <div class="plan-title-wrap text-center">
+                                <div class="plan-title card-plan__tle text-truncate" href="@progUrl" title="@progTitle">@progTitle</div>
                             </div>
                         }
-                        else {
+                        else 
+                        {
                           <div class="plan-icon-wrap">
                              <img src="/assets/images/icons/lotus.png" alt="Icon">
                           </div>
@@ -38,7 +41,6 @@
                     </div>
                     <div class="card-plan__cnt">
                         <div class="plan-cnt-top">
-                            @* <h4 class="card-plan__tle">@progTitle</h4> *@
                             @if (item.HasValue("excerpt"))
                             {
                                 <div class="card-plan__fet">@item.Value("excerpt")</div>
@@ -58,7 +60,7 @@
                                 <div class="plan-prc-per">/xx</div>
                             </div> *@
                             <div class="card-plan__cta">
-                                <a href="@item.Url()" class="btn btn-primary btn-lg" title="@readMore">@readMore</a>
+                                <a href="@progUrl" class="btn btn-primary btn-lg" title="@progTitle">@readMore</a>
                             </div>
                         </div>
                     </div>

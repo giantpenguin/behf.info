@@ -18,9 +18,9 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Program Info Page</summary>
+	/// <summary>ProgramInfo Page</summary>
 	[PublishedModel("programInfoPage")]
-	public partial class ProgramInfoPage : PublishedContentModel, IPageBase, IProgramInfo
+	public partial class ProgramInfoPage : PublishedContentModel, IPageBase, IPageContentLayout, IPageSettings, IProgramInfo
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -50,27 +50,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Deactive
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
-		[ImplementPropertyType("deactive")]
-		public virtual bool Deactive => this.Value<bool>(_publishedValueFallback, "deactive");
-
-		///<summary>
-		/// Images
+		/// Program Images
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("images")]
-		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.MediaWithCrops> Images => this.Value<global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.MediaWithCrops>>(_publishedValueFallback, "images");
-
-		///<summary>
-		/// Listing Image
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("listingImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops ListingImage => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "listingImage");
+		[ImplementPropertyType("programImages")]
+		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.MediaWithCrops> ProgramImages => this.Value<global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.MediaWithCrops>>(_publishedValueFallback, "programImages");
 
 		///<summary>
 		/// Keywords: SEO keywords for page
@@ -89,12 +74,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string MetaDescription => global::Umbraco.Cms.Web.Common.PublishedModels.PageBase.GetMetaDescription(this, _publishedValueFallback);
 
 		///<summary>
-		/// Page thumbnail
+		/// Thumbnail/listing Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("pageThumbnail")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops PageThumbnail => global::Umbraco.Cms.Web.Common.PublishedModels.PageBase.GetPageThumbnail(this, _publishedValueFallback);
+		[ImplementPropertyType("thumbnailImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops ThumbnailImage => global::Umbraco.Cms.Web.Common.PublishedModels.PageBase.GetThumbnailImage(this, _publishedValueFallback);
 
 		///<summary>
 		/// Title
@@ -103,6 +88,30 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("title")]
 		public virtual string Title => global::Umbraco.Cms.Web.Common.PublishedModels.PageBase.GetTitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Content Layout
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("contentLayout")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel ContentLayout => global::Umbraco.Cms.Web.Common.PublishedModels.PageContentLayout.GetContentLayout(this, _publishedValueFallback);
+
+		///<summary>
+		/// Hero Banner
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("heroBanner")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops HeroBanner => global::Umbraco.Cms.Web.Common.PublishedModels.PageSettings.GetHeroBanner(this, _publishedValueFallback);
+
+		///<summary>
+		/// Page Background Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("pageBackgroundImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops PageBackgroundImage => global::Umbraco.Cms.Web.Common.PublishedModels.PageSettings.GetPageBackgroundImage(this, _publishedValueFallback);
 
 		///<summary>
 		/// Duration
@@ -125,8 +134,8 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("format")]
-		public virtual string Format => global::Umbraco.Cms.Web.Common.PublishedModels.ProgramInfo.GetFormat(this, _publishedValueFallback);
+		[ImplementPropertyType("formatDescription")]
+		public virtual string FormatDescription => global::Umbraco.Cms.Web.Common.PublishedModels.ProgramInfo.GetFormatDescription(this, _publishedValueFallback);
 
 		///<summary>
 		/// Location
@@ -137,12 +146,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string Location => global::Umbraco.Cms.Web.Common.PublishedModels.ProgramInfo.GetLocation(this, _publishedValueFallback);
 
 		///<summary>
-		/// Materials
+		/// Material Includes
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("materials")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> Materials => global::Umbraco.Cms.Web.Common.PublishedModels.ProgramInfo.GetMaterials(this, _publishedValueFallback);
+		[ImplementPropertyType("materialIncludes")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> MaterialIncludes => global::Umbraco.Cms.Web.Common.PublishedModels.ProgramInfo.GetMaterialIncludes(this, _publishedValueFallback);
 
 		///<summary>
 		/// Objectives
@@ -167,5 +176,20 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("programTitle")]
 		public virtual string ProgramTitle => global::Umbraco.Cms.Web.Common.PublishedModels.ProgramInfo.GetProgramTitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Register Disabled
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
+		[ImplementPropertyType("registerDisabled")]
+		public virtual bool RegisterDisabled => global::Umbraco.Cms.Web.Common.PublishedModels.ProgramInfo.GetRegisterDisabled(this, _publishedValueFallback);
+
+		///<summary>
+		/// Unique Code
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("uniqueCode")]
+		public virtual string UniqueCode => global::Umbraco.Cms.Web.Common.PublishedModels.ProgramInfo.GetUniqueCode(this, _publishedValueFallback);
 	}
 }

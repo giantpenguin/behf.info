@@ -1,24 +1,32 @@
 ﻿@using Umbraco.Extensions
+@using YeahWeb.Extensions;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 
 @{
     var pickedFormId = Model.Content.Value<Guid>("formPicker");
     var isTransForm = Model.Content.Value<bool>("isTransactionForm");
-    // var currentPage = UmbracoContext?.PublishedRequest?.PublishedContent;
+
+    var curLocale = Context.Items.GetValueAsString("currentCulture");
+    // must be "additionalData" because internally used by Forms somewhere
+    var additionalData = ViewContext.AddFormAdditionalData("formLocale", curLocale);
 }
 
 @if (!isTransForm)
 {
-    @(await Component.InvokeAsync("RenderForm", new { formId = pickedFormId, theme = "yeahweb", includeScripts = false }))
+    var progId = Context.Request.Cookies["selectedProgramId"];
+    var progTitle = Umbraco.GetProgramTitle(progId);
+
+    additionalData = ViewContext.AddFormAdditionalData("programTitle", progTitle);
+
+    @(await Component.InvokeAsync("RenderForm", new { formId = pickedFormId, theme = "yeahweb", includeScripts = false, additionalData }))
 }
 else
 {
-    var additionalData = ViewContext.ViewData.GetValue("additionalData") as Dictionary<string, string>;
-    var transMsg = TempData["TransactionMessage"]?.ToString();
     if (bool.TryParse(TempData["TransactionSuccess"]?.ToString(), out var transSuccess) && transSuccess)
     {
         TempData["UmbracoFormSubmittedFromCurrentPage"] = pickedFormId;
     }
+    var transMsg = TempData["TransactionMessage"]?.ToString();
 
     <div class="form-area">
         @(await Component.InvokeAsync("RenderForm", new { formId = pickedFormId, theme = "yeahweb", includeScripts = false, additionalData }))

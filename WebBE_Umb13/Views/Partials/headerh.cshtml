@@ -10,7 +10,7 @@
     var socialLinks = Model.Value<IEnumerable<Link>>("socialLinks") ?? Enumerable.Empty<Link>();
     var currentPage = _umbracoContextAccessor.GetCurrentPage();
     var availCultures = Umbraco.GetLocalizedLangInfos(currentPage);
-    var pageCulture = currentPage?.GetCultureFromDomains()?.ToLower();
+    var pageCulture = Context.Items.GetValueAsString("currentCulture");    
     var curCulItem = availCultures.FirstOrDefault(i => i.Key == pageCulture);
     if (!string.IsNullOrEmpty(pageCulture))
         availCultures.Remove(pageCulture);

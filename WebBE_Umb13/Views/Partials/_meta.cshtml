@@ -5,7 +5,7 @@
     string pageTitle = Model.Value<string>("title");
     string pageDescription = Model.Value<string>("pageDescription");
     var pageThumbnail = Model.Value<IPublishedContent>("pageThumbnail");
-    string pageThumbnailUrl = pageThumbnail is not null ? $"{baseUrl}{pageThumbnail.GetCropUrl(width: 1200)}" : null;
+    string pageThumbnailUrl = pageThumbnail is not null ? $"{baseUrl}{pageThumbnail.GetCropUrl(width: 500)}" : null;
     // string pageThumbnailUrl = Model.HasValue("pageThumbnail") ? baseUrl + Model.Value<IPublishedContent>("pageThumbnail").GetCropUrl(width: 1200) : null;
     bool hasThumbnail = !string.IsNullOrEmpty(pageThumbnailUrl);
 }

@@ -5,16 +5,19 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 
 @{
-    var content = Model.Content.Value<IPublishedContent>("selectedContent");
+    var content = Model.Content?.Value<IPublishedContent>("selectedContent");
+    // the selected Content has become unavailable
+    if (content == null)
+        return;
+
     var heading = content.Value<string>("heading");
     var subHeading = content.Value<string>("subHeading");
-    var imgUrl = content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("listingImage")?.GetCropUrl(width: 600);
-    var bgColor = content.Value<ColorPickerValueConverter.PickedColor>("backgroundColor");
-    var styleVal = string.IsNullOrEmpty(bgColor?.Color) ? "" : $"background-color: #{bgColor.Color};";
+    var imgUrl = content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("thumbnailImage")?.GetCropUrl(width: 600);
+    var styleColor = Model.Content.GetBgrRGBAForStyle();
     // var ctaLink = Model.Content.Value<Link>("actionLink");
 }
 
-<div class="section-block__cnt pt-4 pb-4" style="@styleVal">
+<div class="section-block__cnt pt-4 pb-4" style="@styleColor">
     <div class="row align-items-center gy-3">
         <div class="col-12 col-lg-6">
             <div class="card-jbt-mda a-fadein a-fadein--left">

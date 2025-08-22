@@ -8,11 +8,10 @@
     string heading = Model.Content.Value<string>("heading");
     string subHeading = Model.Content.Value<string>("subHeading");
     var ctaLink = Model.Content.Value<Link>("actionLink");
-    var bgColor = Model.Content.Value<ColorPickerValueConverter.PickedColor>("backgroundColor");        
-    var styleVal = string.IsNullOrEmpty(bgColor?.Color) ? "" : $"background-color: #{bgColor.Color};";
+    var styleColor = Model.Content.GetBgrRGBAForStyle();
 }
 
-<div class="section-block__cnt pt-4 pb-4" style="@styleVal">
+<div class="section-block__cnt pt-4 pb-4" style="@styleColor">
     <div class="row justify-content-center text-center">
         <div class="col-12 col-md-10 col-lg-8">
           @if (!string.IsNullOrWhiteSpace(subHeading)) {

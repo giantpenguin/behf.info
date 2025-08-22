@@ -10,6 +10,7 @@
     viewData.Add("autoPlay", Model.Value<string>("autoPlayBanners")?.ToLowerInvariant());
 }
 
+<partial name="initValues" model="Model" />
 <div class="section-hero home-banner">
     @if (heroBanners.Count() > 1)
     {

@@ -1,5 +1,15 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using YeahWeb.Extensions;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ProgramInfoPage>
+
 @{
-	Layout = "_Layout_Mainh.cshtml";
+    Layout = "_Layout_Mainh.cshtml";
+    TempData["blocksWithGroupNames"] = Model.GetBlocksWithGroupNames("contentLayout");
 }
+
+<partial name="initValues" model="Model" />
+<div class="section-hero">
+    <partial name="breadcrumbHeroBanner" model="Model" />
+</div>
+@* <!-- BLOCK GRID --> *@
+@await Html.GetBlockGridHtmlAsync(Model, "contentLayout", "defaulth")

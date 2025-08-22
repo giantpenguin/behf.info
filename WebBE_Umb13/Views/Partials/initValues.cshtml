@@ -1,0 +1,8 @@
+﻿@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using YeahWeb.Extensions;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
+
+@{
+    var curCulture = Model.GetCultureFromDomains()?.ToLowerInvariant();
+    Context.Items["currentCulture"] = curCulture;
+}

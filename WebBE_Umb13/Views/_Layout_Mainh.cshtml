@@ -3,12 +3,13 @@
 @using Umbraco.Forms.Web;
 @using UmbNav.Core.Extensions
 @using UmbNav.Core.Models
+@using YeahWeb.Extensions;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 
 @{
     Layout = null;
-    var homePage = Umbraco.ContentAtRoot().First(c => c.ContentType.Alias == HomePage.ModelTypeAlias);
-    var curCulture = Model.GetCultureFromDomains();
+    var homePage = Umbraco.GetHomepage()/* .ContentAtRoot().First(c => c.ContentType.Alias == HomePage.ModelTypeAlias) */;
+    var curCulture = Context.Items.GetValueAsString("currentCulture");
     
     // var socialItems = homePage.Value<IEnumerable<BlockListItem>>("socialLinks") ?? Enumerable.Empty<BlockListItem>();
     // var bgrImage = Model.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("pageBackgroundImage");
@@ -18,6 +19,14 @@
 <!doctype html>
 <html lang="@curCulture">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GD6DVQ0MLX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GD6DVQ0MLX');
+    </script>
     <partial name="_meta" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="~/assets/css/libs.css">
