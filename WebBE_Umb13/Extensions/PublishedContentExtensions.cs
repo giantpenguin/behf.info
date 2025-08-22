@@ -86,6 +86,8 @@ public static class PublishedContentExtensions
         var colorLabel = GetBgrPickedColor(currentContent, propBgrColor)?.Label;
         if (string.IsNullOrEmpty(colorLabel))
             return "";
+        else if (colorLabel.InvariantStartsWith("--bs-white-rgb") || colorLabel.InvariantStartsWith("--bs-black-rgb"))
+            return $"background-color: rgba(var({colorLabel})";
 
         var colorShade = GetBgrColorShade(currentContent, propColorShade);
         var colorOpa = GetBgrColorOpaFormat(currentContent, propColorOpa);
