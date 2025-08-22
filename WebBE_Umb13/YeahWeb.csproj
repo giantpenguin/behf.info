@@ -4,6 +4,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Version>1.0.1</Version>
+    
+    <!-- Razor files are needed for the backoffice to work correctly -->
+    <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
+    <!-- Remove RazorCompileOnBuild and RazorCompileOnPublish when not using ModelsMode InMemoryAuto -->
+    <RazorCompileOnBuild>false</RazorCompileOnBuild>
+    <RazorCompileOnPublish>false</RazorCompileOnPublish>
+
+    <GenerateRuntimeConfigDevFile>true</GenerateRuntimeConfigDevFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Features\**" />
@@ -15,6 +23,8 @@
     <Compile Remove="Donation\DonationHandleSurfaceController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="config/**" CopyToOutputDirectory="Always" />
+    <Content Remove="web.Release.config" /> 
     <Content Include="App_Plugins\Login\custom_login_screen.js" />
     <Content Include="App_Plugins\Login\custom_login_screen.css" />
     <Content Include="App_Plugins\Login\umbraco-package.json" />
@@ -65,15 +75,11 @@
     </None>
   </ItemGroup>
 
-  <PropertyGroup>
-    <!-- Razor files are needed for the backoffice to work correctly -->
-    <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
-
-    <!-- Remove RazorCompileOnBuild and RazorCompileOnPublish when not using ModelsMode InMemoryAuto -->
-    <RazorCompileOnBuild>false</RazorCompileOnBuild>
-    <RazorCompileOnPublish>false</RazorCompileOnPublish>
-
-    <GenerateRuntimeConfigDevFile>true</GenerateRuntimeConfigDevFile>
-  </PropertyGroup>
+  <Target Name="TransformWebConfig" AfterTargets="Build,Publish">
+    <TransformXml Source="web.config" Transform="web.$(Configuration).config" Destination="$(OutputPath)web.config" />
+  </Target>
+  <!--<Target Name="TransformWebConfig" AfterTargets="Publish">
+    <TransformXml Source="web.config" Transform="web.$(Configuration).config" Destination="$(PublishDir)web.config" />
+  </Target>-->
 
 </Project>

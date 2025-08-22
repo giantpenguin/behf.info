@@ -4,10 +4,10 @@
   "description": "compile scss to css",
   "main": "scss/",
   "scripts": {
-    "sass-dev": "sass --style=expanded scss:assets/css",
+    "sass-dev": "sass --style=expanded scss:css",
     "sass-devupdate": "sass --watch --update --style=expanded scss:assets/css",
-    "sass-prod": "sass --no-source-map --style=compressed scss:assets/css",
-    "sass-watch": "sass scss:css --watch --style compressed"
+    "sass-prod": "sass --style=compressed scss:assets/css",
+    "sass-watch": "sass --watch --style compressed scss:css"
   },
   "author": "",
   "license": "ISC",

@@ -12,7 +12,7 @@ $cyans-colors-rgb: map-loop($cyans, to-rgb, "$value") !default;
 
 :root{
     @each $color, $value in $grays-colors-rgb {
-    --#{$prefix}#{str-replace($color, '-', '-rgb-')}: #{$value};
+    --#{$prefix}#{str-replace($color, $color, 'gray-rgb-'+ $color)}: #{$value};
   }    
     @each $color, $value in $blues-colors-rgb {
     --#{$prefix}#{str-replace($color, '-', '-rgb-')}: #{$value};
@@ -86,11 +86,17 @@ $cyans-colors-rgb: map-loop($cyans, to-rgb, "$value") !default;
     }
 }
 
-.bdrd-tl-br{
+.bdrd-tlbr{
     border-radius: 6rem 0;
 }
-.bdrd-tr-bl{
+.bdrd-trbl{
     border-radius: 0 6rem;
+}
+.bdrd-tlbr_less{
+    border-radius: 4rem 0;
+}
+.bdrd-trbl_less{
+    border-radius: 0 4rem;
 }
 .bdrd-50{
     border-radius: 50%;
@@ -268,3 +274,72 @@ $cyans-colors-rgb: map-loop($cyans, to-rgb, "$value") !default;
     }
   }
 
+        /* Flexible layout using CSS Grid with auto-switching */
+.flex-wrapper {
+    display: grid;
+    gap: 2rem;
+    /* Auto-switch: 2 columns when space allows (min 300px each), 1 column otherwise */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    align-items: start;
+    &__lcnt {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &.lcnt-smaller {
+        grid-template-columns: minmax(230px, 2fr) minmax(300px, 3fr);
+    }
+}
+
+/* Fallback for browsers without container query support */
+@supports not (container-type: inline-size) {
+    .flex-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    
+    .flex-wrapper__lcnt,
+    .flex-wrapper__rcnt {
+        flex: 1 1 300px;
+        min-width: 300px;
+    }
+
+   .flex-wrapper.lcnt-smaller .flex-wrapper__lcnt {
+        flex: 2 1 230px;
+        min-width: 230px;
+    }
+    
+    .flex-wrapper.lcnt-smaller .flex-wrapper__rcnt {
+        flex: 3 1 300px;
+        min-width: 300px;
+    }
+    
+    /* Ensure the layout is responsive */
+    .flex-wrapper.lcnt-smaller {
+        flex-direction: column;
+    }
+}
+
+/* Container query for modern browsers - more precise control */
+@container (max-width: 650px) {
+    .flex-wrapper,
+    .flex-wrapper.lcnt-smaller {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Media query fallback for older browsers */
+@media (max-width: 650px) {
+    .flex-wrapper,
+    .flex-wrapper.lcnt-smaller {
+        grid-template-columns: 1fr !important;
+        flex-direction: column;
+    }
+    
+    .flex-wrapper__lcnt,
+    .flex-wrapper__rcnt {
+        min-width: unset;
+        flex: 1 1 auto;
+    }    
+}        

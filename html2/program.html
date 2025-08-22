@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <title>Program</title>
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- <link rel="icon" href="img/icon.png">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
+    <link rel="manifest" href="./img/site.webmanifest"> -->
+
+    <!-- css -->
+    <link rel="stylesheet" href="./css/libs.css">
+    <link rel="stylesheet" href="./css/main.css">
+
+    <style>       
+
+        .program-image {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .program-details {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 2rem;
+            height: fit-content;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .program-title {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+        
+        .program-meta {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .program-description {
+            color: #495057;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .program-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .program-tag {
+            background: #007bff;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        .program-tag:hover {
+            background: #0056b3;
+            color: white;
+        }        
+        
+        /* Demo containers to show flexibility */
+        .demo-container {
+            border: 2px dashed #dee2e6;
+            margin: 2rem 0;
+            padding: 1rem;
+            position: relative;
+        }
+        
+        .demo-label {
+            position: absolute;
+            top: -12px;
+            left: 1rem;
+            background: white;
+            padding: 0 0.5rem;
+            font-size: 0.8rem;
+            color: #6c757d;
+            font-weight: 600;
+        }
+        
+        .demo-narrow {
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+        
+        .demo-medium {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+        
+        .demo-wide {
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container py-3">
+        <h1 class="text-center">Program</h1>
+        
+        <div class="py-3 my-3">
+            <hr class="mb-4">
+            <div class="program-container shadow-box">
+                <div class="flex-wrapper lcnt-smaller">
+                    <div class="flex-wrapper__lcnt">
+                        <div class="plan-cover-wrap">
+                            
+                                <img src="https://cdn.stocksnap.io/img-thumbs/960w/mother-yoga_OURBLS2LAH.jpg" alt="Cover">
+                       
+                        </div>
+                    </div>
+                    <div class="flex-wrapper__rcnt">
+                        <div class="plan-cnt-top">
+                            <h4 class="spec-title_white">Program Title goes here</h4>
+                            <div class="card-plan__fet">
+                                <div class="program-meta">
+                                    <strong>Duration:</strong> 12 weeks
+                                </div>
+                                <div class="program-meta">
+                                    <strong>Format:</strong> Full-time, In-person & Online
+                                </div>
+                                <div class="program-meta">
+                                    <strong>Start date:</strong> Setember 15, 2025
+                                </div>
+                                <ul>
+                                    <li>Donec nec justo eget felis facilisis fermentum</li>
+                                    <li>Praesent dapibus neque id cursus faucibus tortor neque egestas</li>
+                                    <li> Nam dui mi tincidunt quis accumsan porttitor facilisis luctus metus</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="plan-cnt-btm">
+                            <div class="card-plan__cta">
+                                <a href="#" class="btn btn-primary btn-lg">Enroll now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                    
+        </div>
+
+        <!-- Demo 1: Wide Container -->
+        <div class="demo-container demo-wide">
+            <span class="demo-label">Wide Container (1200px max)</span>
+            <div class="program-container">
+                <div class="flex-wrapper">
+                    <div class="flex-wrapper__lcnt">
+                        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Advanced Web Development Bootcamp" 
+                             class="program-image">
+                    </div>
+                    
+                    <div class="flex-wrapper__rcnt">
+                        <div class="program-details">
+                            <h2 class="program-title">Advanced Web Development Bootcamp</h2>
+                            
+                            <div class="program-meta">
+                                <strong>Duration:</strong> 12 weeks intensive
+                            </div>
+                            <div class="program-meta">
+                                <strong>Format:</strong> Full-time, In-person & Online
+                            </div>
+                            <div class="program-meta">
+                                <strong>Start Date:</strong> September 15, 2025
+                            </div>
+                            <div class="program-meta">
+                                <strong>Price:</strong> $8,999
+                            </div>
+                            
+                            <div class="program-description">
+                                Master modern web development with our comprehensive bootcamp. Learn React, Node.js, databases, and deployment strategies through hands-on projects.
+                            </div>
+                            
+                            <div class="mb-3">
+                                <strong class="d-block mb-2">Technologies:</strong>
+                                <div class="program-tags">
+                                    <span class="program-tag">JavaScript</span>
+                                    <span class="program-tag">React</span>
+                                    <span class="program-tag">Node.js</span>
+                                    <span class="program-tag">MongoDB</span>
+                                    <span class="program-tag">TypeScript</span>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex gap-2 flex-wrap">
+                                <button class="btn btn-primary">Enroll Now</button>
+                                <button class="btn btn-outline-secondary">Download Syllabus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Demo 2: Medium Container -->
+        <div class="demo-container demo-medium">
+            <span class="demo-label">Medium Container (800px max)</span>
+            <div class="program-container">
+                <div class="flex-wrapper">
+                    <div class="flex-wrapper__lcnt">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Data Science Program" 
+                             class="program-image">
+                    </div>
+                    
+                    <div class="flex-wrapper__rcnt">
+                        <div class="program-details">
+                            <h2 class="program-title">Data Science Intensive</h2>
+                            
+                            <div class="program-meta">
+                                <strong>Duration:</strong> 16 weeks part-time
+                            </div>
+                            <div class="program-meta">
+                                <strong>Format:</strong> Online with weekly workshops
+                            </div>
+                            <div class="program-meta">
+                                <strong>Price:</strong> $6,499
+                            </div>
+                            
+                            <div class="program-description">
+                                Dive deep into data science with Python, machine learning, and statistical analysis. Perfect for professionals transitioning into data roles.
+                            </div>
+                            
+                            <div class="mb-3">
+                                <strong class="d-block mb-2">Skills:</strong>
+                                <div class="program-tags">
+                                    <span class="program-tag">Python</span>
+                                    <span class="program-tag">Pandas</span>
+                                    <span class="program-tag">Scikit-learn</span>
+                                    <span class="program-tag">SQL</span>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex gap-2 flex-wrap">
+                                <button class="btn btn-primary">Apply Now</button>
+                                <button class="btn btn-outline-secondary">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Demo 3: Narrow Container -->
+        <div class="demo-container demo-narrow">
+            <span class="demo-label">Narrow Container (500px max) - Stacked Layout</span>
+            <div class="program-container">
+                <div class="flex-wrapper">
+                    <div class="flex-wrapper__lcnt">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             alt="UX Design Course" 
+                             class="program-image">
+                    </div>
+                    
+                    <div class="flex-wrapper__rcnt">
+                        <div class="program-details">
+                            <h2 class="program-title">UX Design Fundamentals</h2>
+                            
+                            <div class="program-meta">
+                                <strong>Duration:</strong> 8 weeks
+                            </div>
+                            <div class="program-meta">
+                                <strong>Format:</strong> Evening classes
+                            </div>
+                            <div class="program-meta">
+                                <strong>Price:</strong> $2,999
+                            </div>
+                            
+                            <div class="program-description">
+                                Learn user experience design principles, prototyping, and user research methodologies.
+                            </div>
+                            
+                            <div class="mb-3">
+                                <strong class="d-block mb-2">Tools:</strong>
+                                <div class="program-tags">
+                                    <span class="program-tag">Figma</span>
+                                    <span class="program-tag">Sketch</span>
+                                    <span class="program-tag">Adobe XD</span>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex gap-2 flex-wrap">
+                                <button class="btn btn-primary">Register</button>
+                                <button class="btn btn-outline-secondary">Preview</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- JS Libs-->
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/owl.carousel.min.js"></script>
+
+    <!-- JS Main -->
+    <script src="js/main.js"></script>
+    
+</body>
+</html>

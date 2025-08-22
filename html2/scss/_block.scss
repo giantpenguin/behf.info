@@ -256,6 +256,20 @@
                 @include filter-color('white');    
             }
         }
+        .plan-title-wrap{
+            position: relative;
+            margin: -24px auto 0;
+            padding: .75rem 1rem;  
+            z-index: 15;
+            background-color: $secondary;            
+            border-color: transparent;
+            border-radius: 1.75rem 0;
+            overflow: hidden;
+            text-transform: capitalize !important;
+            .plan-title{
+                @include filter-color('white');    
+            }
+        }
     }
     &__cnt{
         flex: 1 1 auto;
@@ -282,13 +296,13 @@
     &__fet{
         margin: 1rem 0 0;
         padding: 0 .5rem;
-        font-size: 1.125rem;
+        font-size: 1rem;
         ul{
             margin: 0 0 1rem;
             padding: 0 0 0 2rem;
             list-style: none;
             li{
-                margin: 0 0 .5rem;
+                // margin: 0 0 .5rem;
                 position: relative;
                 &::before{
                     font-family: "Font Awesome 6 Free";
@@ -894,4 +908,11 @@
             }
         }
     }
+}
+
+/* Container query support for modern browsers */
+.program-container{
+    container-type: inline-size;
+    max-width: 1200px;
+    padding-bottom: 1rem;
 }

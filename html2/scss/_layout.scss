@@ -1,7 +1,7 @@
 .section-hero{
     position: relative;
     margin-top: calc(var(--navbar-height) * -1);
-    min-height: 20rem;
+    min-height: 18rem;
     &__scd{
         position: absolute;
         inset: auto 0 .5rem;
@@ -288,13 +288,13 @@
 .section-block{
     --bg-color: #fff;
     position: relative;
-    margin: 3rem 0;
-    padding: 4rem 0;
+    margin: 0 0;
+    padding: 2rem 0;
     overflow: hidden;
     background-color: var(--bg-color);
     @include media-breakpoint-up(lg){
-        margin: 4rem 0;
-        padding: 6rem 0;
+        // margin: 4rem 0;
+        padding: 3rem 0;
     }
     &__cnt{
         margin: 0 0 2rem;
