@@ -156,14 +156,23 @@
                     z-index: 5;
                 }
             }
-            &__cnt{
+            &__overlay{
                 position: absolute;
                 inset: auto 0 0;
                 padding: 3rem 1rem 1rem;
                 color: #fff;
                 z-index: 10;
-                // background-color: rgab(#000,.5);
                 background-image: linear-gradient(to top, rgba(#000,.5), transparent);
+            }
+            &__cnt{
+                flex: 1 1 auto;
+                min-height: 0;
+                display: flex;
+                flex-direction: column;
+                &-top{
+                    flex: 1 1 auto;
+                    min-height: 0;
+                }
             }
             &__lbl{
                 display: flex;
@@ -908,11 +917,4 @@
             }
         }
     }
-}
-
-/* Container query support for modern browsers */
-.program-container{
-    container-type: inline-size;
-    max-width: 1200px;
-    padding-bottom: 1rem;
 }

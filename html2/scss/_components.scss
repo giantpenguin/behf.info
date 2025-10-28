@@ -429,3 +429,30 @@ a{
     background-color: $secondary;        
     border-color: transparent;        
 }
+
+.teaser-headline__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.teaser-headline__wrapper a {
+  color: #fff;
+  text-decoration: none;
+  flex: 1;
+  transition: opacity 0.3s ease;
+  min-width: 0; /* for text truncation work in flex items */
+}
+
+.teaser-headline__wrapper a:hover {
+  opacity: 0.8;
+}
+
+/* text truncation */
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

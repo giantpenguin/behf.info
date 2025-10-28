@@ -394,3 +394,10 @@
         align-items: center;
     }
 }
+
+/* Container query support for modern browsers */
+.program-container{
+    container-type: inline-size;
+    max-width: 1200px;
+    padding-bottom: 1rem;
+}
