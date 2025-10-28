@@ -1,4 +1,7 @@
-﻿namespace Umbraco.Cms.Web.Common.PublishedModels;
+﻿using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Infrastructure.ModelsBuilder;
+
+namespace Umbraco.Cms.Web.Common.PublishedModels;
 
 public partial class ItemSettings : IItemSettings
 {

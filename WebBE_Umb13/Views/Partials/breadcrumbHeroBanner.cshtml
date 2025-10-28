@@ -3,7 +3,8 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
 
 @{
-    var pageTitle = Model.Value<string>("title");
+    var pageTitle = Model is IProgramInfo ? Model.Value<string>("programTitle") : Model.Value<string>("title");
+
     var homePage = Umbraco.GetHomepage();
     var imgBanner = Model.Value<IPublishedContent>("heroBanner", fallback: Fallback.ToDefaultLanguage);
     if (imgBanner == null)

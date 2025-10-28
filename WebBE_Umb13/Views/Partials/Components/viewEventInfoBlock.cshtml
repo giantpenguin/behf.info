@@ -1,0 +1,86 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@using YeahWeb.Extensions
+@inject YeahWeb.Services.IPageViewModelBuildService PageViewModelBuildService
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var selProgram = Model.Content.Value<IPublishedContent>("selectedProgramInfo");
+    if (selProgram == null && Umbraco.AssignedContentItem is PageEventInfo eventInfoPage)
+    {
+        // is current page a EventInfo page itself
+        selProgram = eventInfoPage;
+    }
+
+    if (selProgram?.IsPublished() != true)
+        return;
+
+    var viewModel = PageViewModelBuildService.BuildProgramInfoViewModel(selProgram);
+    var progTitle = viewModel.Title/* selProgram.Value<string>("programTitle") */;
+    var registerUrl = selProgram.Value<Link>("urlRegister");
+    var eventListUrl = Model.Content.Value<Link>("urlEventList");
+
+    var imgs = selProgram.Value<IEnumerable<MediaWithCrops>>("programImages", fallback: Fallback.ToDefaultLanguage) ?? Enumerable.Empty<MediaWithCrops>();
+    var imgCount = imgs.Count();
+    var imgItem = imgCount > 0 ? imgs.ElementAt(0) : null;
+    var galleryName = imgCount > 1 ? $"gallery{selProgram.Id}" : "";
+}
+
+<div class="program-container shadow">
+    <div class="flex-wrapper lcnt-smaller">
+        <div class="flex-wrapper__lcnt">
+            <div class="plan-cover-wrap">
+                @if (imgItem != null)
+                {
+                    var imgUrl = imgItem.GetCropUrl(width: 500);
+                    <a href="@imgItem.GetCropUrl(width: 800)" data-toggle="lightbox" data-caption="@progTitle" data-gallery="@galleryName">
+                        <img src="@imgUrl" alt="@imgItem.Name" />
+                    </a>
+                    @if (!string.IsNullOrEmpty(galleryName))
+                    {
+                        for (int i = 1; i < imgCount; i++)
+                        {
+                            imgItem = imgs.ElementAt(i);
+                            <div data-src="@imgItem.GetCropUrl(width: 800)" data-title="@imgItem.Name" data-toggle="lightbox" data-gallery="@galleryName"></div>
+                        }    
+                    }
+                }
+            </div>
+        </div>
+        <div class="flex-wrapper__rcnt">
+            <div class="plan-cnt-top">
+                <h4 class="spec-title_white text-capitalize">@progTitle</h4>
+                <div class="card-plan__fet">
+                    <div class="program-meta">
+                        <ul>
+                            @foreach (var locTime in viewModel.Schedule@* .Where(t => t.StartTime > DateTime.Today) *@)
+                            {
+                                var detailStyle = locTime.StartTime > DateTime.Now ? "color: crimson;" : "color: dimgray;";
+                                <li>
+                                    <span class="ti-map-alt" style="@detailStyle"></span><span style="margin-left: .5rem;">@locTime.Location<text>: </text>@locTime.LocationDetail</span>
+                                    <br>
+                                    <span class="ti-calendar" style="@detailStyle"></span><span style="margin-left: .5rem;">@Html.DisplayFor(Model => locTime.StartTime)</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            @if (registerUrl != null || eventListUrl != null)
+            {
+                <div class="plan-cnt-btm btn-group-sm">
+                    @if (registerUrl != null)
+                    {
+                        var buttonText = registerUrl.Name ?? Umbraco.GetButtonText(Model.Content, Globals.Constants.RegisterTransKey, Globals.Constants.RegisterText);
+                        <a href="@registerUrl.Url" id="jumpRegister" class="btn btn-primary" style="margin-right: .5rem;" aria-role="button" target="@registerUrl.Target" title="@registerUrl.Name">@buttonText</a>
+                    }
+                    @if (eventListUrl != null)
+                    {
+                        <a href="@eventListUrl.Url" id="jumpBack" class="btn btn-primary" aria-role="button" title="@eventListUrl.Name">@eventListUrl.Name</a>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -11,7 +11,6 @@
     var homePage = Umbraco.GetHomepage()/* .ContentAtRoot().First(c => c.ContentType.Alias == HomePage.ModelTypeAlias) */;
     var curCulture = Context.Items.GetValueAsString("currentCulture");
     
-    // var socialItems = homePage.Value<IEnumerable<BlockListItem>>("socialLinks") ?? Enumerable.Empty<BlockListItem>();
     // var bgrImage = Model.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("pageBackgroundImage");
     // var styleVal = bgrImage != null ? $"background-image: url({bgrImage.MediaUrl()});" : "";
 }

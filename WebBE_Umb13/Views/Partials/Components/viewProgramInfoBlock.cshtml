@@ -1,0 +1,126 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@using YeahWeb.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var selProgram = Model.Content.Value<IPublishedContent>("selectedProgramInfo");
+    if (selProgram == null && Umbraco.AssignedContentItem is PageProgramInfo progInfoPage)
+    {
+        // is current page a ProgramInfo page itself
+        selProgram = progInfoPage;
+    }
+
+    if (selProgram?.IsPublished() != true)
+        return;
+
+    var homePage = Umbraco.GetHomepage();
+    var programRegPageUrl = homePage.Value<IPublishedContent>("programRegistrationPage")?.Url();
+
+    var progTitle = selProgram.Value<string>("programTitle");
+    var duration = selProgram.Value<string>("duration");
+    var format = selProgram.Value<string>("formatDescription");
+    var participants = selProgram.Value<string>("participants");
+    var location = selProgram.Value<string>("location");
+    var materialTexts = selProgram.Value<IEnumerable<string>>("materialIncludes") ?? Enumerable.Empty<string>();
+    var objectives = selProgram.Value<IEnumerable<string>>("objectives") ?? Enumerable.Empty<string>();
+
+    var imgs = selProgram.Value<IEnumerable<MediaWithCrops>>("programImages", fallback: Fallback.ToDefaultLanguage) ?? Enumerable.Empty<MediaWithCrops>();
+    var imgCount = imgs.Count();
+    var imgItem = imgCount > 0 ? imgs.ElementAt(0) : null;
+    var galleryName = imgCount > 1 ? $"gallery{selProgram.Id}" : "";
+
+    var enrollText = Umbraco.GetButtonText(Model.Content, Globals.Constants.EnrollNowTransKey, Globals.Constants.EnrollNowText);
+}
+
+<div class="program-container shadow">
+    <div class="flex-wrapper lcnt-smaller">
+        <div class="flex-wrapper__lcnt">
+            <div class="plan-cover-wrap">
+                @if (imgItem != null)
+                {
+                    var imgUrl = imgItem.GetCropUrl(width: 500);
+                    // <img src="@imgUrl" data-toggle="lightbox" data-src="@imgItem.GetCropUrl(width: 800)" data-caption="@imgItem.Name" />
+                    <a href="@imgItem.GetCropUrl(width: 800)" data-toggle="lightbox" data-caption="@progTitle" data-gallery="@galleryName">
+                        <img src="@imgUrl" alt="@imgItem.Name" />
+                    </a>
+                    @if (!string.IsNullOrEmpty(galleryName))
+                    {
+                        for (int i = 1; i < imgCount; i++)
+                        {
+                            imgItem = imgs.ElementAt(i);
+                            <div data-src="@imgItem.GetCropUrl(width: 800)" data-title="@imgItem.Name" data-toggle="lightbox" data-gallery="@galleryName"></div>
+                        }    
+                    }
+                }
+            </div>
+        </div>
+        <div class="flex-wrapper__rcnt">
+            <div class="plan-cnt-top">
+                <h4 class="spec-title_white text-capitalize">@progTitle</h4>
+                <div class="card-plan__fet">
+                    <div class="program-meta">
+                        <strong>@Umbraco.GetDictionaryValueOrDefault("propDurationLabel", "Duration:")</strong> @duration
+                    </div>
+                    <div class="program-meta">
+                        <strong>@Umbraco.GetDictionaryValueOrDefault("propFormatDescriptionLabel", "Format:")</strong> @format
+                    </div>
+                    <div class="program-meta">
+                        <strong>@Umbraco.GetDictionaryValueOrDefault("propParticipantsLabel", "Participants:")</strong> @participants
+                    </div>
+                    <div class="program-meta">
+                        <strong>@Umbraco.GetDictionaryValueOrDefault("propLocationLabel", "Location:")</strong> @location
+                    </div>
+                </div>
+                @if (materialTexts.Any())
+                {
+                    <div class="card-plan__fet">
+                        <div class="program-meta">
+                            <strong>@Umbraco.GetDictionaryValueOrDefault("propMaterialIncludesLabel", "Program includes:")</strong>
+                        </div>
+                        <ul>
+                            @foreach (var str in materialTexts)
+                            {
+                                <li>@str</li>
+                            }
+                        </ul>
+                    </div>
+                }
+                @if (selProgram.HasValue("excerpt"))
+                {
+                    <div class="card-plan__fet">@selProgram.Value("excerpt")</div>
+                }
+                @if (objectives.Any()) 
+                { 
+                  <div class="card-plan__fet">
+                      <ul>
+                          @foreach (var str in objectives)
+                          {
+                              <li>@str</li>
+                          }
+                      </ul>
+                  </div>
+                }
+            </div>
+            <div class="plan-cnt-btm">
+                <div class="card-plan__cta">
+                    <a href="#" id="jumpProgRegistration" data-page-url="@programRegPageUrl" data-progid="@selProgram.Id" class="btn btn-primary btn-lg" aria-role="button" title="@enrollText">@enrollText</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    document.getElementById('jumpProgRegistration').addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const progId = this.getAttribute('data-progid');
+        setCookie('selectedProgramId', progId);
+
+        const pageUrl = this.getAttribute('data-page-url');
+        if (pageUrl) {
+            window.location.href = pageUrl;
+        }
+    });
+</script>

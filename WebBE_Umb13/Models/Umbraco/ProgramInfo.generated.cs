@@ -22,40 +22,20 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 	/// <summary>Program Info</summary>
 	public partial interface IProgramInfo : IPublishedElement
 	{
-		/// <summary>Duration</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		string Duration { get; }
-
 		/// <summary>Excerpt</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Excerpt { get; }
+		string Excerpt { get; }
 
-		/// <summary>Format</summary>
+		/// <summary>Locations & Timeline</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		string FormatDescription { get; }
+		global::Umbraco.Cms.Core.Models.Blocks.BlockListModel LocationsTimelines { get; }
 
-		/// <summary>Location</summary>
+		/// <summary>Program Images</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		string Location { get; }
-
-		/// <summary>Material Includes</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::System.Collections.Generic.IEnumerable<string> MaterialIncludes { get; }
-
-		/// <summary>Objectives</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::System.Collections.Generic.IEnumerable<string> Objectives { get; }
-
-		/// <summary>Participants</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		string Participants { get; }
+		global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.MediaWithCrops> ProgramImages { get; }
 
 		/// <summary>Program Title</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
@@ -66,10 +46,10 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		bool RegisterDisabled { get; }
 
-		/// <summary>Unique Code</summary>
+		/// <summary>Register Url</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		string UniqueCode { get; }
+		global::Umbraco.Cms.Core.Models.Link UrlRegister { get; }
 	}
 
 	/// <summary>Program Info</summary>
@@ -104,95 +84,43 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Duration
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("duration")]
-		public virtual string Duration => GetDuration(this, _publishedValueFallback);
-
-		/// <summary>Static getter for Duration</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
-		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static string GetDuration(IProgramInfo that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "duration");
-
-		///<summary>
 		/// Excerpt
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("excerpt")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Excerpt => GetExcerpt(this, _publishedValueFallback);
+		public virtual string Excerpt => GetExcerpt(this, _publishedValueFallback);
 
 		/// <summary>Static getter for Excerpt</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Strings.IHtmlEncodedString GetExcerpt(IProgramInfo that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(publishedValueFallback, "excerpt");
+		public static string GetExcerpt(IProgramInfo that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "excerpt");
 
 		///<summary>
-		/// Format
+		/// Locations & Timeline
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("formatDescription")]
-		public virtual string FormatDescription => GetFormatDescription(this, _publishedValueFallback);
+		[ImplementPropertyType("locationsTimelines")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel LocationsTimelines => GetLocationsTimelines(this, _publishedValueFallback);
 
-		/// <summary>Static getter for Format</summary>
+		/// <summary>Static getter for Locations & Timeline</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static string GetFormatDescription(IProgramInfo that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "formatDescription");
+		public static global::Umbraco.Cms.Core.Models.Blocks.BlockListModel GetLocationsTimelines(IProgramInfo that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(publishedValueFallback, "locationsTimelines");
 
 		///<summary>
-		/// Location
+		/// Program Images
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("location")]
-		public virtual string Location => GetLocation(this, _publishedValueFallback);
+		[ImplementPropertyType("programImages")]
+		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.MediaWithCrops> ProgramImages => GetProgramImages(this, _publishedValueFallback);
 
-		/// <summary>Static getter for Location</summary>
+		/// <summary>Static getter for Program Images</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static string GetLocation(IProgramInfo that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "location");
-
-		///<summary>
-		/// Material Includes
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("materialIncludes")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> MaterialIncludes => GetMaterialIncludes(this, _publishedValueFallback);
-
-		/// <summary>Static getter for Material Includes</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
-		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::System.Collections.Generic.IEnumerable<string> GetMaterialIncludes(IProgramInfo that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.Collections.Generic.IEnumerable<string>>(publishedValueFallback, "materialIncludes");
-
-		///<summary>
-		/// Objectives
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("objectives")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> Objectives => GetObjectives(this, _publishedValueFallback);
-
-		/// <summary>Static getter for Objectives</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
-		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::System.Collections.Generic.IEnumerable<string> GetObjectives(IProgramInfo that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.Collections.Generic.IEnumerable<string>>(publishedValueFallback, "objectives");
-
-		///<summary>
-		/// Participants
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("participants")]
-		public virtual string Participants => GetParticipants(this, _publishedValueFallback);
-
-		/// <summary>Static getter for Participants</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
-		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static string GetParticipants(IProgramInfo that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "participants");
+		public static global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.MediaWithCrops> GetProgramImages(IProgramInfo that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.MediaWithCrops>>(publishedValueFallback, "programImages");
 
 		///<summary>
 		/// Program Title
@@ -219,16 +147,16 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public static bool GetRegisterDisabled(IProgramInfo that, IPublishedValueFallback publishedValueFallback) => that.Value<bool>(publishedValueFallback, "registerDisabled");
 
 		///<summary>
-		/// Unique Code
+		/// Register Url
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("uniqueCode")]
-		public virtual string UniqueCode => GetUniqueCode(this, _publishedValueFallback);
+		[ImplementPropertyType("urlRegister")]
+		public virtual global::Umbraco.Cms.Core.Models.Link UrlRegister => GetUrlRegister(this, _publishedValueFallback);
 
-		/// <summary>Static getter for Unique Code</summary>
+		/// <summary>Static getter for Register Url</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.2+b414456")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static string GetUniqueCode(IProgramInfo that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "uniqueCode");
+		public static global::Umbraco.Cms.Core.Models.Link GetUrlRegister(IProgramInfo that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Link>(publishedValueFallback, "urlRegister");
 	}
 }

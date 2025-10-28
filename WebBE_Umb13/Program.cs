@@ -9,6 +9,7 @@ builder.CreateUmbracoBuilder()
     .AddWebsite()
     .AddDeliveryApi()
     .AddComposers()
+    // Add extension methods here, before Build().
     .Build();
 
 builder.Services.AddOptions<VNPayOptions>().Bind(builder.Configuration.GetSection("PayGates:VNPayConfig"));

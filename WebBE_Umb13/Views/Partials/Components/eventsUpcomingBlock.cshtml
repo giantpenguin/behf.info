@@ -1,0 +1,70 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@using YeahWeb.Extensions
+@inject YeahWeb.Services.ContentQueryService _contentQueryService
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var itemsModel = _contentQueryService.GetUpcomingEvents();
+    var itemCount = itemsModel.Count();
+    var pageEvents = Model.Content.Value<IPublishedContent>("pageAllEvents");
+    var readMore = Umbraco.GetButtonText(Model.Content);
+}
+<div class="section-block__cpn">
+    @if (Model.Content.HasValue("heading"))
+    {
+        <div class="row justify-content-center text-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <h2 class="section-block__tle a-fadein a-fadein--right">@Model.Content.Value("heading")</h2>
+            </div>
+        </div>
+    }
+    @if (itemCount > 0) { 
+        <div class="section-block__cnt">
+            <div class="list-specs">
+                <div class="list-specs__row @* @justCenter *@">
+                    @foreach (var item in itemsModel)
+                    {
+                        <div class="card-spec icon--none has--shadow">
+                            <div class="card-spec__wrp">
+                                <div class="card-spec__cnt">
+                                    <a href="@item.PageUrl"><h4 class="card-spec__tle" title="@readMore">@item.Title</h4></a>
+                                    @if (!string.IsNullOrWhiteSpace(item.Excerpt.Value))
+                                    {
+                                        <div class="card-spec__des text-body-emphasis">@item.Excerpt</div>
+                                    }
+                                    <div class="card-plan__fet">
+                                        <ul>
+                                            @foreach (var locTime in item.Schedule.Where(t => t.StartTime > DateTime.Today))
+                                            {
+                                                <li>
+                                                    <span class="ti-map-alt" style="color: crimson;"></span><span style="margin-left: .5rem;">@locTime.Location<text>: </text>@locTime.LocationDetail</span>
+                                                    <br>
+                                                    <span class="ti-calendar" style="color: crimson;"></span><span style="margin-left: .5rem;">@Html.DisplayFor(Model => locTime.StartTime)</span>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="d-flex align-items-center justify-content-center gap-2">
+            @Model.Content.Value("messageNoneEvent")
+            @if (pageEvents != null)
+            {
+                var allEventsText = Model.Content.Value<string>("textAllEvents", defaultValue: pageEvents.Name);
+                <a href="@pageEvents.Url()" class="btn btn-secondary btn-hover-slide-in btn-hover-jump-up text-capitalize" title="@allEventsText">@allEventsText</a>
+            }
+            </div>
+        </div>
+    }
+</div>

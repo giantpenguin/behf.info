@@ -8,6 +8,9 @@
     string pageThumbnailUrl = pageThumbnail is not null ? $"{baseUrl}{pageThumbnail.GetCropUrl(width: 500)}" : null;
     // string pageThumbnailUrl = Model.HasValue("pageThumbnail") ? baseUrl + Model.Value<IPublishedContent>("pageThumbnail").GetCropUrl(width: 1200) : null;
     bool hasThumbnail = !string.IsNullOrEmpty(pageThumbnailUrl);
+
+    if (string.IsNullOrWhiteSpace(pageTitle))
+        pageTitle = Model.Name();
 }
 
 <meta charset="utf-8">

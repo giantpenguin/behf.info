@@ -1,0 +1,78 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@using YeahWeb.Extensions
+@inject YeahWeb.Services.ContentQueryService _contentQueryService
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var itemsModel = _contentQueryService.GetAllEvents();
+    var itemCount = itemsModel.Count();
+    var readMore = Umbraco.GetButtonText(Model.Content);
+}
+<div class="section-block__cpn">
+    @if (Model.Content.HasValue("heading"))
+    {
+        <div class="row justify-content-center text-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <h2 class="section-block__tle a-fadein a-fadein--right">@Model.Content.Value("heading")</h2>
+            </div>
+        </div>
+    }
+    @if (itemCount > 0)
+    {
+        <div class="row">
+
+        @foreach (var item in itemsModel)
+        {
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card-teaser type--2 has--shadow">
+                    <div class="card-teaser__wrp">
+                        <div class="card-teaser__mda h-rect">
+                          <div class="h-rect__inner">
+                            <img src="@item.ThumbnailUrl" alt="@item.Title">
+                          </div>
+                          <div class="card-teaser__overlay">
+                              <div class="teaser-headline__wrapper">
+                                  <a href="@item.PageUrl" class="" title="@item.Title">
+                                      <h3 class="card-teaser__tle" title="@readMore">@item.Title</h3>
+                                  </a>
+                                  <div class="btn btn-icon btn-light">
+                                      <i class="fa-solid fa-arrow-right"></i>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="card-teaser__cnt">
+                            @if (!string.IsNullOrWhiteSpace(item.Excerpt.Value))
+                            {
+                                <div class="card-teaser__des text-body-emphasis">@item.Excerpt</div>
+                            }
+                            <div class="card-teaser__fet">
+                                <ul>
+                                    @foreach (var locTime in item.Schedule@* .Where(t => t.StartTime > DateTime.Today) *@)
+                                    {
+                                        var detailStyle = locTime.StartTime > DateTime.Now ? "color: crimson;" : "color: dimgray;";
+                                        <li>
+                                            <span class="ti-map-alt" style="@detailStyle"></span><span style="margin-left: .5rem;">@locTime.Location<text>: </text>@locTime.LocationDetail</span>
+                                            <br>
+                                            <span class="ti-calendar" style="@detailStyle"></span><span style="margin-left: .5rem;">@Html.DisplayFor(Model => locTime.StartTime)</span>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @Model.Content.Value("messageNoneEvent")
+        </div>
+    }
+</div>

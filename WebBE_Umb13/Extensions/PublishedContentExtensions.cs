@@ -115,7 +115,7 @@ public static class PublishedContentExtensions
         return bgrOpa.ToStringFormat();
     }
 
-    public static string GetButtonText(this UmbracoHelper umbHelper, IPublishedElement? currentContent, string translationKey = "buttonReadMore", string fallback = "Read More")
+    public static string GetButtonText(this UmbracoHelper umbHelper, IPublishedElement? currentContent, string translationKey = Globals.Constants.ReadMoreTransKey, string fallback = Globals.Constants.ReadMoreText)
     {
         var readMore = currentContent is IItemSettings itmSettings ? itmSettings.TextReadMore : "";
 
